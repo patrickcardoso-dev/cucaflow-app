@@ -1,6 +1,8 @@
 {
   "name": "cucaflow-app",
   "version": "0.1.0",
+  "description": "NextJS + Tailwind CSS productivity management web application.",
+  "author": "HandsOn Cucaflow team",
   "private": true,
   "scripts": {
     "dev": "next dev",
