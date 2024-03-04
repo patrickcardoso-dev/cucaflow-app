@@ -35,26 +35,30 @@ const config = {
     },
     colors: {
       neutras: {
-        neutra: "#EFEFFF",
+        neutra: "#fff",
         bgBlack: "#211D28",
         gray100: "#201F25",
         gray200: "#EEE",
       },
       primary: {
         purple100: "#641499",
-        purple200: "#E1B2FF",
+        purple200: "#420A66",
         purple300: "#420A66",
       },
-      secondy: {
+      secondary: {
         orange100: "#F55B1B",
         orange200: "#FFC9B2",
-        orange300: "#66250A",
+        orange300: "#FFC9B2",
       },
       terciary: {
         green100: "#1AAD5F",
         green200: "#B2FFD6",
         green300: "#0A6635",
       },
+    },
+    boxShadow: {
+      shadowButton:
+        "0px 6px 13px 0px rgba(255, 108, 55, 0.05), 0px 24px 24px 0px rgba(255, 108, 55, 0.04), 0px 55px 33px 0px rgba(255, 108, 55, 0.03), 0px 98px 39px 0px rgba(255, 108, 55, 0.01), 0px 153px 43px 0px rgba(255, 108, 55, 0.00)",
     },
   },
   plugins: [require("tailwindcss-animate")],
