@@ -50,7 +50,7 @@ const config = {
         orange200: "#FFC9B2",
         orange300: "#FFC9B2",
       },
-      terciary: {
+      tertiary: {
         green100: "#1AAD5F",
         green200: "#B2FFD6",
         green300: "#0A6635",
