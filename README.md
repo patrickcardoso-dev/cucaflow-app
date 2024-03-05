@@ -33,3 +33,47 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Tailwind](https://tailwindcss.com/)
 
 - [Shadcn/ui](https://ui.shadcn.com/)
+
+## ✨ Autores
+
+### Front-End:
+<div style="display: flex; gap: 10px">
+
+  <div>
+    <a href="https://github.com/TayAmorim">
+      <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105131804?v=4" width="100px;" alt=""/>
+      <br />
+    </a>
+    <div align="center"><a href="https://www.linkedin.com/in/tayanna-amorim/" title="tayanna">Tayanna Amorim</a></div>
+    
+  </div>
+
+  <div>
+    <a href="https://github.com/joaonevescampos">
+      <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/joaonevescampos" width="100px;" alt=""/>
+      <br />
+    </a>
+     <div align="center"><a href="https://www.linkedin.com/in/joaonevescampos/" title="João">João Victor</a></div>
+  </div>
+
+  <div>
+    <a href="https://github.com/milecruz26">
+      <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/milecruz26" width="100px;" alt=""/>
+      <br />
+    </a>
+     <div align="center"><a href="https://www.linkedin.com/in/milecruz26/" title="João">Jamile Cruz</a></div>
+  </div>
+</div>
+
+### back-End:
+<div style="display: flex; gap: 10px">
+
+  <div>
+    <a href="https://github.com/patrickcardoso-dev">
+      <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/patrickcardoso-dev" width="100px;" alt=""/>
+      <br />
+    </a>
+    <div align="center"><a href="https://www.linkedin.com/in/dev-patrickcardoso/" title="tayanna">Patrick Cardoso</a></div>
+  </div>
+
+</div>
