@@ -2,6 +2,11 @@ import Image from "next/image";
 import logo from "../assets/logo-cuca.png";
 import orange from "../assets/elipse-orange.png";
 import purple from "../assets/elipse-purple.png";
+import { manrope } from "./fonts";
+import { Label } from "@/components/ui/label";
+import { PasswordInput } from "@/components/password-input";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -14,28 +19,44 @@ export default function Home() {
       />
       <div className="flex flex-col items-center justify-center ">
         <Image src={logo} alt="logo de um jacaré" />
-        <p className="text-sm text-neutral-700 font-bold text-center w-[235px] mt-2">
-          Insira as informações para efetuar o cadastro
+        <p
+          className={`${manrope.className} text-base text-[#211D28] font-medium text-center w-[235px] mt-2`}
+        >
+          Entre e comece a transformar suas metas em realidade.
         </p>
       </div>
 
       <div className=" flex flex-col items-center">
         <form className="flex flex-col ">
-          <label>Email</label>
-          <input className="rounded border-gray-500 border" />
+          <Label
+            className={`text-[#201F25] text-sm ${manrope.className} desktop:text-base mt-5`}
+          >
+            E-mail
+          </Label>
+          <Input className="bg-neutras-neutra" />
 
-          <label>Senha</label>
-          <input className="rounded border-gray-500 border mb-1" />
-          <p className="text-right text-xs">Esqueceu sua senha?</p>
+          <Label
+            className={`text-[#201F25] text-sm ${manrope.className} desktop:text-base mt-5 `}
+          >
+            Senha
+          </Label>
+          <PasswordInput className="bg-neutras-neutra" />
+          <p
+            className={`cursor-pointer text-right text-xs mt-2 ${manrope.className}`}
+          >
+            Esqueceu sua senha?
+          </p>
 
-          <button className="w-[312px] h-[42px] flex justify-center items-center bg-orange-600 mt-11">
-            Entrar
-          </button>
+          <Button className="mt-10">Entrar</Button>
         </form>
         <hr className="w-[180px] my-6 mx-auto" />
-        <p className="text-center mt-1 text-sm text-purple-700 ">
+        <p
+          className={`text-center font-bold mt-1 text-sm text-[#49484D] ${manrope.className}`}
+        >
           Não possui conta?{" "}
-          <strong className="underline underline-offset-1">Cadastre-se</strong>
+          <strong className="cursor-pointer text-primary-purple100">
+            Cadastre-se
+          </strong>
         </p>
       </div>
 
