@@ -5,6 +5,7 @@ import ellipse2 from "../../assets/ellipse2.png";
 import {Input} from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function SignUp() {
     
@@ -28,7 +29,7 @@ export default function SignUp() {
             </div>
 
             <form className="flex flex-col justify-center items-center gap-5">
-                <div className="flex flex-col w-[320px]">
+                <div className="flex flex-col">
                     <Label htmlFor="name">
                         Nome de usuário
                     </Label>
@@ -69,12 +70,11 @@ export default function SignUp() {
                 </div>
 
                 <div className="flex items-center mb-4">
-                    <input
-                        type="checkbox" className=" form-checkbox w-[22px] h-[22px] border-4 border-blue- mr-2" />
-                    <p className="text-[#AF61F2] text-xs">Eu aceito os Termos e Política de privacidade</p>
+                    <Checkbox />
+                    <p className="text-[#AF61F2] text-xs pl-2">Eu aceito os Termos e Política de privacidade</p>
                 </div>
                 <div>
-                    <Button className="bg-primary-purple100 w-[312px] ">
+                    <Button variant="purple" className="w-[312px]">
                         <p className="text-bold text-sm">Cadastrar</p>
                     </Button>
                 </div>
