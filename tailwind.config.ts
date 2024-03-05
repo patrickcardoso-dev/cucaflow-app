@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        tablet: "768px",
+        laptop: "992px",
+        desktop: "1280px",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
