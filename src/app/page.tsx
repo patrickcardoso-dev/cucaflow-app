@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/components/password-input";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ProfileForm } from "@/components/modal/editUser";
+
 
 export default function Home() {
   return (
@@ -54,7 +56,7 @@ export default function Home() {
           className={`text-center font-bold mt-1 text-sm text-[#49484D] ${manrope.className}`}
         >
           Não possui conta?{" "}
-          <strong className="cursor-pointer text-primary-purple100">
+          <strong className="cursor-pointer text-primary-purple100 ">
             Cadastre-se
           </strong>
         </p>
@@ -66,6 +68,7 @@ export default function Home() {
         width={290}
         className="absolute bottom-0 left-0 -z-10 w-48"
       />
+      <ProfileForm/>
     </main>
   );
 }

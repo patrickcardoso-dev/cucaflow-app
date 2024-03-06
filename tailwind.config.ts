@@ -56,7 +56,7 @@ const config = {
         orange300: "#FFC9B2",
       },
       tertiary: {
-        green100: "#1AAD5F",
+        error: "#F51B1B",
         green200: "#B2FFD6",
         green300: "#0A6635",
       },
