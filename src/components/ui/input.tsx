@@ -9,12 +9,12 @@ export interface InputProps
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type,  ...props }, ref) => {
-    const {  formState: { errors } } = useForm();
+    
     return (
       <input
         type={type}
         className={cn(
-          `${errors ? 'border border-tertiary-error' : 'border border-neutras-gray100'} flex h-10 w-80 lg:w-96 rounded-lg  bg-neutras-gray200 pl-2 text-sm`,
+          "flex h-10 w-80 lg:w-96 rounded-lg border border-neutras-gray100 bg-neutras-gray200 pl-2 text-sm",
           className
         )}
         ref={ref}

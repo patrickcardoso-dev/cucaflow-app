@@ -13,7 +13,7 @@ import { ProfileForm } from "@/components/modal/editUser";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative laptop:flex-row">
-{/*       <Image
+<Image
         src={orange}
         alt="elípse laranja"
         width={290}
@@ -67,8 +67,8 @@ export default function Home() {
         alt="elipse roxa"
         width={290}
         className="absolute bottom-0 left-0 -z-10 w-48"
-      /> */}
-      <ProfileForm/>
+      /> 
+      {/* <ProfileForm/> */}
     </main>
   );
 }
