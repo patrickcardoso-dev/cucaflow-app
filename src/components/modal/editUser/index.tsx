@@ -44,7 +44,7 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel >Nome de Usuário</FormLabel>
               <FormControl>
-                <Input  placeholder="oi" {...field} />
+                <Input  placeholder="" {...field} />
               </FormControl>
               <FormMessage className="text-tertiary-error" />
             </FormItem>
