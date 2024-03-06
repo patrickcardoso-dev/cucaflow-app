@@ -1,16 +1,20 @@
 import Image from "next/image";
+
+import { manrope } from "./fonts";
 import cucaflowLogo from "../../assets/logo_cucaflow-03.png";
 import ellipse3 from "../../assets/ellipse3.png";
 import ellipse2 from "../../assets/ellipse2.png";
-import {Input} from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/password-input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 
 export default function SignUp() {
     
     return (
-        <main className="bg-[#FAFAFA] w-screen h-screen p-[24px]">
+        <main className={`${manrope.className} bg-[#FAFAFA] w-screen h-screen p-[24px]`}>
             <Image
                     src={ellipse3}
                     alt="Ellipe 3"
@@ -29,71 +33,73 @@ export default function SignUp() {
             </div>
 
             <form className="flex flex-col justify-center items-center gap-5">
-                <div className="flex flex-col">
-                    <Label htmlFor="name">
-                        Nome de usuário
-                    </Label>
-                    <Input
-                        id="name"
-                        type="text"
-                        placeholder="Ex. cucaflow"
-                        className="w-[312px] mb-4"
-                    />
-                    <Label htmlFor="email">
-                        E-mail
-                    </Label>
-                    <Input
-                        id="name"
-                        type="email"
-                        placeholder="Ex. cucaflow@gmail.com"
-                        className="w-[312px] mb-4"
-                    />
+                <div className="flex flex-col gap-4">
+                    <div>
+                        <Label htmlFor="name">
+                            Nome de usuário
+                        </Label>
+                        <Input
+                            id="name"
+                            type="text"
+                            placeholder="Ex. cucaflow"
+                        />
+                    </div>
+                    <div>
+                        <Label htmlFor="email">
+                            E-mail
+                        </Label>
+                        <Input
+                            id="name"
+                            type="email"
+                            placeholder="Ex. cucaflow@gmail.com"
+                        />
+                    </div>
                 
-                    <Label htmlFor="password">
-                        Senha
-                    </Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        placeholder="Insira sua senha"
-                        className="w-[312px] mb-4"
-                    />
-                     <Label htmlFor="password">
-                        Confirmar senha
-                    </Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        placeholder="Insira sua senha"
-                        className="w-[312px] mb-4"
-                    />
+                    <div>
+                        <Label htmlFor="password">
+                            Senha
+                        </Label>
+                        <PasswordInput
+                            id="password"
+                            placeholder="Insira sua senha"
+                        />
+                    </div>
+
+                    <div>
+                        <Label htmlFor="password-confirm">
+                            Confirmar senha
+                        </Label>
+                        <PasswordInput
+                            id="password-confirm"
+                            placeholder="Insira sua senha"
+                        />
+                    </div>
                 </div>
 
-                <div className="flex items-center mb-4">
+                <div className="flex items-center">
                     <Checkbox />
                     <p className="text-[#AF61F2] text-xs pl-2">Eu aceito os Termos e Política de privacidade</p>
                 </div>
-                <div>
-                    <Button variant="purple" className="w-[312px]">
-                        <p className="text-bold text-sm">Cadastrar</p>
-                    </Button>
-                </div>
+                
+                <Button variant="purple" size="default" className="w-[320px] rounded-md">
+                    <p className="text-bold text-sm">Cadastrar</p>
+                </Button>
+                
             </form>
 
             <hr className="text-secondary-orange300 w-56 m-auto mt-6 mb-4"/>
             
                 <div className="flex justify-center items-center">
-                    <p className="text-[#49484D] font-bold text-center text-sm">Já possui conta?</p>
+                    <p className={`text-[#49484D] font-bold text-center text-sm ${manrope.className}`}>Já possui conta?</p>
                     <strong>
-                        <a href="#" className="text-[#EE5D21] text-bold text-center text-sm underline ml-1">Faça o Login</a>
+                        <Link href="/" className="text-[#EE5D21] text-bold text-center text-sm underline ml-1">Faça o Login</Link>
                     </strong>
-                    
-                </div>
-                <Image
+                    <Image
                         src={ellipse2}
                         alt="Ellipe 2"
-                        className="absolute top-screen right-0"
+                        className="absolute bottom-screen right-0"
                     />
+                </div>
        </main>
     )
 }
