@@ -23,15 +23,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
         />
-        {error ? (
-          <AlertCircle
-            size={18}
-            color="#fe1b1b"
-            strokeWidth={1.25}
-            aria-hidden="true"
-            className="absolute right-0 top-0 h-full mr-2 "
-          />
-        ) : (
+        {!error && (
           <Button
             type="button"
             variant="input"
