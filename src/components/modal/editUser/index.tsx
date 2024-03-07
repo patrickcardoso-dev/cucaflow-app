@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -29,11 +28,11 @@ const formSchema = z
     }),
     image: z.any().optional(),
     email: z.string().email({ message: "E-mail invalido" }),
-    password: z.string().min(4, {
-      message: "senha precisa ter mais de 4 caracteres",
+    password: z.string().min(6, {
+      message: "senha precisa ter mais de 6 caracteres",
     }),
-    confirmPassword: z.string().min(4, {
-      message: "senha precisa ter mais de 4 caracteres",
+    confirmPassword: z.string().min(6, {
+      message: "senha precisa ter mais de 6 caracteres",
     }),
   })
   .refine((data) => data.password === data.confirmPassword, {

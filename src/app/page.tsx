@@ -19,7 +19,7 @@ export default function Home() {
         width={290}
         className="absolute top-0 right-0 -z-10 w-56"
       />
-{/*       <div className="flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center justify-center ">
         <Image src={logo} alt="logo de um jacaré" />
         <p
           className={`${manrope.className} text-base text-[#211D28] font-medium text-center w-[235px] mt-2`}
@@ -60,7 +60,7 @@ export default function Home() {
             Cadastre-se
           </strong>
         </p>
-      </div> */}
+      </div> 
 
       <Image
         src={purple}
@@ -68,7 +68,7 @@ export default function Home() {
         width={290}
         className="absolute bottom-0 left-0 -z-10 w-48"
       /> 
-      <ProfileForm/>
+      {/* <ProfileForm/> */}
     </main>
   );
 }
