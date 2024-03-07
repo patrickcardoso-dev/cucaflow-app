@@ -24,7 +24,7 @@ import { ChangeEvent, useState } from "react";
 const formSchema = z
   .object({
     nomeUsuario: z.string().min(3, {
-      message: "Nome de usuário precisa ter mais de 4 caracteres",
+      message: "Nome de usuário precisa ter mais de 3 caracteres",
     }),
     image: z.any().optional(),
     email: z.string().email({ message: "E-mail invalido" }),
