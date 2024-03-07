@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+   <p> Cuca flow </p>
+</h1>
 
-## Getting Started
+<p align="center">
+  <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*v-OPYCVCFfJejxZ_7lHitg.png" alt="Vídeo demostrativo da aplicação">
+</p>
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📃 Introdução
+O objetivo principal do projeto é proporcionar aos usuários uma experiência abrangente de organização e produtividade em um único aplicativo. O Cuca flow visa auxiliar os usuários a gerenciarem eficientemente seu tempo produtivo, monitorar suas tarefas de maneira eficaz e, ao mesmo tempo, oferecer funcionalidades que permitam momentos de relaxamento sem comprometer o foco. Criando uma ferramenta integrada que não apenas otimize a gestão do tempo, mas também promova um equilíbrio saudável entre o trabalho e o descanso, capacitando os usuários a atingirem seus objetivos de maneira eficaz e sustentável.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙ Funcionalidades 
+- **Login:** Permite aos usuários acessarem suas contas de forma segura.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Login Social:** Oferece aos usuários a opção de acessar suas contas de forma rápida e conveniente através de autenticação social, simplificando o processo de entrada utilizando plataformas como Google, Facebook, ou outras. Isso proporciona uma experiência de login mais fluida e elimina a necessidade de lembrar senhas adicionais.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Cadastro e Edição de Usuário:** Facilita o registro inicial e a manutenção das informações do usuário.
 
-## Learn More
+- **Método Pomodoro:** Implementação do método Pomodoro para otimizar a produtividade, alternando entre períodos de trabalho e intervalos de descanso.
 
-To learn more about Next.js, take a look at the following resources:
+- **Playlist de Músicas:** Integração de uma playlist de músicas para tornar a experiência mais agradável e personalizada durante as sessões de trabalho.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Cronômetro:** Exibe um cronômetro para acompanhar e visualizar o tempo de trabalho, proporcionando uma referência clara para o usuário.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Todo com Calendário:** Permite aos usuários criar, gerenciar e acompanhar suas listas de tarefas, integrando-as com um calendário para um planejamento mais abrangente. Isso facilita a organização do tempo produtivo, permitindo a visualização e acompanhamento de prazos e compromissos de forma eficiente.
 
-## Deploy on Vercel
+## 🧱 Tecnologias
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+As seguintes ferramentas foram usadas na construção do projeto:
+- [NextJs](https://nextjs.org/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Tailwind](https://tailwindcss.com/)
+
+- [Shadcn/ui](https://ui.shadcn.com/)
+
+## ✨ Autores
+
+### Front-End:
+<div style="display: flex; gap: 10px">
+
+  <div>
+    <a href="https://github.com/TayAmorim">
+      <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/105131804?v=4" width="100px;" alt=""/>
+      <br />
+    </a>
+    <div align="center"><a href="https://www.linkedin.com/in/tayanna-amorim/" title="tayanna">Tayanna Amorim</a></div>
+    
+  </div>
+
+  <div>
+    <a href="https://github.com/joaonevescampos">
+      <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/joaonevescampos" width="100px;" alt=""/>
+      <br />
+    </a>
+     <div align="center"><a href="https://www.linkedin.com/in/joaonevescampos/" title="João">João Victor</a></div>
+  </div>
+
+  <div>
+    <a href="https://github.com/milecruz26">
+      <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/milecruz26" width="100px;" alt=""/>
+      <br />
+    </a>
+     <div align="center"><a href="https://www.linkedin.com/in/milecruz26/" title="João">Jamile Cruz</a></div>
+  </div>
+</div>
+
+### back-End:
+<div style="display: flex; gap: 10px">
+
+  <div>
+    <a href="https://github.com/patrickcardoso-dev">
+      <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/patrickcardoso-dev" width="100px;" alt=""/>
+      <br />
+    </a>
+    <div align="center"><a href="https://www.linkedin.com/in/dev-patrickcardoso/" title="tayanna">Patrick Cardoso</a></div>
+  </div>
+
+</div>
