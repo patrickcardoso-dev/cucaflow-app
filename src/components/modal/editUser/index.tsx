@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { z, ZodIssue, ZodError } from "zod";
+import { z} from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,92 +20,88 @@ import Image from "next/image";
 
 import PhotoUser from "@/../public/photo-user.png";
 import CameraIcone from "@/../public/camera.png";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
-
-
-const formSchema = z.object({
-  nomeUsuario: z.string().min(4, {
-    message: "Nome de usuário precisa ter mais de 4 caracteres",
-  }),
-  email: z.string().email({ message: "E-mail invalido" }),
-  password: z.string().min(4, {
-    message: "senha precisa ter mais de 4 caracteres",
-  }),
-  comfirmPassword: z.string().min(4, {
-    message: "senha precisa ter mais de 4 caracteres",
-  }),
-}); /* .refine((data) => data.password === data.comfirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-}); */
-
+const formSchema = z
+  .object({
+    nomeUsuario: z.string().min(4, {
+      message: "Nome de usuário precisa ter mais de 4 caracteres",
+    }),
+    image: z.any().optional(),
+    email: z.string().email({ message: "E-mail invalido" }),
+    password: z.string().min(4, {
+      message: "senha precisa ter mais de 4 caracteres",
+    }),
+    confirmPassword: z.string().min(4, {
+      message: "senha precisa ter mais de 4 caracteres",
+    }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "As senhas precisam combinar",
+    path: ["confirmPassword"],
+  });
 
 
 export function ProfileForm() {
-  const [errorPassword, setErrorPassword] = useState<string>('')
+  const [selectedFile, setSelectedFile] = useState('');
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       nomeUsuario: "",
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    
-    const { password, comfirmPassword } = values;
-    if (password !== comfirmPassword) {
-      setErrorPassword('as senhas precisam combinar');
-    }
-    
-   /*  const passwordValidation = z
-      .object({
-        password: z.string(),
-        comfirmPassword: z.string(),
-      })
-      .refine(
-        (values) => {
-          return values.password === values.comfirmPassword;
-        },
-        {
-          message: "As senhas devem corresponder!",
-          path: ["confirmPassword"],
-        }
-      );
-    try {
-      passwordValidation.parse({ password, comfirmPassword });
-    } catch (error) {
-      if (error instanceof ZodError) {
-        const dataErro = JSON.parse(error.message)[0].message;
-       console.log(dataErro);
-       
+
+  function handleImage(event : ChangeEvent<HTMLInputElement>) {
+    const dataTransfer = new DataTransfer();
+    Array.from(event.target.files!).forEach((image) =>
+      dataTransfer.items.add(image)
+    );
   
-      } else {
-        console.error("Unknown error:", error);
-      }
-    } */
+    const files = dataTransfer.files;
+    const displayUrl = URL.createObjectURL(event.target.files![0]);
+    setSelectedFile(displayUrl)
+    
+    return { files, displayUrl };
+    }
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+      console.log(values);
+      
+  
   }
+  
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col ">
-        <div className="ml-auto mr-auto relative">
-          <Image width={120} height={120} src={PhotoUser} alt="teste" />
-          {/* <FormField
+        <div className="ml-auto mr-auto relative w-32">
+          <Image width={120} height={120} className="rounded-full w-[120px] h-[120px]" src={selectedFile ? selectedFile : PhotoUser} alt="teste" />
+          <FormField
             control={form.control}
             name="image"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="w-[42px] h-[42px] cursor-pointer">
-                  <Image className="absolute bottom-0 right-0" width={42} height={42} src={CameraIcone} alt="ìcone camera" />
-                  </FormLabel>
+                  <Image
+                    className="absolute bottom-0 right-0"
+                    width={42}
+                    height={42}
+                    src={CameraIcone}
+                    alt="ìcone camera"
+                  />
+                </FormLabel>
                 <FormControl>
-                  <Input type="file" className="hidden" placeholder="" {...field} />
+                  <Input
+                  {...field}
+                    type="file"
+                    className="hidden"
+                    onChange={handleImage}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
-          >
-          
-          </FormField> */}
+          ></FormField>
         </div>
         <h1 className="text-center my-2">Edite seu cadastro</h1>
         <div className="mb-4">
@@ -142,7 +138,7 @@ export function ProfileForm() {
               <FormItem>
                 <FormLabel>Nova Senha</FormLabel>
                 <FormControl>
-                  <PasswordInput className={errorPassword && `border-tertiary-error`} placeholder="" {...field} />
+                  <PasswordInput placeholder="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -150,15 +146,14 @@ export function ProfileForm() {
           />
           <FormField
             control={form.control}
-            name="comfirmPassword"
+            name="confirmPassword"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Comfirmar nova senha</FormLabel>
                 <FormControl>
-                  <PasswordInput className={errorPassword && `border-tertiary-error`}  placeholder="" {...field} />
+                  <PasswordInput placeholder="" {...field} />
                 </FormControl>
                 <FormMessage />
-                {errorPassword ? (<p>{errorPassword}</p>) : ''}
               </FormItem>
             )}
           />
