@@ -3,18 +3,20 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
+import { useFormField } from "./form";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type,  ...props }, ref) => {
-    
+    const {error} = useFormField()
+    const borderInput = "flex h-10 w-80 lg:w-96 rounded-lg border border-neutras-gray100 bg-neutras-gray200 pl-2 text-sm"
     return (
       <input
         type={type}
         className={cn(
-          "flex h-10 w-80 lg:w-96 rounded-lg border border-neutras-gray100 bg-neutras-bgWhite pl-2 text-sm",
+          error ? `${borderInput} border-tertiary-error` : `${borderInput} border-neutras-gray100`,
           className
         )}
         ref={ref}

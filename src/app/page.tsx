@@ -60,7 +60,7 @@ export default function Home() {
             Cadastre-se
           </strong>
         </p>
-      </div>
+      </div> 
 
       <Image
         src={purple}
