@@ -68,7 +68,7 @@ export default function Home() {
         width={290}
         className="absolute bottom-0 left-0 -z-10 w-48"
       /> 
-      {/* <ProfileForm/> */}
+      <ProfileForm/>
     </main>
   );
 }
