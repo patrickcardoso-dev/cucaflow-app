@@ -26,7 +26,6 @@ export function SignUpForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
         username: "",
-        politicTerms: false,
     },
   });
 
@@ -113,7 +112,7 @@ export function SignUpForm() {
             <div className="flex items-center">
                 <p className="text-primary-purple300 text-xs w-64 py-1 text-center">Ao realizar o cadastro você aceita os nossos <strong>Termos e Política de privacidade</strong></p>
             </div>
-                <Button type="submit" variant="purple" size="default">
+                <Button type="submit" variant="purple" size="default" className="w-80 lg:w-96">
                     <p className="text-bold text-sm">Cadastrar</p>
                 </Button>
       </form>

@@ -12,7 +12,7 @@ import { SignUpForm } from "@/components/form/signup";
 export default function SignUp() {
     
     return (
-        <main className={`${manrope.className} tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite w-screen h-screen p-8`}>
+        <main className={`${manrope.className} tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen`}>
             <div>
                 <Image
                         src={ellipseTop}
@@ -22,7 +22,7 @@ export default function SignUp() {
                 <Image
                         src={ellipseTopDesktop}
                         alt="Ellipse Top"
-                        className="hidden laptop:block absolute laptop:w-52 desktop:w-72 top-0 left-0"
+                        className="hidden laptop:block absolute laptop:w-72 top-0 left-0"
                 />
                 <div className="flex justify-center items-center">
                     <Image
@@ -31,12 +31,13 @@ export default function SignUp() {
                         className="block laptop:hidden "
                     />
                 </div>
-                <div className="flex flex-col laptop:flex-row laptop:justify-between laptop:items-start laptop:w-[1100px] laptop:p-24">
+                <div className="flex flex-col laptop:flex-row laptop:justify-around laptop:items-start laptop:w-[1000px] desktop:w-[1200px]">
                     <div className="flex flex-col justify-center items-center">
                         <Image
                             src={largeLogo}
                             alt="Cucaflow logo"
-                            className="hidden laptop:block laptop:w-[400px] laptop:mt-12"
+                            width={350}
+                            className="hidden laptop:block laptop:mt-12"
                         />
                         <h1 className="font-extrabold text-3xl text-primary-purple100 mt-4">Bem-vindo(a)</h1>
                     </div>
@@ -47,7 +48,7 @@ export default function SignUp() {
                         <hr className="text-secondary-orange300 w-56 m-auto mt-6 mb-4"/>
                 
                         <div className="flex justify-center items-center">
-                            <p className={`text-[#49484D] font-bold text-center text-sm ${manrope.className}`}>Já possui conta?</p>
+                            <p className="text-neutras-gray300 font-bold text-center text-sm">Já possui conta?</p>
                             <strong>
                                 <Link href="/" className="text-secondary-orange400 text-bold text-center text-sm underline ml-1">Faça o Login</Link>
                             </strong>
@@ -59,7 +60,7 @@ export default function SignUp() {
                             <Image
                                 src={ellipseBottomDesktop}
                                 alt="Ellipe Bottom"
-                                className="hidden laptop:block absolute laptop:w-52 desktop:w-72 bottom-screen bottom-0 right-0"
+                                className="hidden laptop:block absolute laptop:w-72 laptop:bottom-screen laptop:right-0"
                             />
                         </div>
                     </div>
