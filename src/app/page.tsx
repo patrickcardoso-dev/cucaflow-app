@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/components/password-input";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ProfileForm } from "@/components/modal/editUser";
+// import { ProfileForm } from "@/components/modal/editUser";
 
 
 export default function Home() {
@@ -35,14 +35,14 @@ export default function Home() {
           >
             E-mail
           </Label>
-          <Input className="bg-neutras-neutra" />
+          {/* <Input className="bg-neutras-neutra" /> */}
 
           <Label
             className={`text-[#201F25] text-sm ${manrope.className} desktop:text-base mt-5 `}
           >
             Senha
           </Label>
-          <PasswordInput className="bg-neutras-neutra" />
+          {/* <PasswordInput className="bg-neutras-neutra" /> */}
           <p
             className={`cursor-pointer text-right text-xs mt-2 ${manrope.className}`}
           >
