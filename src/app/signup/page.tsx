@@ -12,7 +12,7 @@ import { SignUpForm } from "@/components/form/signup";
 export default function SignUp() {
     
     return (
-        <main className={`${manrope.className} tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen`}>
+        <main className={`${manrope.className} tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen p-8`}>
             <div>
                 <Image
                         src={ellipseTop}
