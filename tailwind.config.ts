@@ -41,6 +41,7 @@ const config = {
     colors: {
       neutras: {
         neutra: "#fff",
+        disable: "#AFAFAF",
         bgBlack: "#211D28",
         gray100: "#201F25",
         gray200: "#EEE",

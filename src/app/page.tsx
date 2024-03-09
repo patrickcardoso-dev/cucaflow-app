@@ -5,7 +5,6 @@ import logo from "../assets/logo-cuca.png";
 import orange from "../assets/elipse-orange.png";
 import purple from "../assets/elipse-purple.png";
 import { manrope } from "./fonts";
-import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/components/password-input";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -21,6 +20,9 @@ import {
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useEffect } from "react";
+import * as React from "react";
+// import { useEffect } from "react";
 
 const formSchemaLogin = z.object({
   email: z.string().email({ message: "E-mail inválido" }),
@@ -30,9 +32,11 @@ const formSchemaLogin = z.object({
     })
     .min(4, { message: "Sua senha precisa ter mais de 4 caracteres" }),
 });
+type formSchemaLoginData = z.infer<typeof formSchemaLogin>;
 
 export default function Home() {
-  const form = useForm<z.infer<typeof formSchemaLogin>>({
+  const [isFieldEdited, setIsFieldEdited] = useState(false);
+  const form = useForm<formSchemaLoginData>({
     resolver: zodResolver(formSchemaLogin),
     defaultValues: {
       email: "",
@@ -40,8 +44,12 @@ export default function Home() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchemaLogin>) {
-    console.log(values);
+  useEffect(() => {
+    setIsFieldEdited(form.formState.isValid);
+  }, [form.formState.isValid]);
+
+  function onSubmit(values: formSchemaLoginData) {
+    console.log("valores: ", values.email, values.password);
   }
 
   return (
@@ -113,7 +121,16 @@ export default function Home() {
               Esqueceu sua senha?
             </p>
 
-            <Button type="submit" variant="purple" className="mt-6">
+            <Button
+              type="submit"
+              variant="purple"
+              className={`mt-6 ${
+                isFieldEdited
+                  ? "bg-secondary-orange100"
+                  : "bg-neutras-disable cursor-not-allowed"
+              } `}
+              disabled={!isFieldEdited}
+            >
               Entrar
             </Button>
           </form>

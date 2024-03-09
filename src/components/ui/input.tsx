@@ -11,6 +11,7 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     const { error } = useFormField();
+    // console.log("input:", error);
     const borderInput =
       "flex h-10 w-80 lg:w-96 rounded-lg border bg-neutras-neutra pl-2 text-sm";
     return (
