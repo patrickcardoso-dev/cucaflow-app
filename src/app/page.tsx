@@ -3,6 +3,7 @@
 import Image from "next/image";
 import logo from "../assets/logo-cuca.png";
 import logoDesktop from "../assets/logo/logo-cucaflow-desktop.png";
+import slogan from "../assets/logo/slogan.png";
 import orangeDesktop from "../assets/shape/ellipse-orange-full.png";
 import purpleDesktop from "../assets/shape/elipse-purple-full.png";
 import { manrope } from "./fonts";
@@ -21,8 +22,8 @@ export default function Home() {
       setWindowWidth(window.innerWidth);
     }
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    // return () => window.removeEventListener("resize", handleResize);
+  }, [windowWidth]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
@@ -35,18 +36,21 @@ export default function Home() {
         desktop:translate-x-36 
         "
       />
-      <div className="flex flex-col items-center justify-center laptop:mr-44 ">
+      <div className="flex flex-col items-center justify-center laptop:mr-40 ">
         <Image
-          src={windowWidth < 992 ? logo : logoDesktop}
+          src={logoDesktop}
           alt="logo de um jacaré"
-          className={windowWidth < 992 ? "" : "w-[500px]"}
+          className="laptop:w-[450px]"
         />
+        <Image
+          src={slogan}
+          alt="slogan: seu assistente pessoal de produtividade"
+          className="hidden laptop:block "
+        />
+
         <p
-          className={
-            windowWidth < 992
-              ? `${textStyle} text-base text-neutras-bgBlack  w-[235px] mt-2 `
-              : ` ${textStyle} text-4xl text-primary-purple100 w-[422px] leading-8`
-          }
+          className={`
+          ${textStyle} text-base text-neutras-bgBlack  w-[235px] mt-2 laptop:hidden`}
         >
           {windowWidth < 992 ? mobileText : desktopText}
         </p>
