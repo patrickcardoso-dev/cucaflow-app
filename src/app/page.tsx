@@ -2,13 +2,28 @@
 
 import Image from "next/image";
 import logo from "../assets/logo-cuca.png";
+import logoDesktop from "../assets/logo/logo-cucaflow-desktop.png";
 import orangeDesktop from "../assets/shape/ellipse-orange-full.png";
 import purpleDesktop from "../assets/shape/elipse-purple-full.png";
 import { manrope } from "./fonts";
 import { ProfileForm } from "@/components/modal/editUser";
 import LoginForm from "@/components/form/login/login";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
+  const [windowWidth, setWindowWidth] = useState(0);
+  const mobileText = "Entre e comece a transformar suas metas em realidade.";
+  const desktopText = "Seu assistente pessoal de produtividade.";
+  const textStyle = `${manrope.className} font-normal text-center`;
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
       <Image
@@ -20,16 +35,30 @@ export default function Home() {
         desktop:translate-x-36 
         "
       />
-      <div className="flex flex-col items-center justify-center ">
-        <Image src={logo} alt="logo de um jacaré" />
+      <div className="flex flex-col items-center justify-center laptop:mr-44 ">
+        <Image
+          src={windowWidth < 992 ? logo : logoDesktop}
+          alt="logo de um jacaré"
+          className={windowWidth < 992 ? "" : "w-[500px]"}
+        />
         <p
-          className={`${manrope.className} text-base text-[#211D28] font-medium text-center w-[235px] mt-2 `}
+          className={
+            windowWidth < 992
+              ? `${textStyle} text-base text-neutras-bgBlack  w-[235px] mt-2 `
+              : ` ${textStyle} text-4xl text-primary-purple100 w-[422px] leading-8`
+          }
         >
-          Entre e comece a transformar suas metas em realidade.
+          {windowWidth < 992 ? mobileText : desktopText}
         </p>
       </div>
 
       <div className=" flex flex-col items-center">
+        <p
+          className={`hidden laptop:block ${manrope.className} text-2xl text-primary-purple100 font-normal text-center w-[358px] mb-6 `}
+        >
+          Entre e comece a <b>transformar</b> suas <b>metas</b> em{" "}
+          <b>realidade</b>.
+        </p>
         <LoginForm />
 
         <hr className="w-[180px] my-6 mx-auto" />
