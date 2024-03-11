@@ -2,25 +2,28 @@
 
 import Image from "next/image";
 import logo from "../assets/logo-cuca.png";
-import orange from "../assets/elipse-orange.png";
-import purple from "../assets/elipse-purple.png";
+import orangeDesktop from "../assets/shape/ellipse-orange-full.png";
+import purpleDesktop from "../assets/shape/elipse-purple-full.png";
 import { manrope } from "./fonts";
 import { ProfileForm } from "@/components/modal/editUser";
 import LoginForm from "@/components/form/login/login";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative laptop:flex-row">
+    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
       <Image
-        src={orange}
+        src={orangeDesktop}
         alt="elípse laranja"
-        width={290}
-        className="absolute top-0 right-0 -z-10 w-56"
+        className="absolute top-0 right-0 translate-x-40 rotate-6 -translate-y-36 -z-10 max-w-md 
+        laptop:translate-x-36 
+        laptop:rotate-2 laptop:-translate-y-24
+        desktop:translate-x-36 
+        "
       />
       <div className="flex flex-col items-center justify-center ">
         <Image src={logo} alt="logo de um jacaré" />
         <p
-          className={`${manrope.className} text-base text-[#211D28] font-medium text-center w-[235px] mt-2`}
+          className={`${manrope.className} text-base text-[#211D28] font-medium text-center w-[235px] mt-2 `}
         >
           Entre e comece a transformar suas metas em realidade.
         </p>
@@ -41,10 +44,9 @@ export default function Home() {
       </div>
 
       <Image
-        src={purple}
+        src={purpleDesktop}
         alt="elipse roxa"
-        width={290}
-        className="absolute bottom-0 left-0 -z-10 w-48"
+        className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-24 -translate-x-36 rotate-7 laptop:rotate-3 laptop:-translate-x-36 laptop:translate-y-20 laptop:max-w-lg"
       />
       {/* <ProfileForm/> */}
     </main>
