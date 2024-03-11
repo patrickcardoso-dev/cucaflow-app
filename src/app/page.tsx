@@ -9,22 +9,9 @@ import purpleDesktop from "../assets/shape/elipse-purple-full.png";
 import { manrope } from "./fonts";
 import { ProfileForm } from "@/components/modal/editUser";
 import LoginForm from "@/components/form/login/login";
-import React, { useEffect, useState } from "react";
 
 export default function Home() {
-  const [windowWidth, setWindowWidth] = useState(0);
-  const mobileText = "Entre e comece a transformar suas metas em realidade.";
-  const desktopText = "Seu assistente pessoal de produtividade.";
   const textStyle = `${manrope.className} font-normal text-center`;
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowWidth(window.innerWidth);
-    }
-    window.addEventListener("resize", handleResize);
-    // return () => window.removeEventListener("resize", handleResize);
-  }, [windowWidth]);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
       <Image
@@ -40,7 +27,7 @@ export default function Home() {
         <Image
           src={logoDesktop}
           alt="logo de um jacaré"
-          className="laptop:w-[450px]"
+          className="w-9/12 laptop:w-[450px]"
         />
         <Image
           src={slogan}
@@ -52,7 +39,7 @@ export default function Home() {
           className={`
           ${textStyle} text-base text-neutras-bgBlack  w-[235px] mt-2 laptop:hidden`}
         >
-          {windowWidth < 992 ? mobileText : desktopText}
+          Entre e comece a transformar suas metas em realidade.
         </p>
       </div>
 
