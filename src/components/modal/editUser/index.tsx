@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { z} from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,6 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PasswordInput } from "@/components/password-input";
@@ -40,9 +41,8 @@ const formSchema = z
     path: ["confirmPassword"],
   });
 
-
 export function ProfileForm() {
-  const [selectedFile, setSelectedFile] = useState('');
+  const [selectedFile, setSelectedFile] = useState("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,30 +51,34 @@ export function ProfileForm() {
     },
   });
 
-  function handleImage(event : ChangeEvent<HTMLInputElement>) {
+  function handleImage(event: ChangeEvent<HTMLInputElement>) {
     const dataTransfer = new DataTransfer();
     Array.from(event.target.files!).forEach((image) =>
       dataTransfer.items.add(image)
     );
-  
+
     const files = dataTransfer.files;
     const displayUrl = URL.createObjectURL(event.target.files![0]);
-    setSelectedFile(displayUrl)
-    
+    setSelectedFile(displayUrl);
+
     return { files, displayUrl };
-    }
+  }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-      console.log(values);
-      
-  
+    console.log(values);
   }
-  
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col ">
         <div className="ml-auto mr-auto relative w-32">
-          <Image width={120} height={120} className="rounded-full w-[120px] h-[120px]" src={selectedFile ? selectedFile : PhotoUser} alt="teste" />
+          <Image
+            width={120}
+            height={120}
+            className="rounded-full w-[120px] h-[120px]"
+            src={selectedFile ? selectedFile : PhotoUser}
+            alt="teste"
+          />
           <FormField
             control={form.control}
             name="image"
@@ -91,7 +95,7 @@ export function ProfileForm() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                  {...field}
+                    {...field}
                     type="file"
                     className="hidden"
                     onChange={handleImage}

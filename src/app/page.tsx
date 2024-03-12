@@ -1,56 +1,57 @@
+"use client";
+
 import Image from "next/image";
 import logo from "../assets/logo-cuca.png";
-import orange from "../assets/elipse-orange.png";
-import purple from "../assets/elipse-purple.png";
+import logoDesktop from "../assets/logo/logo-cucaflow-desktop.png";
+import slogan from "../assets/logo/slogan.png";
+import orangeDesktop from "../assets/shape/ellipse-orange-full.png";
+import purpleDesktop from "../assets/shape/elipse-purple-full.png";
 import { manrope } from "./fonts";
-import { Label } from "@/components/ui/label";
-import { PasswordInput } from "@/components/password-input";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-// import { ProfileForm } from "@/components/modal/editUser";
-
+import { ProfileForm } from "@/components/modal/editUser";
+import LoginForm from "@/components/form/login/login";
 
 export default function Home() {
+  const textStyle = `${manrope.className} font-normal text-center`;
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative laptop:flex-row">
-<Image
-        src={orange}
+    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
+      <Image
+        src={orangeDesktop}
         alt="elípse laranja"
-        width={290}
-        className="absolute top-0 right-0 -z-10 w-56"
+        className="absolute top-0 right-0 translate-x-40 rotate-6 -translate-y-36 -z-10 max-w-md 
+        laptop:translate-x-36 
+        laptop:rotate-2 laptop:-translate-y-24
+        desktop:translate-x-36 
+        "
       />
-      <div className="flex flex-col items-center justify-center ">
-        <Image src={logo} alt="logo de um jacaré" />
+      <div className="flex flex-col items-center justify-center laptop:mr-40 ">
+        <Image
+          src={logoDesktop}
+          alt="logo de um jacaré"
+          className="w-9/12 laptop:w-[450px]"
+        />
+        <Image
+          src={slogan}
+          alt="slogan: seu assistente pessoal de produtividade"
+          className="hidden laptop:block "
+        />
+
         <p
-          className={`${manrope.className} text-base text-[#211D28] font-medium text-center w-[235px] mt-2`}
+          className={`
+          ${textStyle} text-base text-neutras-bgBlack  w-[235px] mt-2 laptop:hidden`}
         >
           Entre e comece a transformar suas metas em realidade.
         </p>
       </div>
 
       <div className=" flex flex-col items-center">
-        <form className="flex flex-col ">
-          <Label
-            className={`text-[#201F25] text-sm ${manrope.className} desktop:text-base mt-5`}
-          >
-            E-mail
-          </Label>
-          {/* <Input className="bg-neutras-neutra" /> */}
+        <p
+          className={`hidden laptop:block ${manrope.className} text-2xl text-primary-purple100 font-normal text-center w-[358px] mb-6 `}
+        >
+          Entre e comece a <b>transformar</b> suas <b>metas</b> em{" "}
+          <b>realidade</b>.
+        </p>
+        <LoginForm />
 
-          <Label
-            className={`text-[#201F25] text-sm ${manrope.className} desktop:text-base mt-5 `}
-          >
-            Senha
-          </Label>
-          {/* <PasswordInput className="bg-neutras-neutra" /> */}
-          <p
-            className={`cursor-pointer text-right text-xs mt-2 ${manrope.className}`}
-          >
-            Esqueceu sua senha?
-          </p>
-
-          <Button className="mt-10">Entrar</Button>
-        </form>
         <hr className="w-[180px] my-6 mx-auto" />
         <p
           className={`text-center font-bold mt-1 text-sm text-[#49484D] ${manrope.className}`}
@@ -60,14 +61,13 @@ export default function Home() {
             Cadastre-se
           </strong>
         </p>
-      </div> 
+      </div>
 
       <Image
-        src={purple}
+        src={purpleDesktop}
         alt="elipse roxa"
-        width={290}
-        className="absolute bottom-0 left-0 -z-10 w-48"
-      /> 
+        className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-24 -translate-x-36 rotate-7 laptop:rotate-3 laptop:-translate-x-36 laptop:translate-y-20 laptop:max-w-lg"
+      />
       {/* <ProfileForm/> */}
     </main>
   );

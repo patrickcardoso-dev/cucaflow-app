@@ -41,17 +41,18 @@ const config = {
     colors: {
       neutras: {
         neutra: "#fff",
+        disable: "#AFAFAF",
         bgWhite: "#FAFAFA",
         bgBlack: "#211D28",
         gray100: "#201F25",
         gray200: "#EEE",
-        gray300: "#49484D"
+        gray300: "#49484D",
       },
       primary: {
         purple100: "#641499",
         purple200: "#420A66",
         purple300: "#420A66",
-        purple400: "#AF61F2"
+        purple400: "#AF61F2",
       },
       secondary: {
         orange100: "#F55B1B",
