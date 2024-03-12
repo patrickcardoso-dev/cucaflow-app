@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../assets/logo-cuca.png";
 import logoDesktop from "../assets/logo/logo-cucaflow-desktop.png";
 import slogan from "../assets/logo/slogan.png";
 import orangeDesktop from "../assets/shape/ellipse-orange-full.png";
