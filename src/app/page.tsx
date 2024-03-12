@@ -10,6 +10,7 @@ import { manrope } from "./fonts";
 import { ProfileForm } from "@/components/modal/editUser";
 import LoginForm from "@/components/form/login/login";
 
+
 export default function Home() {
   const textStyle = `${manrope.className} font-normal text-center`;
   return (
@@ -62,7 +63,6 @@ export default function Home() {
           </strong>
         </p>
       </div>
-
       <Image
         src={purpleDesktop}
         alt="elipse roxa"

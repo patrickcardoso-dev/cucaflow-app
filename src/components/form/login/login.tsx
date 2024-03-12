@@ -16,6 +16,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useEffect } from "react";
 import formSchemaLogin from "./schemaLogin";
+import { signIn } from "next-auth/react";
 
 type formSchemaLoginData = z.infer<typeof formSchemaLogin>;
 
@@ -96,6 +97,7 @@ function LoginForm() {
         >
           Entrar
         </Button>
+        <Button variant='orange' onClick={() => signIn('google')}>Entrar com google</Button>
       </form>
     </Form>
   );
