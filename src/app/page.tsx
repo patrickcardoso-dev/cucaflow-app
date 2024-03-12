@@ -9,6 +9,8 @@ import purpleDesktop from "../assets/shape/elipse-purple-full.png";
 import { manrope } from "./fonts";
 import { ProfileForm } from "@/components/modal/editUser";
 import LoginForm from "@/components/form/login/login";
+import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
 
 
 export default function Home() {
@@ -52,7 +54,7 @@ export default function Home() {
           <b>realidade</b>.
         </p>
         <LoginForm />
-
+        <Button variant='orange' className="mt-2 w-full" onClick={() => signIn('google')}>Entrar com Google</Button>
         <hr className="w-[180px] my-6 mx-auto" />
         <p
           className={`text-center font-bold mt-1 text-sm text-[#49484D] ${manrope.className}`}
@@ -68,6 +70,7 @@ export default function Home() {
         alt="elipse roxa"
         className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-24 -translate-x-36 rotate-7 laptop:rotate-3 laptop:-translate-x-36 laptop:translate-y-20 laptop:max-w-lg"
       />
+      
       {/* <ProfileForm/> */}
     </main>
   );
