@@ -1,20 +1,19 @@
 import Image from "next/image";
-import { manrope } from "./fonts";
-import cucaflowLogo from "../../assets/logo_cucaflow.png";
-import ellipseTop from "../../assets/ellipse-top.png";
-import ellipseBottom from "../../assets/ellipse-bottom.png";
-import ellipseTopDesktop from "../../assets/ellipse-top-desktop.png";
-import ellipseBottomDesktop from "../../assets/ellipse-bottom-desktop.png";
-import largeLogo from "../../assets/big-logo-cuca.png";
+import cucaflowLogo from "../../assets/logo/logo_cucaflow.png";
+import ellipseTop from "../../assets/shape/mobile/ellipse-top.png";
+import ellipseBottom from "../../assets/shape/mobile/ellipse-bottom.png";
+import ellipseTopDesktop from "../../assets/shape/desktop/ellipse-top-desktop.png";
+import ellipseBottomDesktop from "../../assets/shape/desktop/ellipse-bottom-desktop.png";
+import desktopLogo from "../../assets/logo/logo-cucaflow-desktop.png";
 import Link from "next/link";
-import { SignUpForm } from "@/components/form/signup";
+import { SignUpForm } from "@/components/form/signUp/signup";
 import DeleteAccount from "@/components/modal/deleteAccount";
 
 export default function SignUp() {
     
     return (
-        <main className={`${manrope.className} tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen p-8`}>
-            <DeleteAccount open={false} />
+        <main className={`tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen p-8`}>
+            <DeleteAccount open={true} />
             <div>
                 <Image
                         src={ellipseTop}
@@ -36,9 +35,9 @@ export default function SignUp() {
                 <div className="flex flex-col laptop:flex-row laptop:justify-around laptop:items-start laptop:w-[1000px] desktop:w-[1200px]">
                     <div className="flex flex-col justify-center items-center">
                         <Image
-                            src={largeLogo}
+                            src={desktopLogo}
                             alt="Cucaflow logo"
-                            width={350}
+                            width={400}
                             className="hidden laptop:block laptop:mt-12"
                         />
                         <h1 className="font-extrabold text-3xl text-primary-purple100 mt-4">Bem-vindo(a)</h1>

@@ -23,7 +23,9 @@ function onSubmit(values: z.infer<typeof formSchema>) {
 }
 
 export function SignUpForm() {
+
   const [isFieldEdited, setIsFieldEdited] = useState(false);
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -122,7 +124,7 @@ export function SignUpForm() {
           type="submit"
           variant="purple"
           size="default"
-          className={`mt-6 w-80 lg:w-96 ${
+          className={`w-80 lg:w-96 ${
             isFieldEdited
               ? "bg-primary-purple100"
               : "bg-neutras-disable cursor-not-allowed"
