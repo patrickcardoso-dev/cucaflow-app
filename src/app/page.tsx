@@ -11,17 +11,24 @@ import { ProfileForm } from "@/components/modal/editUser";
 import LoginForm from "@/components/form/login/login";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 
 
   export  default  function Home() {
+    const router = useRouter()
   const textStyle = `${manrope.className} font-normal text-center`;
 
   async function handleLoginGoogle () {
-  const result = await signIn('google');
+
+  const result =  await signIn('google', {callbackUrl: "/dashboard"});
   if (result?.error) {
     console.log(result.error);
     return
   }
+ /*  if (result)  {
+    router.push('/dashboard');
+  } */
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">

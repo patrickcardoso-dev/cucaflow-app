@@ -10,18 +10,21 @@ export const nextAuthOptions: NextAuthConfig = {
         params: {
           scope:
             "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar",
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
         },
       },
     }),
   ],
   callbacks: {
-    async signIn({ account }) {
+    async signIn({ account, user }) {
       if (
         !account?.scope?.includes("https://www.googleapis.com/auth/calendar")
       ) {
         return "/?error=permissions";
       }
-      return "/dashboard";
+      return true;
     },
   },
   pages: {
