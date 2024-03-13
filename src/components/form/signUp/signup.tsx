@@ -25,11 +25,14 @@ function onSubmit(values: z.infer<typeof formSchema>) {
 export function SignUpForm() {
 
   const [isFieldEdited, setIsFieldEdited] = useState(false);
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-        username: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
     },
   });
 
@@ -69,7 +72,7 @@ export function SignUpForm() {
               <Label >E-mail</Label>
                 <FormControl>
                     <Input
-                        id="name"
+                        id="email"
                         type="email"
                         placeholder="Ex: cucaflow@gmail.com"
                         className="bg-neutra-bgWhite"

@@ -3,11 +3,13 @@
 import DeleteForm from "@/components/form/deleteAccount";
 import logoCucaflow from "../../../assets/logo/logo_cucaflow.png";
 import Image from "next/image";
-import ellipsePurple from "../../../assets/shape/mobile/elipse-purple-1.png"
+
+import ellipsePurple from "../../../assets/shape/ellipse-purple.png"
+import { Button } from "@/components/ui/button";
 
 interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
     open?: boolean;
-  }
+}
 
 export default function DeleteAccount({ open, ...rest }: DialogProps) {
     return (
@@ -15,7 +17,7 @@ export default function DeleteAccount({ open, ...rest }: DialogProps) {
         className="fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
             {...rest}>
             
-            <main className="flex flex-col items-center h-screen w-screen gap-3 overflow-y-auto">
+            <main className="flex flex-col items-center h-screen w-screen gap-3 mt-16 bg-neutras-bgWhite">
                 <div className="flex flex-col items-center justify-center gap-3 mb-5 w-72">
                     <Image
                         src={logoCucaflow}
@@ -26,11 +28,22 @@ export default function DeleteAccount({ open, ...rest }: DialogProps) {
                     <p className="text-center text-base text-primary-purple100"><strong>Deseja apagar todos os seus dados?</strong></p>
                 </div>
                 <DeleteForm />
-                {/* <Image
+
+                    <hr className="text-secondary-orange300 w-56 m-auto mt-6 mb-4"/>
+              
+                <Button
+                    type="submit"
+                    variant="orangeSecond"
+                    size="default"
+                    className="rounded-lg mt-4 w-80 lg:w-96">
+                    
+                    <p className="text-bold text-sm">Cancelar</p>
+                </Button>
+                <Image
                     src={ellipsePurple}
                     alt="Elipse roxa"
-                    className="absolute bottom-[-100px] left-[-130px]"
-                /> */}
+                    className="absolute bottom-[30px] left-0"
+                />
             </main>
         </dialog>
     )

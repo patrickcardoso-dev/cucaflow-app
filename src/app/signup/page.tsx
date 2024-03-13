@@ -13,22 +13,22 @@ export default function SignUp() {
     
     return (
         <main className={`tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen p-8`}>
-            <DeleteAccount open={true} />
+            <DeleteAccount open={false} />
             <div>
                 <Image
                         src={ellipseTop}
-                        alt="Ellipse Top"
+                        alt="Elipse roxa"
                         className="block laptop:hidden absolute top-0 left-0"
                 />
                 <Image
                         src={ellipseTopDesktop}
-                        alt="Ellipse Top"
+                        alt="Elipse roxa"
                         className="hidden laptop:block absolute laptop:w-72 top-0 left-0"
                 />
                 <div className="flex justify-center items-center">
                     <Image
                         src={cucaflowLogo}
-                        alt="Cucaflow logo"
+                        alt="Logo Cucaflow"
                         className="block laptop:hidden "
                     />
                 </div>
@@ -36,7 +36,7 @@ export default function SignUp() {
                     <div className="flex flex-col justify-center items-center">
                         <Image
                             src={desktopLogo}
-                            alt="Cucaflow logo"
+                            alt="Logo Cucaflow"
                             width={400}
                             className="hidden laptop:block laptop:mt-12"
                         />
@@ -55,12 +55,12 @@ export default function SignUp() {
                             </strong>
                             <Image
                                 src={ellipseBottom}
-                                alt="Ellipe Bottom"
+                                alt="Elipse laranja"
                                 className="block laptop:hidden absolute bottom-screen tablet:bottom-0 right-0"
                             />
                             <Image
                                 src={ellipseBottomDesktop}
-                                alt="Ellipe Bottom"
+                                alt="Elipse laranja"
                                 className="hidden laptop:block absolute laptop:w-72 laptop:bottom-0 laptop:right-0"
                             />
                         </div>

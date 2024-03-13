@@ -26,7 +26,7 @@ export function DeleteForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-        password: "",
+        passwordToDelete: "",
     },
   });
 
@@ -72,18 +72,6 @@ export function DeleteForm() {
           
             <p className="text-bold text-sm">Excluir Conta</p>
               </Button>
-              
-              <div>
-              <hr className="bg-black-500" />
-              </div>
-        <Button
-          type="submit"
-          variant="orangeSecond"
-          size="default"
-          className="rounded-lg mt-4 w-80 lg:w-96">
-         
-            <p className="text-bold text-sm">Cancelar</p>
-        </Button>
       </form>
     </Form>
   );
