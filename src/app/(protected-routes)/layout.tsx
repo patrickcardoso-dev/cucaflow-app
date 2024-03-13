@@ -8,9 +8,10 @@ interface PrivateLayoutProps {
 
 export default async function PrivateLayout({children}: PrivateLayoutProps) {
   const session = await auth()
-
   if (!session) {
-    return redirect('/', )
-  }
-  return <>{children}</>
+   return redirect('/')
+  } 
+  return <>
+  {children}
+  </>
 }

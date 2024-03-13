@@ -13,8 +13,16 @@ import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 
 
-export default function Home() {
+  export  default  function Home() {
   const textStyle = `${manrope.className} font-normal text-center`;
+
+  async function handleLoginGoogle () {
+  const result = await signIn('google');
+  if (result?.error) {
+    console.log(result.error);
+    return
+  }
+  }
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
       <Image
@@ -53,8 +61,9 @@ export default function Home() {
           Entre e comece a <b>transformar</b> suas <b>metas</b> em{" "}
           <b>realidade</b>.
         </p>
+        <Button variant='orange' className="mt-2 w-full" onClick={handleLoginGoogle}>Entrar com Google</Button>
+        <hr className="w-[180px] my-6 mx-auto" />
         <LoginForm />
-        <Button variant='orange' className="mt-2 w-full" onClick={() => signIn('google')}>Entrar com Google</Button>
         <hr className="w-[180px] my-6 mx-auto" />
         <p
           className={`text-center font-bold mt-1 text-sm text-[#49484D] ${manrope.className}`}
