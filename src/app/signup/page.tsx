@@ -8,11 +8,13 @@ import ellipseBottomDesktop from "../../assets/ellipse-bottom-desktop.png";
 import largeLogo from "../../assets/big-logo-cuca.png";
 import Link from "next/link";
 import { SignUpForm } from "@/components/form/signup";
+import DeleteAccount from "@/components/modal/deleteAccount";
 
 export default function SignUp() {
     
     return (
         <main className={`${manrope.className} tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen p-8`}>
+            <DeleteAccount open={false} />
             <div>
                 <Image
                         src={ellipseTop}
@@ -47,7 +49,7 @@ export default function SignUp() {
                         <SignUpForm />
                         <hr className="text-secondary-orange300 w-56 m-auto mt-6 mb-4"/>
                 
-                        <div className="flex justify-center items-center">
+                        <div className="flex justify-center items-center mb-10">
                             <p className="text-neutras-gray300 font-bold text-center text-sm">Já possui conta?</p>
                             <strong>
                                 <Link href="/" className="text-secondary-orange400 text-bold text-center text-sm underline ml-1">Faça o Login</Link>
@@ -60,7 +62,7 @@ export default function SignUp() {
                             <Image
                                 src={ellipseBottomDesktop}
                                 alt="Ellipe Bottom"
-                                className="hidden laptop:block absolute laptop:w-72 laptop:bottom-screen laptop:right-0"
+                                className="hidden laptop:block absolute laptop:w-72 laptop:bottom-0 laptop:right-0"
                             />
                         </div>
                     </div>

@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PasswordInput } from "@/components/password-input";
 import formSchema from "./schema";
 import { Label } from "@/components/ui/label";
+import { useEffect, useState } from "react";
 
 function onSubmit(values: z.infer<typeof formSchema>) {
   const {confirmPassword, ...data} = values
@@ -22,12 +23,17 @@ function onSubmit(values: z.infer<typeof formSchema>) {
 }
 
 export function SignUpForm() {
+  const [isFieldEdited, setIsFieldEdited] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
         username: "",
     },
   });
+
+  useEffect(() => {
+    setIsFieldEdited(form.formState.isValid);
+  }, [form.formState.isValid]);
 
   return (
     <Form {...form}>
@@ -112,7 +118,17 @@ export function SignUpForm() {
             <div className="flex items-center">
                 <p className="text-primary-purple300 text-xs w-64 py-1 text-center">Ao realizar o cadastro você aceita os nossos <strong>Termos e Política de privacidade</strong></p>
             </div>
-                <Button type="submit" variant="purple" size="default" className="w-80 lg:w-96">
+        <Button
+          type="submit"
+          variant="purple"
+          size="default"
+          className={`mt-6 w-80 lg:w-96 ${
+            isFieldEdited
+              ? "bg-primary-purple100"
+              : "bg-neutras-disable cursor-not-allowed"
+          } `}
+          disabled={!isFieldEdited}
+          >
                     <p className="text-bold text-sm">Cadastrar</p>
                 </Button>
       </form>
