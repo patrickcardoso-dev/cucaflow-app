@@ -14,7 +14,7 @@ export default function Home() {
   const textStyle = `${manrope.className} font-normal text-center`;
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
-      <OptionProfile open={false} />
+      <OptionProfile open={true} />
 
       <Image
         src={orangeDesktop}
