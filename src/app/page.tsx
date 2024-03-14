@@ -11,6 +11,7 @@ import { ProfileForm } from "@/components/modal/editUser";
 import LoginForm from "@/components/form/login/login";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
+import { toastify } from "@/lib/Toast";
 
 
 
@@ -21,7 +22,7 @@ import { signIn } from "next-auth/react";
   async function handleLoginGoogle () {
   const result =  await signIn('google', {callbackUrl: "/dashboard"});
   if (result?.error) {
-    console.log(result.error);
+    toastify.error(result.error);
     return
   }
   }
