@@ -14,14 +14,17 @@ const buttonVariants = cva(
         orange:
           "bg-secondary-orange100 text-neutras-neutra disabled:bg-secondary-orange300",
         orangeSecond:
-          "bg-transparent border border-2  border-secondary-orange100 text-secondary-orange100 font-bold",
+          "bg-transparent border border-2 border-secondary-orange100 text-secondary-orange100 font-bold",
         purple:
           "bg-neutras-disable text-neutras-neutra hover:bg-primary-purple200",
         purpleSecond:
           "text-primary-purple100 border-2 border-primary-purple100 hover:border-primary-purple200 hover:text-primary-purple200",
         input:
           "hover:bg-neutral-100 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50",
+        outline:
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
       },
+
       size: {
         default: "h-11 px-4 py-2",
         sm: "h-10 rounded-md px-3",

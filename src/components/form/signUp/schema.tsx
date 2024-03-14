@@ -4,7 +4,7 @@ const formSchema = z.object({
     username: z
         .string()
         .min(3, {
-    message: "Nome de usuário precisa ter pelo menos 3 caracteres",
+    message: "O nome precisa ter pelo menos 3 caracteres",
   }),
     email: z
         .string()

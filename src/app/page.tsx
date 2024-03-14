@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../assets/logo-cuca.png";
 import logoDesktop from "../assets/logo/logo-cucaflow-desktop.png";
 import slogan from "../assets/logo/slogan.png";
 import orangeDesktop from "../assets/shape/ellipse-orange-full.png";
@@ -12,6 +11,7 @@ import LoginForm from "@/components/form/login/login";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 import { toastify } from "@/lib/Toast";
+import OptionProfile from "@/components/modal/optionProfile";
 
 
 
@@ -28,6 +28,8 @@ import { toastify } from "@/lib/Toast";
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
+      <OptionProfile open={true} />
+
       <Image
         src={orangeDesktop}
         alt="elípse laranja"
@@ -80,7 +82,7 @@ import { toastify } from "@/lib/Toast";
       <Image
         src={purpleDesktop}
         alt="elipse roxa"
-        className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-24 -translate-x-36 rotate-7 laptop:rotate-3 laptop:-translate-x-36 laptop:translate-y-20 laptop:max-w-lg"
+        className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-32 -translate-x-36 rotate-7 laptop:rotate-3 laptop:-translate-x-36 laptop:translate-y-20 laptop:max-w-lg"
       />
       
       {/* <ProfileForm/> */}

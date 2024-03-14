@@ -1,12 +1,12 @@
 'use client'
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const rubik = Rubik({ subsets: ["latin"] });
+const manrope = Manrope({ subsets: ["latin"] });
 
 /* export const metadata: Metadata = {
   title: "Cucaflow",
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <SessionProvider>
-      <body className={rubik.className}>
+      <body className={manrope.className}>
         
         <ToastContainer
           position="top-right"
