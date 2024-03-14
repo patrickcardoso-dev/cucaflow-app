@@ -16,7 +16,6 @@ import { useRouter } from "next/navigation";
 
 
   export  default  function Home() {
-    const router = useRouter()
   const textStyle = `${manrope.className} font-normal text-center`;
 
   async function handleLoginGoogle () {
@@ -26,9 +25,6 @@ import { useRouter } from "next/navigation";
     console.log(result.error);
     return
   }
- /*  if (result)  {
-    router.push('/dashboard');
-  } */
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
