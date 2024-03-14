@@ -28,7 +28,7 @@ import OptionProfile from "@/components/modal/optionProfile";
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
-      <OptionProfile open={true} />
+      {/* <OptionProfile open={true} /> */}
 
       <Image
         src={orangeDesktop}
