@@ -8,6 +8,7 @@ import ellipseBottomDesktop from "../../assets/ellipse-bottom-desktop.png";
 import largeLogo from "../../assets/big-logo-cuca.png";
 import Link from "next/link";
 import { SignUpForm } from "@/components/form/signup";
+import SuccessMessage from "@/components/modal/successMessage";
 
 export default function SignUp() {
     
@@ -62,6 +63,7 @@ export default function SignUp() {
                                 alt="Ellipe Bottom"
                                 className="hidden laptop:block absolute laptop:w-72 laptop:bottom-screen laptop:right-0"
                             />
+                            <SuccessMessage open={true} txtButton="Fazer login" txtMessage="Cadastro realizado com Sucesso!" btnPath="/"/>
                         </div>
                     </div>
                 </div>
