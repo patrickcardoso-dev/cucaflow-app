@@ -1,9 +1,11 @@
 "use client";
-import CreatToDo from "@/components/form/toDo/creat";
+import CreatToDo from "@/components/form/task/create";
 import { Button } from "@/components/ui/button";
 import { signOut, useSession } from "next-auth/react";
+import { useState } from "react";
 
 export default function Dashboard() {
+  const [showModal, setShowModal] = useState<Boolean>(false);
   const session = useSession();
   const user = session.data?.user;
 
@@ -19,15 +21,16 @@ export default function Dashboard() {
           <h2>{user?.email}</h2>
           <img src={user?.image ?? ""} alt="" />
           <Button onClick={getOut}>Sair</Button>
+          <Button onClick={() => setShowModal(true)}>+</Button>
         </div>
       ) : (
         <div>Carregando...</div>
       )}
-      <section className="absolute w-full h-full bg-neutras-bgBlack/60 flex items-center">
+      {showModal && <section className="absolute w-full h-full bg-neutras-bgBlack/60 flex items-center">
         <div className="bg-neutras-neutra w-full p-6 rounded-2xl mt-auto">
-          <CreatToDo />
+          <CreatToDo setShowModal={setShowModal}/>
         </div>
-      </section>
+      </section>}
     </main>
   );
 }
