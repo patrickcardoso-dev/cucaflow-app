@@ -6,7 +6,7 @@ export  default  function Dashboard() {
   const session = useSession()
   const user = session.data?.user
   
-  async function sair() {
+  async function getOut() {
     await signOut()
   }
   
@@ -16,7 +16,7 @@ export  default  function Dashboard() {
       <h1>{user?.name}</h1>
       <h2>{user?.email}</h2>
       <img src={user?.image ?? ''} alt="" />
-      <Button onClick={sair}>Sair</Button>
+      <Button onClick={getOut}>Sair</Button>
       </div>) : (<div>Carregando...</div>)}
       
     </main>

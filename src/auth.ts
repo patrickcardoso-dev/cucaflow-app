@@ -19,6 +19,10 @@ export const nextAuthOptions: NextAuthConfig = {
   ],
   callbacks: {
     async signIn({ account }) {
+      //account?.access_token
+      // account?.expires_at
+      // account?.refresh_token
+
       if (
         !account?.scope?.includes("https://www.googleapis.com/auth/calendar")
       ) {
