@@ -1,4 +1,5 @@
 'use client'
+import CreatToDo from "@/components/form/toDo";
 import { Button } from "@/components/ui/button";
 import { signOut, useSession } from "next-auth/react";
 
@@ -18,7 +19,7 @@ export  default  function Dashboard() {
       <img src={user?.image ?? ''} alt="" />
       <Button onClick={getOut}>Sair</Button>
       </div>) : (<div>Carregando...</div>)}
-      
+      <CreatToDo/>
     </main>
   )
 }

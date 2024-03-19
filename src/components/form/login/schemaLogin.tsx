@@ -1,5 +1,5 @@
 import { z } from "zod";
-const formSchemaLogin = z.object({
+const formSchemaTodo = z.object({
   email: z.string().email({ message: "E-mail inválido" }),
   password: z
     .string({
@@ -8,4 +8,4 @@ const formSchemaLogin = z.object({
     .min(4, { message: "Sua senha precisa ter mais de 4 caracteres" }),
 });
 
-export default formSchemaLogin;
+export default formSchemaTodo;
