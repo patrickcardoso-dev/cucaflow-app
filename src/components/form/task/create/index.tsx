@@ -53,7 +53,7 @@ function CreateTask({setShowModal}: {setShowModal: Dispatch<SetStateAction<Boole
                 </FormLabel>
                 <FormMessage />
                 <FormControl>
-                  <Input   type="time" className="w-24  text-center flex flex-col justify-center p-1 cursor-pointer" {...field} />
+                  <Input   type="time" className="w-24  border-neutras-gray200 text-center flex flex-col justify-center p-1 cursor-pointer" {...field} />
                 </FormControl>
               </FormItem>
             )}
