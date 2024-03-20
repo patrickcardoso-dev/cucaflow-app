@@ -8,13 +8,28 @@ import purpleDesktop from "../assets/shape/elipse-purple-full.png";
 import { manrope } from "./fonts";
 import { ProfileForm } from "@/components/modal/editUser";
 import LoginForm from "@/components/form/login/login";
+import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
+import { toastify } from "@/lib/Toast";
 import OptionProfile from "@/components/modal/optionProfile";
+import { Input } from "@/components/ui/input";
 
-export default function Home() {
+
+
+
+  export  default  function Home() {
   const textStyle = `${manrope.className} font-normal text-center`;
+
+  async function handleLoginGoogle () {
+  const result =  await signIn('google', {callbackUrl: "/dashboard"});
+  if (result?.error) {
+    toastify.error(result.error);
+    return
+  }
+  }
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
-      <OptionProfile open={false} />
+      {/* <OptionProfile open={true} /> */}
 
       <Image
         src={orangeDesktop}
@@ -52,8 +67,9 @@ export default function Home() {
           Entre e comece a <b>transformar</b> suas <b>metas</b> em{" "}
           <b>realidade</b>.
         </p>
+        <Button variant='orange' className="mt-2 w-full" onClick={handleLoginGoogle}>Entrar com Google</Button>
+        <hr className="w-[180px] my-6 mx-auto" />
         <LoginForm />
-
         <hr className="w-[180px] my-6 mx-auto" />
         <p
           className={`text-center font-bold mt-1 text-sm text-[#49484D] ${manrope.className}`}
@@ -64,12 +80,12 @@ export default function Home() {
           </strong>
         </p>
       </div>
-
       <Image
         src={purpleDesktop}
         alt="elipse roxa"
         className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-32 -translate-x-36 rotate-7 laptop:rotate-3 laptop:-translate-x-36 laptop:translate-y-20 laptop:max-w-lg"
       />
+      
       {/* <ProfileForm/> */}
     </main>
   );

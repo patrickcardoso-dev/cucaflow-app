@@ -1,43 +1,44 @@
 import Image from "next/image";
-import { manrope } from "./fonts";
-import cucaflowLogo from "../../assets/logo_cucaflow.png";
-import ellipseTop from "../../assets/ellipse-top.png";
-import ellipseBottom from "../../assets/ellipse-bottom.png";
-import ellipseTopDesktop from "../../assets/ellipse-top-desktop.png";
-import ellipseBottomDesktop from "../../assets/ellipse-bottom-desktop.png";
-import largeLogo from "../../assets/big-logo-cuca.png";
+import cucaflowLogo from "../../assets/logo/logo_cucaflow.png";
+import ellipseTop from "../../assets/shape/mobile/ellipse-top.png";
+import ellipseBottom from "../../assets/shape/mobile/ellipse-bottom.png";
+import ellipseTopDesktop from "../../assets/shape/desktop/ellipse-top-desktop.png";
+import ellipseBottomDesktop from "../../assets/shape/desktop/ellipse-bottom-desktop.png";
+import desktopLogo from "../../assets/logo/logo-cucaflow-desktop.png";
 import Link from "next/link";
 import { SignUpForm } from "@/components/form/signup";
 import SuccessMessage from "@/components/modal/successMessage";
+import DeleteAccount from "@/components/modal/deleteAccount";
 
 export default function SignUp() {
     
     return (
-        <main className={`${manrope.className} tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen p-8`}>
+        <main className={`tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen p-8`}>
+            <DeleteAccount open={false} />
             <div>
                 <Image
                         src={ellipseTop}
-                        alt="Ellipse Top"
+                        alt="Elipse roxa"
                         className="block laptop:hidden absolute top-0 left-0"
                 />
                 <Image
                         src={ellipseTopDesktop}
-                        alt="Ellipse Top"
+                        alt="Elipse roxa"
                         className="hidden laptop:block absolute laptop:w-72 top-0 left-0"
                 />
                 <div className="flex justify-center items-center">
                     <Image
                         src={cucaflowLogo}
-                        alt="Cucaflow logo"
+                        alt="Logo Cucaflow"
                         className="block laptop:hidden "
                     />
                 </div>
                 <div className="flex flex-col laptop:flex-row laptop:justify-around laptop:items-start laptop:w-[1000px] desktop:w-[1200px]">
                     <div className="flex flex-col justify-center items-center">
                         <Image
-                            src={largeLogo}
-                            alt="Cucaflow logo"
-                            width={350}
+                            src={desktopLogo}
+                            alt="Logo Cucaflow"
+                            width={400}
                             className="hidden laptop:block laptop:mt-12"
                         />
                         <h1 className="font-extrabold text-3xl text-primary-purple100 mt-4">Bem-vindo(a)</h1>
@@ -48,20 +49,20 @@ export default function SignUp() {
                         <SignUpForm />
                         <hr className="text-secondary-orange300 w-56 m-auto mt-6 mb-4"/>
                 
-                        <div className="flex justify-center items-center">
+                        <div className="flex justify-center items-center mb-10">
                             <p className="text-neutras-gray300 font-bold text-center text-sm">Já possui conta?</p>
                             <strong>
                                 <Link href="/" className="text-secondary-orange400 text-bold text-center text-sm underline ml-1">Faça o Login</Link>
                             </strong>
                             <Image
                                 src={ellipseBottom}
-                                alt="Ellipe Bottom"
+                                alt="Elipse laranja"
                                 className="block laptop:hidden absolute bottom-screen tablet:bottom-0 right-0"
                             />
                             <Image
                                 src={ellipseBottomDesktop}
-                                alt="Ellipe Bottom"
-                                className="hidden laptop:block absolute laptop:w-72 laptop:bottom-screen laptop:right-0"
+                                alt="Elipse laranja"
+                                className="hidden laptop:block absolute laptop:w-72 laptop:bottom-0 laptop:right-0"
                             />
                             <SuccessMessage open={true} txtButton="Fazer login" txtMessage="Cadastro realizado com Sucesso!" btnPath="/"/>
                         </div>
