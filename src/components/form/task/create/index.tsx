@@ -32,8 +32,16 @@ function CreateTask({setShowAddTasks}: {setShowAddTasks: Dispatch<SetStateAction
   })
 
   function onSubmit(values: formSchemaTodoData) {
+    if (values.time) {
+      const [hours, minutes] = values.time.split(':');
+      const date = new Date(values.date + 'T00:00:00Z');
+      date.setUTCHours(parseInt(hours, 10)); 
+      date.setUTCMinutes(parseInt(minutes, 10));
+      values.date = date.toISOString();
+    } else {
+      values.date = new Date(values.date + 'T00:00:00Z').toISOString(); 
+    }
     console.log(values);
-    ;
   }
 
   return (
