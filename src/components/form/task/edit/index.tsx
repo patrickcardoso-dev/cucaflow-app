@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction } from "react";
 import ContainerTask from "../container";
+import {formStyle, DateHoraDiv, formTitle, formItemInputDate, formItemDefault, formItemOptional, inputTime, containerField} from '../style'
 
 type  formSchemaTodoData= z.infer<typeof schemaToDo>;
 
@@ -40,10 +41,10 @@ function EditTask({setShowEditTasks}: {setShowEditTasks: Dispatch<SetStateAction
       <div>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col h-full"
+          className={formStyle}
         >
-          <h1 className="text-center text-xl text-neutras-bgBlack">Editar Tarefa</h1>
-          <div className="flex justify-between pt-7 pb-4">
+          <h1 className={formTitle}>Editar Tarefa</h1>
+          <div className={DateHoraDiv}>
               <FormField
                 control={form.control}
                 name="date"
@@ -51,7 +52,7 @@ function EditTask({setShowEditTasks}: {setShowEditTasks: Dispatch<SetStateAction
                   <FormItem className="">
                     <FormMessage />
                     <FormControl>
-                      <Input   type="date" className="w-36 text-sm border-neutras-gray200 text-center flex flex-col justify-center p-2 cursor-pointer" {...field} />
+                      <Input type="date" className={formItemInputDate} {...field} />
                     </FormControl>
                   </FormItem>
                 )}
@@ -60,22 +61,22 @@ function EditTask({setShowEditTasks}: {setShowEditTasks: Dispatch<SetStateAction
                 control={form.control}
                 name="time"
                 render={({ field }) => (
-                  <FormItem className="flex items-center justify-between">
+                  <FormItem className={formItemDefault}>
                     <FormMessage />
                     <FormControl>
-                      <Input   type="time" className="w-24  border-neutras-gray200 text-center flex flex-col justify-center p-1 cursor-pointer" {...field} />
+                      <Input  type="time" className={inputTime} {...field} />
                     </FormControl>
                   </FormItem>
                 )}
               />
               
             </div>
-          <div className="flex flex-col gap-5 mb-4">
+          <div className={containerField}>
             <FormField
               control={form.control}
               name="title"
               render={({ field }) => (
-                <FormItem className="items-center justify-between">
+                <FormItem className={formItemOptional}>
                   <FormLabel
                     className={`text-sm ${manrope.className} desktop:text-base`}
                   >
@@ -92,7 +93,7 @@ function EditTask({setShowEditTasks}: {setShowEditTasks: Dispatch<SetStateAction
               control={form.control}
               name="description"
               render={({ field }) => (
-                <FormItem className="items-center justify-between">
+                <FormItem className={formItemOptional}>
                   <FormLabel
                     className={`text-sm ${manrope.className} desktop:text-base`}
                   >
@@ -107,7 +108,7 @@ function EditTask({setShowEditTasks}: {setShowEditTasks: Dispatch<SetStateAction
             />
           </div>
           <Button type="submit"  variant='purple' className="mt-5 mb-3">Editar</Button>
-          <Button onClick={() => setShowEditTasks(false)} variant='purpleSecond' type="submit">Cancelar</Button>
+          <Button onClick={() => setShowEditTasks(false)} variant='purpleSecond'>Cancelar</Button>
         </form>
       </div>
     </Form>
