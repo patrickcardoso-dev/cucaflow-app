@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+"use client"
 import { Checkbox } from "@/components/ui/checkbox";
 import {
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+  } from "@/components/ui/accordion"
+import { useState } from "react";
 import Image from "next/image";
 import editIcon from "../../assets/icon/edit.png";
 import deleteIcon from "../../assets/icon/delete.png";
