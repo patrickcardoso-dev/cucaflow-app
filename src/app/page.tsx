@@ -6,7 +6,7 @@ import slogan from "../assets/logo/slogan.png";
 import orangeDesktop from "../assets/shape/ellipse-orange-full.png";
 import purpleDesktop from "../assets/shape/elipse-purple-full.png";
 import { manrope } from "./fonts";
-import { ProfileForm } from "@/components/modal/editUser";
+import { ProfileForm } from "@/components/form/editUser";
 import LoginForm from "@/components/form/login/login";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
