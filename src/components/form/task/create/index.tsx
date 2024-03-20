@@ -33,7 +33,8 @@ function CreateTask({setShowAddTasks}: {setShowAddTasks: Dispatch<SetStateAction
   })
 
   function onSubmit(values: formSchemaTodoData) {
-   console.log(formatDate(values));
+    const dateTimestamp = new Date(formatDate(values)).getTime()
+   console.log(dateTimestamp);
   }
 
   return (
