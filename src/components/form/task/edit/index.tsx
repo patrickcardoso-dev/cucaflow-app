@@ -43,23 +43,33 @@ function EditTask({setShowEditTasks}: {setShowEditTasks: Dispatch<SetStateAction
           className="flex flex-col h-full"
         >
           <h1 className="text-center text-xl text-neutras-bgBlack">Editar Tarefa</h1>
-          <FormField
-            control={form.control}
-            name="time"
-            render={({ field }) => (
-              <FormItem className="flex items-center justify-between py-5">
-                <FormLabel
-                  className={`text-sm ${manrope.className} desktop:text-base`}
-                >
-                  Horário
-                </FormLabel>
-                <FormMessage />
-                <FormControl>
-                  <Input   type="time" className="w-24  border-neutras-gray200 text-center flex flex-col justify-center p-1 cursor-pointer" {...field} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+          <div className="flex justify-between py-5">
+              <FormField
+                control={form.control}
+                name="date"
+                render={({ field }) => (
+                  <FormItem className="">
+                    <FormMessage />
+                    <FormControl>
+                      <Input   type="date" className="w-36 text-sm border-neutras-gray200 text-center flex flex-col justify-center p-2 cursor-pointer" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="time"
+                render={({ field }) => (
+                  <FormItem className="flex items-center justify-between">
+                    <FormMessage />
+                    <FormControl>
+                      <Input   type="time" className="w-24  border-neutras-gray200 text-center flex flex-col justify-center p-1 cursor-pointer" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              
+            </div>
           <div className="flex flex-col gap-5 mb-4">
             <FormField
               control={form.control}
@@ -96,7 +106,7 @@ function EditTask({setShowEditTasks}: {setShowEditTasks: Dispatch<SetStateAction
               )}
             />
           </div>
-          <Button type="submit"  variant='purple' className="mb-3">Comfirmar</Button>
+          <Button type="submit"  variant='purple' className="mb-3">Editar</Button>
           <Button onClick={() => setShowEditTasks(false)} variant='purpleSecond' type="submit">Cancelar</Button>
         </form>
       </div>

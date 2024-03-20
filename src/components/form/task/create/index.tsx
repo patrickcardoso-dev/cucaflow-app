@@ -43,23 +43,33 @@ function CreateTask({setShowAddTasks}: {setShowAddTasks: Dispatch<SetStateAction
             className="flex flex-col h-full"
           >
             <h1 className="text-center text-xl text-neutras-bgBlack">Adicionar Tarefa</h1>
-            <FormField
-              control={form.control}
-              name="time"
-              render={({ field }) => (
-                <FormItem className="flex items-center justify-between py-5">
-                  <FormLabel
-                    className={`text-sm ${manrope.className} desktop:text-base`}
-                  >
-                    Horário
-                  </FormLabel>
-                  <FormMessage />
-                  <FormControl>
-                    <Input   type="time" className="w-24  border-neutras-gray200 text-center flex flex-col justify-center p-1 cursor-pointer" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
+            <div className="flex justify-between py-5">
+              <FormField
+                control={form.control}
+                name="date"
+                render={({ field }) => (
+                  <FormItem className="">
+                    <FormMessage />
+                    <FormControl>
+                      <Input   type="date" className="w-36 text-sm border-neutras-gray200 text-center flex flex-col justify-center p-2 cursor-pointer" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="time"
+                render={({ field }) => (
+                  <FormItem className="flex items-center justify-between">
+                    <FormMessage />
+                    <FormControl>
+                      <Input   type="time" className="w-24  border-neutras-gray200 text-center flex flex-col justify-center p-1 cursor-pointer" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              
+            </div>
             <div className="flex flex-col gap-5 mb-4">
               <FormField
                 control={form.control}
@@ -72,7 +82,7 @@ function CreateTask({setShowAddTasks}: {setShowAddTasks: Dispatch<SetStateAction
                       Título
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="nome da sua tarefa" className="w-full text-sm" {...field} />
+                      <Input  className="w-full text-sm" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -89,7 +99,7 @@ function CreateTask({setShowAddTasks}: {setShowAddTasks: Dispatch<SetStateAction
                       Descrição
                     </FormLabel>
                     <FormControl>
-                      <Textarea placeholder="descreva sua tarefa" className="w-full text-sm" {...field} />
+                      <Textarea  className="w-full text-sm" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
