@@ -43,7 +43,7 @@ function CreateTask({setShowAddTasks}: {setShowAddTasks: Dispatch<SetStateAction
             className="flex flex-col h-full"
           >
             <h1 className="text-center text-xl text-neutras-bgBlack">Adicionar Tarefa</h1>
-            <div className="flex justify-between py-5">
+            <div className="flex justify-between pt-7 pb-4">
               <FormField
                 control={form.control}
                 name="date"
@@ -106,7 +106,7 @@ function CreateTask({setShowAddTasks}: {setShowAddTasks: Dispatch<SetStateAction
                 )}
               />
             </div>
-            <Button type="submit" className="mb-3">Comfirmar</Button>
+            <Button type="submit" className="mt-5 mb-3">Comfirmar</Button>
             <Button onClick={() => setShowAddTasks(false)} variant='orangeSecond' type="submit">Cancelar</Button>
           </form>
         </div>

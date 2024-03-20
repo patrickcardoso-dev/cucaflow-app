@@ -43,7 +43,7 @@ function EditTask({setShowEditTasks}: {setShowEditTasks: Dispatch<SetStateAction
           className="flex flex-col h-full"
         >
           <h1 className="text-center text-xl text-neutras-bgBlack">Editar Tarefa</h1>
-          <div className="flex justify-between py-5">
+          <div className="flex justify-between pt-7 pb-4">
               <FormField
                 control={form.control}
                 name="date"
@@ -106,7 +106,7 @@ function EditTask({setShowEditTasks}: {setShowEditTasks: Dispatch<SetStateAction
               )}
             />
           </div>
-          <Button type="submit"  variant='purple' className="mb-3">Editar</Button>
+          <Button type="submit"  variant='purple' className="mt-5 mb-3">Editar</Button>
           <Button onClick={() => setShowEditTasks(false)} variant='purpleSecond' type="submit">Cancelar</Button>
         </form>
       </div>
