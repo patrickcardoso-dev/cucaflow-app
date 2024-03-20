@@ -6,7 +6,8 @@ import ellipseTopDesktop from "../../assets/shape/desktop/ellipse-top-desktop.pn
 import ellipseBottomDesktop from "../../assets/shape/desktop/ellipse-bottom-desktop.png";
 import desktopLogo from "../../assets/logo/logo-cucaflow-desktop.png";
 import Link from "next/link";
-import { SignUpForm } from "@/components/form/signUp/signup";
+import { SignUpForm } from "@/components/form/signup";
+import SuccessMessage from "@/components/modal/successMessage";
 import DeleteAccount from "@/components/modal/deleteAccount";
 
 export default function SignUp() {
@@ -63,6 +64,7 @@ export default function SignUp() {
                                 alt="Elipse laranja"
                                 className="hidden laptop:block absolute laptop:w-72 laptop:bottom-0 laptop:right-0"
                             />
+                            <SuccessMessage open={true} txtButton="Fazer login" txtMessage="Cadastro realizado com Sucesso!" btnPath="/"/>
                         </div>
                     </div>
                 </div>
