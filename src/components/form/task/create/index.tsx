@@ -53,7 +53,7 @@ function CreateTask({setShowAddTasks}: {setShowAddTasks: Dispatch<SetStateAction
                   <FormItem>
                     <FormMessage />
                     <FormControl>
-                      <Input type="date" className={formItemInputDate} {...field} />
+                      <Input {...field}  type="date" className={formItemInputDate} />
                     </FormControl>
                   </FormItem>
                 )}
