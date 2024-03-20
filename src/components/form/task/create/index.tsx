@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction } from "react";
 import ContainerTask from "../container";
 import {formStyle, DateHoraDiv, formTitle, formItemInputDate, formItemDefault, formItemOptional, inputTime, containerField} from '../style'
+import formatDate from "@/app/(protected-routes)/actions/formatDate";
 
 type  formSchemaTodoData= z.infer<typeof schemaToDo>;
 
@@ -32,16 +33,7 @@ function CreateTask({setShowAddTasks}: {setShowAddTasks: Dispatch<SetStateAction
   })
 
   function onSubmit(values: formSchemaTodoData) {
-    if (values.time) {
-      const [hours, minutes] = values.time.split(':');
-      const date = new Date(values.date + 'T00:00:00Z');
-      date.setUTCHours(parseInt(hours, 10)); 
-      date.setUTCMinutes(parseInt(minutes, 10));
-      values.date = date.toISOString();
-    } else {
-      values.date = new Date(values.date + 'T00:00:00Z').toISOString(); 
-    }
-    console.log(values);
+   console.log(formatDate(values));
   }
 
   return (
