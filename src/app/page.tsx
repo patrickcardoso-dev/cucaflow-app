@@ -75,9 +75,9 @@ import { Input } from "@/components/ui/input";
           className={`text-center font-bold mt-1 text-sm text-[#49484D] ${manrope.className}`}
         >
           Não possui conta?{" "}
-          <strong className="cursor-pointer text-primary-purple100 font-bold">
+          <a href="/signup" className="cursor-pointer text-primary-purple100 font-bold">
             Cadastre-se
-          </strong>
+          </a>
         </p>
       </div>
       <Image
