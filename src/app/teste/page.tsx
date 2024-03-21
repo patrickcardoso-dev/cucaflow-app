@@ -9,24 +9,24 @@ export default function Teste() {
     const initialTasks = [
         {
             id: "1",
-            title: "Título da tarefa 1 dsada dasda asdasd aasdasda adasdasd asdas",
+            title: "Título da tarefa 1",
             description: "Aqui o usuário irá escrever uma descrição detalhada sobre a sua tarefa 1",
             hour: "9:00",
-            checked: false,
+            status: false,
         },
         {
             id: "2",
             title: "Título da tarefa 2",
             description: "",
             hour: "",
-            checked: false,
+            status: false,
         },
         {
             id: "3",
             title: "Título da tarefa 3",
             description: "Aqui o usuário irá escrever uma descrição detalhada sobre a sua tarefa 3",
-            hour: "11:00",
-            checked: true,
+            hour: "16:00",
+            status: true,
         },
 
     ]
@@ -43,7 +43,7 @@ export default function Teste() {
                             title={task.title}
                             description={task.description}
                             hour={task.hour}
-                            checked={task.checked}
+                            status={task.status}
                         />
                     ))}
             </Accordion>

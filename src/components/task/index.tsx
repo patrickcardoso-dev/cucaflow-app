@@ -15,11 +15,10 @@ interface TaskProps {
   title: string;
   description?: string;
   hour?: string;
-  checked: boolean;
+  status: boolean;
 }
 
-export function Task({ id, title, description, hour, checked }: TaskProps) {
-
+export function Task({ id, title, description, hour, status }: TaskProps) {
 
     const [isVisible, setIsVisible] = useState(true);
     const [updatedTask, setUpdatedTask] = useState<TaskProps>(
@@ -28,19 +27,22 @@ export function Task({ id, title, description, hour, checked }: TaskProps) {
             title,
             description,
             hour,
-            checked
+            status
         }
     );
     
     const [openEdit, setOpenEdit] = useState(false);
 
     const handleChangeStatus = () => {
-    setUpdatedTask((prevTask) => ({
-        ...prevTask,
-        checked: !prevTask.checked,
-    }));
-    console.log(updatedTask);
-    //implementar lógica de atualizar a task no back ...
+        setUpdatedTask((prevTask) => {
+            const newTask = {
+                ...prevTask,
+                status: !prevTask.status,
+            }
+            console.log(newTask)
+            //implementar lógica de atualizar a task no back ...
+            return newTask
+        });   
     };
 
   const handleDeleteTask = (id: string) => {
@@ -59,11 +61,11 @@ export function Task({ id, title, description, hour, checked }: TaskProps) {
       {isVisible && (
         <>
           {/* {openEdit && (<Componente de edição de task />)} */}
-          <AccordionItem value={id} className={updatedTask.checked ? `border-primary-purple100` : `border-secondary-orange400`}>
+          <AccordionItem value={id} className={updatedTask.status ? `border-primary-purple100` : `border-secondary-orange400`}>
             <div className="flex items-center justify-between w-72">
               <Checkbox
                 className="mr-4"
-                checked={updatedTask.checked}
+                checked={updatedTask.status}
                 onClick={handleChangeStatus}
               />
               <AccordionTrigger>
@@ -82,13 +84,13 @@ export function Task({ id, title, description, hour, checked }: TaskProps) {
                         <p className="text-neutras-gray300 font-normal text-sm mr-6">
                           {hour}
                         </p>
-                        <p className={updatedTask.checked ? `text-primary-purple100 font-normal text-sm` : `text-neutras-gray300 font-normal text-sm`}>
-                          {updatedTask.checked ? "Concluído" : "Agendado"}
-                        </p>
+                        <p className={updatedTask.status ? `text-primary-purple100 font-normal text-sm` : `text-neutras-gray300 font-normal text-sm`}>
+                        {updatedTask.status ? "Concluído" : "Agendado"}
+                      </p>
                       </>
                     ) : (
-                      <p className={updatedTask.checked ? `text-primary-purple100 font-normal text-sm` : `text-neutras-gray300 font-normal text-sm`}>
-                        {updatedTask.checked ? "Concluído" : "Pendente"}
+                      <p className={updatedTask.status ? `text-primary-purple100 font-normal text-sm` : `text-neutras-gray300 font-normal text-sm`}>
+                        {updatedTask.status ? "Concluído" : "Pendente"}
                       </p>
                     )}
 
