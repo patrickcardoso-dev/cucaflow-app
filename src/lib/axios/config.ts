@@ -1,5 +1,5 @@
+import { getCookie } from "@/util/coockies";
 import axios from "axios";
-import { cookies } from "next/headers";
 
 export const api = axios.create({
   baseURL: "https://cucaflow-api.cyclic.app/",
@@ -7,7 +7,7 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((request) => {
-  const token = cookies().get("token");
+  const token = getCookie("token");
   if (token) {
     request.headers.Authorization = "Bearer " + token;
   }
