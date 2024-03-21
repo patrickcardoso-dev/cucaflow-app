@@ -16,10 +16,20 @@ import { PasswordInput } from "@/components/password-input";
 import formSchema from "./schema";
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
+import { createUser } from "@/services/user";
 
-function onSubmit(values: z.infer<typeof formSchema>) {
+async function onSubmit(values: z.infer<typeof formSchema>) {
   const {confirmPassword, ...data} = values
-  console.log(data);
+  const newUser = {
+    ...data,
+    isSocialLogin: false
+  }
+  try {
+    const response = await createUser('user', newUser)
+    console.log(response)
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 export function SignUpForm() {
