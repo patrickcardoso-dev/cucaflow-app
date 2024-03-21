@@ -35,7 +35,6 @@ export default function Teste() {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen gap-4">
-            <div className="flex flex-col items-center justify-center h-screen gap-4">
             <Accordion type="single" collapsible className="w-80">
                     {tasks.map((task) => (
                         <Task
@@ -46,9 +45,7 @@ export default function Teste() {
                             status={task.status}
                         />
                     ))}
-            </Accordion>
-        </div>
-           
+            </Accordion>       
         </div>
     )
 }

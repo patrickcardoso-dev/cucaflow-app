@@ -11,6 +11,7 @@ import Image from "next/image";
 import editIcon from "../../assets/icon/edit.png";
 import deleteIcon from "../../assets/icon/delete.png";
 import clockIcon from "../../assets/icon/clock.png";
+// import EditTask from "../form/task/edit";
 
 interface TaskProps {
   id: string;
@@ -31,9 +32,8 @@ export function Task({ id, title, description, hour, status }: TaskProps) {
             hour,
             status
         }
-    );
-    
-    const [openEdit, setOpenEdit] = useState(false);
+    ); 
+    const [openEdit, setOpenEdit] = useState<Boolean>(false);
 
     const handleChangeStatus = () => {
         setUpdatedTask((prevTask) => {
@@ -62,7 +62,10 @@ export function Task({ id, title, description, hour, status }: TaskProps) {
     <>
       {isVisible && (
         <>
-          {/* {openEdit && (<Componente de edição de task />)} */}
+            {/* {openEdit && (
+                < EditTask setShowEditTasks={true} />
+            )} */}
+          
           <AccordionItem value={id} className={updatedTask.status ? `border-primary-purple100` : `border-secondary-orange400`}>
             <div className="flex items-center justify-between w-72">
               <Checkbox
