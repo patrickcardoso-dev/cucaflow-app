@@ -4,7 +4,6 @@ type CreateUserProps = {
   username: string;
   email: string;
   password: string;
-  isSocialLogin: boolean;
 };
 
 export async function createUser(path: string, user: CreateUserProps) {
