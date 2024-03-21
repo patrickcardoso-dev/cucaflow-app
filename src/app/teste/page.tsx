@@ -9,23 +9,23 @@ export default function Teste() {
     const initialTasks = [
         {
             id: "1",
-            title: "Título da tarefa 1",
+            title: "Título da tarefa 1 dsada dasda asdasd aasdasda adasdasd asdas",
             description: "Aqui o usuário irá escrever uma descrição detalhada sobre a sua tarefa 1",
-            time: "9:00",
+            hour: "9:00",
             checked: false,
         },
         {
             id: "2",
             title: "Título da tarefa 2",
-            description: "Aqui o usuário irá escrever uma descrição detalhada sobre a sua tarefa 2",
-            time: "11:00",
+            description: "",
+            hour: "",
             checked: false,
         },
         {
             id: "3",
             title: "Título da tarefa 3",
             description: "Aqui o usuário irá escrever uma descrição detalhada sobre a sua tarefa 3",
-            time: "11:00",
+            hour: "11:00",
             checked: true,
         },
 
@@ -36,17 +36,16 @@ export default function Teste() {
     return (
         <div className="flex flex-col items-center justify-center h-screen gap-4">
             <div className="flex flex-col items-center justify-center h-screen gap-4">
-            <Accordion type="single" collapsible className="w-[320px]">
+            <Accordion type="single" collapsible className="w-80">
                     {tasks.map((task) => (
                         <Task
                             id={task.id}
                             title={task.title}
                             description={task.description}
-                            time={task.time}
+                            hour={task.hour}
                             checked={task.checked}
                         />
                     ))}
-
             </Accordion>
         </div>
            
