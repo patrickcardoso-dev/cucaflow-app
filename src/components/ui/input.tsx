@@ -27,7 +27,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
         />
-        {error && (
+        {(error && type !== 'date') && (
           <AlertCircle
             size={18}
             color="#fe1b1b"

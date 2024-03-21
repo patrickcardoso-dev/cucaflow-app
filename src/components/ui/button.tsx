@@ -16,7 +16,7 @@ const buttonVariants = cva(
         orangeSecond:
           "bg-transparent border border-2 border-secondary-orange100 text-secondary-orange100 font-bold",
         purple:
-          "bg-neutras-disable text-neutras-neutra hover:bg-primary-purple200",
+          "bg-primary-purple100 text-neutras-neutra hover:bg-primary-purple200",
         purpleSecond:
           "text-primary-purple100 border-2 border-primary-purple100 hover:border-primary-purple200 hover:text-primary-purple200",
         input:

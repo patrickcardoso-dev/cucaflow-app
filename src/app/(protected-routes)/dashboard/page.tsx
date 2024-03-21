@@ -1,24 +1,39 @@
-'use client'
+"use client";
+import CreatToDo from "@/components/form/task/create";
+import EditTask from "@/components/form/task/edit";
 import { Button } from "@/components/ui/button";
 import { signOut, useSession } from "next-auth/react";
+import { useState } from "react";
 
-export  default  function Dashboard() {
-  const session = useSession()
-  const user = session.data?.user
-  
+export default function Dashboard() {
+  const [showEditTasks, setShowEditTasks] = useState<Boolean>(false)
+  const [showAddTasks, setShowAddTasks] = useState<Boolean>(false)
+  const session = useSession();
+  const user = session.data?.user;
+
   async function getOut() {
-    await signOut()
+    await signOut();
   }
-  
+
   return (
-    <main className="flex min-h-screen items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
-      {user ? (<div className="flex flex-col justify-center items-center gap-4">
-      <h1>{user?.name}</h1>
-      <h2>{user?.email}</h2>
-      <img src={user?.image ?? ''} alt="" />
-      <Button onClick={getOut}>Sair</Button>
-      </div>) : (<div>Carregando...</div>)}
-      
+    <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row">
+      {user ? (
+        <div className="flex flex-col justify-center items-center gap-4">
+          <h1>{user?.name}</h1>
+          <h2>{user?.email}</h2>
+          <img src={user?.image ?? ""} alt="" />
+          <Button onClick={getOut}>Sair</Button>
+          <div className="flex gap-2">
+          <Button variant='orangeSecond' onClick={() => setShowAddTasks(true)}>Criar tarefa</Button>
+          <Button variant='purpleSecond' onClick={() => setShowEditTasks(true)}>Editar Tarefa</Button>
+          </div>
+        </div>
+      ) : (
+        <div>Carregando...</div>
+      )}
+      {showEditTasks && <EditTask  setShowEditTasks={setShowEditTasks}/>}
+      {showAddTasks && <CreatToDo setShowAddTasks={setShowAddTasks}/> }
+        
     </main>
-  )
+  );
 }
