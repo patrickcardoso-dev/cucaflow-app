@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
 import { api } from "./lib/axios/config";
+import { setCookie } from "./util/coockies";
 
 export const nextAuthOptions: NextAuthConfig = {
   providers: [
@@ -16,6 +17,7 @@ export const nextAuthOptions: NextAuthConfig = {
         try {
           const response = await api.post("signIn", credentials);
           const result = await response.data;
+          setCookie("token", result.token);
           return result;
         } catch (error) {
           return false;
