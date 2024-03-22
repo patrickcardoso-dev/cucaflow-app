@@ -6,14 +6,19 @@ import { getCookie } from "@/util/coockies";
 import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 
+type UserProps = {
+  user_id: string;
+  token: string;
+  id: string
+}
+
 export default function Dashboard() {
   const [showEditTasks, setShowEditTasks] = useState<Boolean>(false)
   const [showAddTasks, setShowAddTasks] = useState<Boolean>(false)
   const session = useSession();
-  const user = session.data
-  console.log(session);
+  const user = session.data?.user as UserProps
   
-
+  
 
   
 
