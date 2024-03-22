@@ -62,10 +62,8 @@ export function Task({ id, title, description, hour, status }: TaskProps) {
     <>
       {isVisible && (
         <>
-            {/* {openEdit && (
-                < EditTask setShowEditTasks={true} />
-            )} */}
-          
+          {/* < EditTask setShowEditTasks={openEdit} /> */}
+            
           <AccordionItem value={id} className={updatedTask.status ? `border-primary-purple100` : `border-secondary-orange400`}>
             <div className="flex items-center justify-between w-72">
               <Checkbox
@@ -77,7 +75,7 @@ export function Task({ id, title, description, hour, status }: TaskProps) {
                 <div>
                   <p>{title}</p>
                   <div className="flex flex-row items-center justify-start w-36">
-                    {hour ? (
+                    {hour && (
                       <>
                         <Image
                           src={clockIcon}
@@ -89,16 +87,11 @@ export function Task({ id, title, description, hour, status }: TaskProps) {
                         <p className="text-neutras-gray300 font-normal text-sm mr-6">
                           {hour}
                         </p>
-                        <p className={updatedTask.status ? `text-primary-purple100 font-normal text-sm` : `text-neutras-gray300 font-normal text-sm`}>
-                        {updatedTask.status ? "Concluído" : "Agendado"}
-                      </p>
                       </>
-                    ) : (
+                    )}                  
                       <p className={updatedTask.status ? `text-primary-purple100 font-normal text-sm` : `text-neutras-gray300 font-normal text-sm`}>
                         {updatedTask.status ? "Concluído" : "Pendente"}
                       </p>
-                    )}
-
                   </div>
                 </div>
               </AccordionTrigger>
