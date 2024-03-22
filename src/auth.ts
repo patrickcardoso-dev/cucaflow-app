@@ -4,6 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 import { api } from "./lib/axios/config";
 import { setCookie } from "./util/coockies";
+import { AdapterUser } from "next-auth/adapters";
 
 export const nextAuthOptions: NextAuthConfig = {
   providers: [
@@ -14,14 +15,22 @@ export const nextAuthOptions: NextAuthConfig = {
         password: { label: "password", type: "string" },
       },
       async authorize(credentials, req) {
-        try {
-          const response = await api.post("signIn", credentials);
-          const result = await response.data;
-          setCookie("token", result.token);
-          return result;
-        } catch (error) {
-          return false;
+        const response = await fetch("https://cucaflow-api.cyclic.app/signIn", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: credentials?.email,
+            password: credentials?.password,
+          }),
+        });
+        const user = await response.json();
+
+        if (user && response.ok) {
+          return user;
         }
+        return null;
       },
     }),
     GoogleProvider({
@@ -38,7 +47,18 @@ export const nextAuthOptions: NextAuthConfig = {
       },
     }),
   ],
+
   callbacks: {
+    async session({ session, token }) {
+      session.user = token.user as AdapterUser;
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
     async signIn({ account }) {
       /*       if (
         !account?.scope?.includes("https://www.googleapis.com/auth/calendar")
@@ -53,6 +73,11 @@ export const nextAuthOptions: NextAuthConfig = {
   },
 
   secret: String(process.env.NEXTAUTH_SECRET),
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
+  },
 };
 
 export const {

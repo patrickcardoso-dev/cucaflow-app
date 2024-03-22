@@ -18,10 +18,13 @@ import { useState, useEffect } from "react";
 import formSchemaLogin from "./schemaLogin";
 import { signIn } from "next-auth/react";
 import { toastify } from "@/lib/Toast";
+import { redirect, useRouter } from "next/navigation";
+
 
 type formSchemaLoginData = z.infer<typeof formSchemaLogin>;
 
 function LoginForm() {
+  const router = useRouter()
   const [isFieldEdited, setIsFieldEdited] = useState(false);
   const form = useForm<formSchemaLoginData>({
     resolver: zodResolver(formSchemaLogin),
@@ -31,28 +34,28 @@ function LoginForm() {
     },
   });
 
+
   useEffect(() => {
     setIsFieldEdited(form.formState.isValid);
   }, [form.formState.isValid]);
 
- async function onSubmit(values: formSchemaLoginData) {
-  try {
-    const user = await signIn('credentials', {
-      ...values,
-      redirect: false
-    });
-    
-    if (user?.error) {
-      toastify.error("Usuário não encontrado")
-    }
-
-  } catch (error) {
-    console.log(error);
-  }
-    
   
 
+
+ async function onSubmit(values: formSchemaLoginData) {
+  
+  const user = await signIn('credentials', {
+      ...values,
+      redirect: false,
+    });
+  if (user?.error) {
+   toastify.error("Usuário não encontrado")
+   return
+  } 
+  router.push('/dashboard')
+  
   }
+
   return (
     <Form {...form}>
       <form
