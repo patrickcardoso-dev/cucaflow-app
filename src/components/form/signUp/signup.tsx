@@ -16,22 +16,33 @@ import { PasswordInput } from "@/components/password-input";
 import formSchema from "./schema";
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
-/* import { createUser } from "@/services/user"; */
+import { toastify } from "@/lib/Toast";
+import { redirect } from "next/navigation";
+import { createUser } from "@/services/user"; 
+import { AxiosError } from "axios";
+
+export type DeafaultBAckError = {
+  statusCode: number,
+  message: string
+}
 
 async function onSubmit(values: z.infer<typeof formSchema>) {
   const { confirmPassword, ...data } = values;
 
   try {
-    const response = await fetch('https://cucaflow-api.cyclic.app/user', {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    const user = await response.json();
-    console.log(user);
+    await createUser('user', data)
+    redirect('/')
   } catch (error) {
-    console.log(error);
+    if ((error as AxiosError).response) {
+      const errorMessage = (error as AxiosError).response
+      const errorBack = errorMessage?.data as DeafaultBAckError
+      if (errorBack) {
+        toastify.error(errorBack.message);
+      } else {
+        console.log(errorMessage?.data);
+        
+      }
+    }
   }
 }
 
