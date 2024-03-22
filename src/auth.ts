@@ -1,8 +1,27 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+
+import { api } from "./lib/axios/config";
 
 export const nextAuthOptions: NextAuthConfig = {
   providers: [
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "email", type: "string" },
+        password: { label: "password", type: "string" },
+      },
+      async authorize(credentials, req) {
+        try {
+          const response = await api.post("signIn", credentials);
+          const result = await response.data;
+          return result;
+        } catch (error) {
+          return false;
+        }
+      },
+    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
@@ -19,15 +38,11 @@ export const nextAuthOptions: NextAuthConfig = {
   ],
   callbacks: {
     async signIn({ account }) {
-      //account?.access_token
-      // account?.expires_at
-      // account?.refresh_token
-
-      if (
+      /*       if (
         !account?.scope?.includes("https://www.googleapis.com/auth/calendar")
       ) {
         return "/?error=permissions";
-      }
+      } */
       return true;
     },
   },
