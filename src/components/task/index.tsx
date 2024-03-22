@@ -1,7 +1,6 @@
 "use client"
 import { Checkbox } from "@/components/ui/checkbox";
 import {
-    Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
