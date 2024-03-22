@@ -26,7 +26,7 @@ export const nextAuthOptions: NextAuthConfig = {
           }),
         });
         const user = await response.json();
-
+        setCookie("token", user.token);
         if (user && response.ok) {
           return user;
         }
