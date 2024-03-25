@@ -1,5 +1,5 @@
-import { getCookie } from "@/util/coockies";
 import axios from "axios";
+import { cookies } from "next/headers";
 
 export const api = axios.create({
   baseURL: "https://cucaflow-api.cyclic.app/",
@@ -7,10 +7,10 @@ export const api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-/* api.interceptors.request.use((request) => {
-  const token = getCookie("token");
+api.interceptors.request.use((request) => {
+  const token = cookies().get("token")?.value;
   if (token) {
     request.headers.Authorization = "Bearer " + token;
   }
   return request;
-}); */
+});

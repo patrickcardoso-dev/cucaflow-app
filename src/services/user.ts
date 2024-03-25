@@ -1,4 +1,6 @@
+"use server";
 import { api } from "@/lib/axios/config";
+import { cookies } from "next/headers";
 
 type CreateUserProps = {
   username: string;
@@ -12,10 +14,12 @@ export async function createUser(path: string, user: CreateUserProps) {
   return userData;
 }
 
-export async function getUser(path: string, token: string) {
-  const response = await api.get(path, {
-    headers: { Authorization: "Bearer " + token },
-  });
-  const userData = response.data;
-  return userData;
+export async function getUser(path: string) {
+  try {
+    const response = await api.get(path);
+    const userData = response.data;
+    return userData;
+  } catch (error) {
+    console.log(error);
+  }
 }

@@ -3,11 +3,11 @@ import CreatToDo from "@/components/form/task/create";
 import EditTask from "@/components/form/task/edit";
 import { Button } from "@/components/ui/button";
 import { getUser } from "@/services/user";
-import { getCookie } from "@/util/coockies";
+import { deleteCookies } from "@/util/coockies";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
-type UserProps = {
+export type UserProps = {
   user_id: string;
   token: string;
   id: string
@@ -32,11 +32,10 @@ export default function Dashboard() {
   useEffect(() => {
     async function userGetData() {
       try {
-        const getUserData = await getUser(`user/${userSession?.user_id}`, userSession?.token)
+        const getUserData = await getUser(`user/${userSession?.user_id}`)
       setUserData(getUserData);
       } catch (error) {
-        console.log(error);
-        
+        console.log(error); 
       }
       
     }
@@ -47,6 +46,7 @@ export default function Dashboard() {
 
   async function getOut() {
     await signOut();
+    deleteCookies()
   }
 
   return (
