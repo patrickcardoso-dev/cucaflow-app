@@ -2,9 +2,10 @@
 import CreatToDo from "@/components/form/task/create";
 import EditTask from "@/components/form/task/edit";
 import { Button } from "@/components/ui/button";
+import { getUser } from "@/services/user";
 import { getCookie } from "@/util/coockies";
 import { signOut, useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type UserProps = {
   user_id: string;
@@ -19,6 +20,13 @@ export default function Dashboard() {
   const user = session.data?.user as UserProps
   
   
+  useEffect(() => {
+    async function userGetData() {
+      const getUserData = await getUser(`user/:${user?.user_id}`, user?.token)
+      console.log(getUserData);
+    }
+    userGetData()
+  }, [])
 
   
 
