@@ -16,14 +16,37 @@ import { PasswordInput } from "@/components/password-input";
 import formSchema from "./schema";
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
+import { toastify } from "@/lib/Toast";
+import { redirect } from "next/navigation";
+import { createUser } from "@/services/user"; 
+import { AxiosError } from "axios";
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  const {confirmPassword, ...data} = values
-  console.log(data);
+export type DeafaultBAckError = {
+  statusCode: number,
+  message: string
+}
+
+async function onSubmit(values: z.infer<typeof formSchema>) {
+  const { confirmPassword, ...data } = values;
+
+  try {
+    await createUser('user', data)
+    redirect('/')
+  } catch (error) {
+    if ((error as AxiosError).response) {
+      const errorMessage = (error as AxiosError).response
+      const errorBack = errorMessage?.data as DeafaultBAckError
+      if (errorBack) {
+        toastify.error(errorBack.message);
+      } else {
+        console.log(errorMessage?.data);
+        
+      }
+    }
+  }
 }
 
 export function SignUpForm() {
-
   const [isFieldEdited, setIsFieldEdited] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -32,7 +55,7 @@ export function SignUpForm() {
       username: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
     },
   });
 
@@ -42,24 +65,25 @@ export function SignUpForm() {
 
   return (
     <Form {...form}>
-          <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col justify-center items-center gap-3">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col justify-center items-center gap-3"
+      >
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <Label >Nome de Usuário</Label>
-                <FormControl>
-                    <Input
-                        id="username"
-                        type="text"
-                        placeholder="Ex. cucaflow"
-                        className="bg-neutra-bgWhite"
-                        {...field}
-                    />
-                </FormControl>
+              <Label>Nome de Usuário</Label>
+              <FormControl>
+                <Input
+                  id="username"
+                  type="text"
+                  placeholder="Ex. cucaflow"
+                  className="bg-neutra-bgWhite"
+                  {...field}
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
@@ -69,17 +93,17 @@ export function SignUpForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <Label >E-mail</Label>
-                <FormControl>
-                    <Input
-                        id="email"
-                        type="email"
-                        placeholder="Ex: cucaflow@gmail.com"
-                        className="bg-neutra-bgWhite"
-                        {...field}
-                    />
-                </FormControl>
-              <FormMessage  />
+              <Label>E-mail</Label>
+              <FormControl>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Ex: cucaflow@gmail.com"
+                  className="bg-neutra-bgWhite"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -88,16 +112,16 @@ export function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <Label >Senha</Label>
-                  <FormControl>
-                  <PasswordInput
-                            id="password"
-                            placeholder="Insira sua senha"
-                            className="bg-neutra-bgWhite"
-                            {...field}
-                        />
-                </FormControl>
-              <FormMessage  />
+              <Label>Senha</Label>
+              <FormControl>
+                <PasswordInput
+                  id="password"
+                  placeholder="Insira sua senha"
+                  className="bg-neutra-bgWhite"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -106,36 +130,39 @@ export function SignUpForm() {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <Label >Confirmar senha</Label>
-                  <FormControl>
-                  <PasswordInput
-                            id="confirmPassword"
-                            placeholder="Insira sua senha"
-                            className="bg-neutra-bgWhite"
-                          {...field}
-                        />
+              <Label>Confirmar senha</Label>
+              <FormControl>
+                <PasswordInput
+                  id="confirmPassword"
+                  placeholder="Insira sua senha"
+                  className="bg-neutra-bgWhite"
+                  {...field}
+                />
               </FormControl>
-              <FormMessage  />
+              <FormMessage />
             </FormItem>
           )}
         />
 
-            <div className="flex items-center">
-                <p className="text-primary-purple300 text-xs w-64 py-1 text-center">Ao realizar o cadastro você aceita os nossos <strong>Termos e Política de privacidade</strong></p>
-            </div>
+        <div className="flex items-center">
+          <p className="text-primary-purple300 text-xs w-64 py-1 text-center">
+            Ao realizar o cadastro você aceita os nossos{" "}
+            <strong>Termos e Política de privacidade</strong>
+          </p>
+        </div>
         <Button
           type="submit"
           variant="purple"
           size="default"
-          className={`w-80 lg:w-96 ${
+          className={`w-80 lg:w-96 text-bold text-sm text-neutras-gray200 ${
             isFieldEdited
               ? "bg-primary-purple100"
               : "bg-neutras-disable cursor-not-allowed"
           } `}
           disabled={!isFieldEdited}
-          >
-                    <p className="text-bold text-sm">Cadastrar</p>
-                </Button>
+        >
+          Cadastrar
+        </Button>
       </form>
     </Form>
   );

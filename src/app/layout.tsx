@@ -22,7 +22,6 @@ export default function RootLayout({
     <html lang="pt-BR">
       <SessionProvider>
       <body className={manrope.className}>
-        
         <ToastContainer
           position="top-right"
           autoClose={5000}

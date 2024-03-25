@@ -16,10 +16,15 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useEffect } from "react";
 import formSchemaLogin from "./schemaLogin";
+import { signIn } from "next-auth/react";
+import { toastify } from "@/lib/Toast";
+import { redirect, useRouter } from "next/navigation";
+
 
 type formSchemaLoginData = z.infer<typeof formSchemaLogin>;
 
 function LoginForm() {
+  const router = useRouter()
   const [isFieldEdited, setIsFieldEdited] = useState(false);
   const form = useForm<formSchemaLoginData>({
     resolver: zodResolver(formSchemaLogin),
@@ -29,13 +34,28 @@ function LoginForm() {
     },
   });
 
+
   useEffect(() => {
     setIsFieldEdited(form.formState.isValid);
   }, [form.formState.isValid]);
 
-  function onSubmit(values: formSchemaLoginData) {
-    console.log("valores: ", values.email, values.password);
+  
+
+
+ async function onSubmit(values: formSchemaLoginData) {
+  
+  const user = await signIn('credentials', {
+      ...values,
+      redirect: false,
+    });
+  if (user?.error) {
+   toastify.error("Usuário não encontrado")
+   return
+  } 
+  router.push('/dashboard')
+  
   }
+
   return (
     <Form {...form}>
       <form
