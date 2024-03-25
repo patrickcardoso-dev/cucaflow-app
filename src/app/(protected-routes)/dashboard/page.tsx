@@ -13,20 +13,29 @@ type UserProps = {
   id: string
 }
 
+type UserDataProps = {
+ id: string,
+ username: string,
+ email: string, 
+ avatar: string, 
+ isSocialLogin: boolean
+}
+
 export default function Dashboard() {
   const [showEditTasks, setShowEditTasks] = useState<Boolean>(false)
   const [showAddTasks, setShowAddTasks] = useState<Boolean>(false)
+  const [userData, setUserData] = useState<UserDataProps>()
   const session = useSession();
-  const user = session.data?.user as UserProps
+  const userSession = session.data?.user as UserProps
   
   
   useEffect(() => {
     async function userGetData() {
-      const getUserData = await getUser(`user/:${user?.user_id}`, user?.token)
-      console.log(getUserData);
+      const getUserData = await getUser(`user/${userSession?.user_id}`, userSession?.token)
+      setUserData(getUserData);
     }
     userGetData()
-  }, [])
+  }, [session])
 
   
 
@@ -36,9 +45,10 @@ export default function Dashboard() {
 
   return (
     <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row">
-      {user ? ( 
+      {userData ? ( 
         <div className="flex flex-col justify-center items-center gap-4">
-          <h1>'oi'</h1>
+          <h1>Username: {userData.username}</h1>
+          <h1>Email: {userData.email}</h1>
           <Button onClick={getOut}>Sair</Button>
           <div className="flex gap-2">
           <Button variant='orangeSecond' onClick={() => setShowAddTasks(true)}>Criar tarefa</Button>
