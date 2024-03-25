@@ -31,8 +31,14 @@ export default function Dashboard() {
   
   useEffect(() => {
     async function userGetData() {
-      const getUserData = await getUser(`user/${userSession?.user_id}`, userSession?.token)
+      try {
+        const getUserData = await getUser(`user/${userSession?.user_id}`, userSession?.token)
       setUserData(getUserData);
+      } catch (error) {
+        console.log(error);
+        
+      }
+      
     }
     userGetData()
   }, [session])
