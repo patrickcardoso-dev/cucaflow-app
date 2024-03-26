@@ -39,7 +39,6 @@ export default function Dashboard() {
       } catch (error) {
         console.log(error); 
       }
-      
     }
     userGetData()
   }, [session])
@@ -66,14 +65,3 @@ export default function Dashboard() {
     </main>
   );
 }
-
-
-{/* <div className="flex flex-col justify-center items-center gap-4">
-          <h1>Username: {userData.username}</h1>
-          <h1>Email: {userData.email}</h1>
-          <Button onClick={getOut}>Sair</Button>
-          <div className="flex gap-2">
-          <Button variant='orangeSecond' onClick={() => setShowAddTasks(true)}>Criar tarefa</Button>
-          <Button variant='purpleSecond' onClick={() => setShowEditTasks(true)}>Editar Tarefa</Button>
-          </div>
-        </div> */}
