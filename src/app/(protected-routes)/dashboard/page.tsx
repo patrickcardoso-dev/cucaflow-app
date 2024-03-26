@@ -54,7 +54,10 @@ export default function Dashboard() {
   return (
     <main className="flex flex-col min-h-screen items-center gap-6 mx-6  relative overflow-hidden laptop:flex-row">
       {userData ? ( 
-        <Header userData={userData}/>
+        <div>
+          <Header userData={userData}/>
+          <Button onClick={getOut}>Sair</Button>
+        </div>
       ) : (
         <div>Carregando...</div>
       )}
