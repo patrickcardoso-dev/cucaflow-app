@@ -6,13 +6,9 @@ import cucaLogo from "../../assets/logo/logo-cucaflow-desktop.png"
 import RecoveryForm from "@/components/form/passwordRecovery";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import NewPasswordForm from "@/components/form/newPassword";
 
-export default function PasswordRecovery() {
-    const [back, setBack] = useState(false)
-
-    function handleBackToEmail() {
-        setBack(true)
-    }
+export default function NewPassword() {
 
     return ( 
         <main className="flex min-h-screen flex-col items-center justify-center relative overflow-hidden laptop:flex-row pb-24 pt-8">
@@ -31,16 +27,7 @@ export default function PasswordRecovery() {
                     width={300}
             />
             <div className="flex flex-col items-center justify-center gap-2">
-                <RecoveryForm back={back} />
-                <hr />
-                <Button
-                    className="mt-8 w-80 lg:w-96"
-                    type="reset"
-                    variant="orangeSecond"
-                    onClick={handleBackToEmail}
-                >
-                    Voltar
-                </Button>       
+                <NewPasswordForm/>    
             </div>
         <Image
             src={purpleDesktop}
