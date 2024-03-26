@@ -15,12 +15,17 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useEffect } from "react";
 import formSchema from "./schema";
+import Link from "next/link";
 
-function RecoveryForm({back}) {
+function RecoveryForm() {
     const [email, setEmail] = useState("")
 
     function handleResendEmail() {
         console.log("email: ",email)
+    }
+
+    function handleBackToEmail() {
+        setEmail("")
     }
 
     type formSchemaRecovery = z.infer<typeof formSchema>;
@@ -43,7 +48,7 @@ function RecoveryForm({back}) {
 
     return (
         <>
-            {(!email && !back) ? (
+            {(!email) ? (
                 <Form {...form}>
                 <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -82,6 +87,15 @@ function RecoveryForm({back}) {
                 >
                     Enviar
                 </Button>
+                        <Link href="/">
+                        <Button
+                    className="mt-8 w-80 lg:w-96"
+                    type="reset"
+                    variant="orangeSecond"
+                >
+                    Voltar
+                </Button>
+                        </Link>
                 </form>
             </Form>
             ) : (
@@ -98,6 +112,15 @@ function RecoveryForm({back}) {
                         >
                             Enviar novamente
                         </Button>
+                        <hr />
+                <Button
+                    className="mt-8 w-80 lg:w-96"
+                    type="reset"
+                    variant="orangeSecond"
+                    onClick={handleBackToEmail}
+                >
+                    Voltar
+                </Button>
                     </div>
             )}
         </>

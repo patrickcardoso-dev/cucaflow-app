@@ -31,16 +31,7 @@ export default function PasswordRecovery() {
                     width={300}
             />
             <div className="flex flex-col items-center justify-center gap-2">
-                <RecoveryForm back={back} />
-                <hr />
-                <Button
-                    className="mt-8 w-80 lg:w-96"
-                    type="reset"
-                    variant="orangeSecond"
-                    onClick={handleBackToEmail}
-                >
-                    Voltar
-                </Button>       
+                <RecoveryForm />       
             </div>
         <Image
             src={purpleDesktop}

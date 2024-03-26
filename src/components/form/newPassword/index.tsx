@@ -23,7 +23,7 @@ function NewPasswordForm() {
     type formSchemaRecovery = z.infer<typeof formSchema>;
 
     const [isFieldEdited, setIsFieldEdited] = useState(false);
-    
+
     const form = useForm<formSchemaRecovery>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,7 +52,7 @@ function NewPasswordForm() {
                     name="newPassword"
                     render={({ field }) => (
                         <FormItem>
-                        <p className="w-72 text-center">
+                        <p className="w-72 m-4 text-center">
                             Digite sua nova senha de acesso.
                         </p>
                         <FormLabel
@@ -84,8 +84,12 @@ function NewPasswordForm() {
               </FormControl>
               <FormMessage  />
             </FormItem>
+            
           )}
-        />
+                    />
+
+                    <hr className="text-primary-purple100 w-56 m-auto mt-8 mb-4" />
+                    
                 <Button
                     type="submit"
                     variant="purple"
@@ -96,7 +100,7 @@ function NewPasswordForm() {
                     } `}
                     disabled={!isFieldEdited}
                 >
-                    Enviar
+                    Confirmar alteração
                 </Button>
                 </form>
             </Form>
