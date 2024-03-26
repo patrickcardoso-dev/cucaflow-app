@@ -20,6 +20,6 @@ export async function getUser(path: string) {
     const userData = response.data;
     return userData;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }

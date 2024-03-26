@@ -6,6 +6,7 @@ import { getUser } from "@/services/user";
 import { deleteCookies } from "@/util/coockies";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { Header } from "./component/header";
 
 export type UserProps = {
   user_id: string;
@@ -13,13 +14,14 @@ export type UserProps = {
   id: string
 }
 
-type UserDataProps = {
+export type UserDataProps = {
  id: string,
  username: string,
  email: string, 
  avatar: string, 
  isSocialLogin: boolean
 }
+
 
 export default function Dashboard() {
   const [showEditTasks, setShowEditTasks] = useState<Boolean>(false)
@@ -50,9 +52,20 @@ export default function Dashboard() {
   }
 
   return (
-    <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row">
+    <main className="flex flex-col min-h-screen items-center gap-6 mx-6  relative overflow-hidden laptop:flex-row">
       {userData ? ( 
-        <div className="flex flex-col justify-center items-center gap-4">
+        <Header userData={userData}/>
+      ) : (
+        <div>Carregando...</div>
+      )}
+{/*   {showEditTasks && <EditTask  setShowEditTasks={setShowEditTasks}/>}
+      {showAddTasks && <CreatToDo setShowAddTasks={setShowAddTasks}/> } */}   
+    </main>
+  );
+}
+
+
+{/* <div className="flex flex-col justify-center items-center gap-4">
           <h1>Username: {userData.username}</h1>
           <h1>Email: {userData.email}</h1>
           <Button onClick={getOut}>Sair</Button>
@@ -60,13 +73,4 @@ export default function Dashboard() {
           <Button variant='orangeSecond' onClick={() => setShowAddTasks(true)}>Criar tarefa</Button>
           <Button variant='purpleSecond' onClick={() => setShowEditTasks(true)}>Editar Tarefa</Button>
           </div>
-        </div>
-      ) : (
-        <div>Carregando...</div>
-      )}
-      {showEditTasks && <EditTask  setShowEditTasks={setShowEditTasks}/>}
-      {showAddTasks && <CreatToDo setShowAddTasks={setShowAddTasks}/> }
-        
-    </main>
-  );
-}
+        </div> */}
