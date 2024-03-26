@@ -10,7 +10,6 @@ import Image from "next/image";
 
 export function Header({userData}: {userData: UserDataProps}) {
   const textStyle = `${manrope.className} font-bold text-right`;
-  const initials = userData.username.slice(0,4)
   return (
   <header className='flex w-full mt-4 items-center'>
     <button className='cursor-pointer'>
@@ -22,7 +21,7 @@ export function Header({userData}: {userData: UserDataProps}) {
     </section>
     <Avatar className='bg-neutras-disable'>
       <AvatarImage src={userData.avatar} />
-      <AvatarFallback>{initials}</AvatarFallback>
+      <AvatarFallback>{userData.username[0]}</AvatarFallback>
     </Avatar>
   </header>
   )
