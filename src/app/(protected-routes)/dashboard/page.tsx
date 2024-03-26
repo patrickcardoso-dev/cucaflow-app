@@ -1,9 +1,9 @@
 "use client";
 import CreatToDo from "@/components/form/task/create";
 import EditTask from "@/components/form/task/edit";
-import { Button } from "@/components/ui/button";
+
 import { getUser } from "@/services/user";
-import { deleteCookies } from "@/util/coockies";
+
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Header } from "./component/header";
@@ -45,17 +45,13 @@ export default function Dashboard() {
 
   
 
-  async function getOut() {
-    await signOut();
-    deleteCookies()
-  }
 
   return (
-    <main className="flex flex-col min-h-screen items-center gap-6 mx-6  relative overflow-hidden laptop:flex-row">
+    <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row">
       {userData ? ( 
         <div>
           <Header userData={userData}/>
-          <Button onClick={getOut}>Sair</Button>
+    
         </div>
       ) : (
         <div>Carregando...</div>
