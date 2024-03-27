@@ -8,7 +8,6 @@ import desktopLogo from "../../assets/logo/logo-cucaflow-desktop.png";
 import Link from "next/link";
 import { SignUpForm } from "@/components/form/signUp/signup";
 import DeleteAccount from "@/components/modal/deleteAccount";
-import { Task } from "@/components/task";
 
 export default function SignUp() {
   return (
