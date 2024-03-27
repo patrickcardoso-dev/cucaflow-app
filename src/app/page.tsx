@@ -72,7 +72,7 @@ import { Input } from "@/components/ui/input";
         <LoginForm />
         <hr className="text-neutras-disable w-[180px] my-6 mx-auto" />
         <p
-          className={`text-center font-bold mt-1 text-sm text-[#49484D] ${manrope.className}`}
+          className={`text-center font-bold mt-1 text-sm text-neutras-gray300 ${manrope.className}`}
         >
           Não possui conta?{" "}
           <a href="/signup" className="cursor-pointer text-primary-purple100 font-bold">
