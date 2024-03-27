@@ -13,19 +13,17 @@ import { signIn } from "next-auth/react";
 import { toastify } from "@/lib/Toast";
 import OptionProfile from "@/components/modal/optionProfile";
 import { Input } from "@/components/ui/input";
+import CalendarMonthWeekly from "@/components/calendar";
 
-
-
-
-  export  default  function Home() {
+export default function Home() {
   const textStyle = `${manrope.className} font-normal text-center`;
 
-  async function handleLoginGoogle () {
-  const result =  await signIn('google', {callbackUrl: "/dashboard"});
-  if (result?.error) {
-    toastify.error(result.error);
-    return
-  }
+  async function handleLoginGoogle() {
+    const result = await signIn("google", { callbackUrl: "/dashboard" });
+    if (result?.error) {
+      toastify.error(result.error);
+      return;
+    }
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
@@ -40,6 +38,9 @@ import { Input } from "@/components/ui/input";
         desktop:translate-x-36 
         "
       />
+
+      {/* <CalendarMonthWeekly /> */}
+
       <div className="flex flex-col items-center justify-center laptop:mr-40 ">
         <Image
           src={logoDesktop}
@@ -67,7 +68,13 @@ import { Input } from "@/components/ui/input";
           Entre e comece a <b>transformar</b> suas <b>metas</b> em{" "}
           <b>realidade</b>.
         </p>
-        <Button variant='orange' className="mt-2 w-full" onClick={handleLoginGoogle}>Entrar com Google</Button>
+        <Button
+          variant="orange"
+          className="mt-2 w-full"
+          onClick={handleLoginGoogle}
+        >
+          Entrar com Google
+        </Button>
         <hr className="w-[180px] my-6 mx-auto" />
         <LoginForm />
         <hr className="w-[180px] my-6 mx-auto" />
@@ -85,7 +92,7 @@ import { Input } from "@/components/ui/input";
         alt="elipse roxa"
         className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-32 -translate-x-36 rotate-7 laptop:rotate-3 laptop:-translate-x-36 laptop:translate-y-20 laptop:max-w-lg"
       />
-      
+
       {/* <ProfileForm/> */}
     </main>
   );
