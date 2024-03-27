@@ -50,54 +50,57 @@ function RecoveryForm() {
         <>
             {(!email) ? (
                 <Form {...form}>
-                <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="flex flex-col h-full gap-3 "
-                >
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                        <p className="w-72 text-center">
-                            Digite o e-mail cadastrado para redefinição de senha.
-                        </p>
-                        <FormLabel
-                        className={`text-sm ${manrope.className} desktop:text-base`}
-                        >
-                        E-mail
-                        </FormLabel>
-                        <FormControl>
-                        <Input placeholder="Ex: cucaflow@gmail.com" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )}
-                />
-    
-                <Button
-                    type="submit"
-                    variant="purple"
-                    className={`mt-6 ${
-                    isFieldEdited
-                        ? "bg-primary-purple100"
-                        : "bg-neutras-disable cursor-not-allowed"
-                    } `}
-                    disabled={!isFieldEdited}
-                >
-                    Enviar
-                </Button>
-                        <Link href="/">
+                    <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="flex flex-col h-full gap-3 "
+                    >
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <p className="w-72 text-center">
+                                        Digite o e-mail cadastrado para redefinição de senha.
+                                    </p>
+                                    <FormLabel
+                                    className={`text-sm ${manrope.className} desktop:text-base`}
+                                    >
+                                    E-mail
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Ex: cucaflow@gmail.com" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+        
                         <Button
-                    className="mt-8 w-80 lg:w-96"
-                    type="reset"
-                    variant="orangeSecond"
-                >
-                    Voltar
-                </Button>
+                            type="submit"
+                            variant="purple"
+                            className={`mt-6 ${
+                            isFieldEdited
+                                ? "bg-primary-purple100"
+                                : "bg-neutras-disable cursor-not-allowed"
+                            } `}
+                            disabled={!isFieldEdited}
+                        >
+                            Enviar
+                        </Button>
+
+                        <hr className="text-primary-purple100 w-56 m-auto mt-10 mb-4" />
+
+                        <Link href="/">
+                                <Button
+                                    className="mt-8 w-80 lg:w-96"
+                                    type="reset"
+                                    variant="orangeSecond"
+                                >
+                                    Voltar
+                                </Button>
                         </Link>
-                </form>
-            </Form>
+                    </form>
+                </Form>
             ) : (
                     <div>
                         <p className="w-80 text-center mt-4 mb-12">
@@ -112,15 +115,17 @@ function RecoveryForm() {
                         >
                             Enviar novamente
                         </Button>
-                        <hr />
-                <Button
-                    className="mt-8 w-80 lg:w-96"
-                    type="reset"
-                    variant="orangeSecond"
-                    onClick={handleBackToEmail}
-                >
-                    Voltar
-                </Button>
+
+                        <hr className="text-primary-purple100 w-56 m-auto mt-10 mb-4" />
+
+                        <Button
+                            className="mt-8 w-80 lg:w-96"
+                            type="reset"
+                            variant="orangeSecond"
+                            onClick={handleBackToEmail}
+                        >
+                            Voltar
+                        </Button>
                     </div>
             )}
         </>
