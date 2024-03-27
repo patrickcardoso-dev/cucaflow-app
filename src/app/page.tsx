@@ -34,9 +34,9 @@ import { Input } from "@/components/ui/input";
       <Image
         src={orangeDesktop}
         alt="elípse laranja"
-        className="absolute top-0 right-0 translate-x-40 rotate-6 -translate-y-36 -z-10 max-w-md 
-        laptop:translate-x-36 
-        laptop:rotate-2 laptop:-translate-y-24
+        className="absolute top-0 right-0 translate-x-52 rotate-6 -translate-y-32 -z-10 max-w-md 
+        laptop:translate-x-44 
+        laptop:rotate-2 laptop:-translate-y-32
         desktop:translate-x-36 
         "
       />
@@ -67,10 +67,10 @@ import { Input } from "@/components/ui/input";
           Entre e comece a <b>transformar</b> suas <b>metas</b> em{" "}
           <b>realidade</b>.
         </p>
-        <Button variant='orange' className="mt-2 w-full" onClick={handleLoginGoogle}>Entrar com Google</Button>
-        <hr className="w-[180px] my-6 mx-auto" />
+        <Button variant='orange' className="mt-2 w-full hover:bg-secondary-orange400" onClick={handleLoginGoogle}>Entrar com Google</Button>
+        <hr className="text-neutras-disable w-[180px] my-6 mx-auto" />
         <LoginForm />
-        <hr className="w-[180px] my-6 mx-auto" />
+        <hr className="text-neutras-disable w-[180px] my-6 mx-auto" />
         <p
           className={`text-center font-bold mt-1 text-sm text-[#49484D] ${manrope.className}`}
         >
@@ -83,7 +83,7 @@ import { Input } from "@/components/ui/input";
       <Image
         src={purpleDesktop}
         alt="elipse roxa"
-        className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-32 -translate-x-36 rotate-7 laptop:rotate-3 laptop:-translate-x-36 laptop:translate-y-20 laptop:max-w-lg"
+        className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-28 -translate-x-40 rotate-7 laptop:rotate-3 laptop:-translate-x-40 laptop:translate-y-32 laptop:max-w-lg"
       />
       
       {/* <ProfileForm/> */}

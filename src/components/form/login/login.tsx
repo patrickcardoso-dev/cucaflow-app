@@ -49,7 +49,7 @@ function LoginForm() {
       redirect: false,
     });
   if (user?.error) {
-   toastify.error("Usuário não encontrado")
+   toastify.error("E-mail ou senha incorretos")
    return
   } 
   router.push('/dashboard')
@@ -106,7 +106,7 @@ function LoginForm() {
 
         <Button
           type="submit"
-          variant="purple"
+          variant="orange"
           className={`mt-6 ${
             isFieldEdited
               ? "bg-secondary-orange100"
