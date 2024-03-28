@@ -6,30 +6,24 @@ import slogan from "../assets/logo/slogan.png";
 import orangeDesktop from "../assets/shape/ellipse-orange-full.png";
 import purpleDesktop from "../assets/shape/elipse-purple-full.png";
 import { manrope } from "./fonts";
-import { ProfileForm } from "@/components/form/editUser";
 import LoginForm from "@/components/form/login/login";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 import { toastify } from "@/lib/Toast";
-import OptionProfile from "@/components/modal/optionProfile";
-import { Input } from "@/components/ui/input";
-
-
-
 
   export  default  function Home() {
   const textStyle = `${manrope.className} font-normal text-center`;
 
   async function handleLoginGoogle () {
   const result =  await signIn('google', {callbackUrl: "/dashboard"});
-  if (result?.error) {
-    toastify.error(result.error);
-    return
+    if (result?.error) {
+      toastify.error(result.error);
+      return
+    }
   }
-  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 relative overflow-hidden laptop:flex-row">
-      {/* <OptionProfile open={true} /> */}
 
       <Image
         src={orangeDesktop}
@@ -84,9 +78,7 @@ import { Input } from "@/components/ui/input";
         src={purpleDesktop}
         alt="elipse roxa"
         className="max-w-sm absolute bottom-0 left-0 -z-10 translate-y-28 -translate-x-40 rotate-7 laptop:rotate-3 laptop:-translate-x-40 laptop:translate-y-32 laptop:max-w-lg"
-      />
-      
-      {/* <ProfileForm/> */}
+      />      
     </main>
   );
 }

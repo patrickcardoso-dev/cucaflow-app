@@ -73,7 +73,7 @@ function LoginForm() {
                 E-mail
               </FormLabel>
               <FormControl>
-                <Input placeholder="" {...field} />
+                <Input placeholder="Insira seu e-mail" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -90,7 +90,7 @@ function LoginForm() {
               </FormLabel>
               <FormControl>
                 <PasswordInput
-                  placeholder=""
+                  placeholder="Insira sua senha"
                   {...field}
                   className="bg-neutras-neutra"
                 />

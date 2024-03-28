@@ -7,15 +7,12 @@ import ellipseBottomDesktop from "../../assets/shape/desktop/ellipse-bottom-desk
 import desktopLogo from "../../assets/logo/logo-cucaflow-desktop.png";
 import Link from "next/link";
 import { SignUpForm } from "@/components/form/signUp/signup";
-import DeleteAccount from "@/components/modal/deleteAccount";
-import { Task } from "@/components/task";
 
 export default function SignUp() {
   return (
     <main
       className={`w-screen h-screen p-8 tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite`}
     >
-      <DeleteAccount open={false} />
       <div>
         <Image
           src={ellipseTop}
@@ -47,7 +44,7 @@ export default function SignUp() {
             </h1>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <p className="text-center text-sm laptop:text-xl laptop:text-primary-purple100 text-neutras-bgBlack font-semibold opacity-70 m-6 leading-5 w-64 laptop:w-80">
+            <p className="text-center text-sm laptop:text-xl laptop:text-primary-purple100 text-neutras-bgBlack font-semibold opacity-70 my-4 leading-5 w-64 laptop:w-80">
               Insira suas informações abaixo para efetuar o cadastro
             </p>
 
@@ -69,7 +66,7 @@ export default function SignUp() {
               <Image
                 src={ellipseBottom}
                 alt="Elipse laranja"
-                className="block laptop:hidden absolute bottom-screen tablet:bottom-0 right-0"
+                className="block laptop:hidden absolute bottom-0 tablet:bottom-0 right-0"
               />
               <Image
                 src={ellipseBottomDesktop}
