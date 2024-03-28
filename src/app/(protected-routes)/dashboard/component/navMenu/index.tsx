@@ -10,10 +10,13 @@ import  MenuIcon  from '@/assets/icon/menu.svg';
 import logoDesktop from "@/assets/logo/logo-cucaflow-desktop.png";
 import ChevronLeft from '@/assets/icon/chevron-left';
 import HomeSvg from '@/assets/icon/home';
+import Nota from '@/assets/icon/nota';
+import Alarme from '@/assets/icon/alarme';
+import Usuario from '@/assets/icon/usuario';
 
-export function NavMenu() {
+export function NavMenu( {setShowMenu}: {setShowMenu: React.Dispatch<React.SetStateAction<boolean>>}) {
  
-  const styleLink = 'flex items-center gap-4'
+  const styleLink = 'flex items-center py-5 px-8 w-full gap-4 hover:bg-secondary-orange100/60'
   async function getOut() {
     await signOut();
     deleteCookies()
@@ -28,18 +31,29 @@ export function NavMenu() {
             width={123}
             height={76}
           />
-        <ChevronLeft/>
+          <button onClick={() => setShowMenu(false)}>
+          <ChevronLeft />
+          </button>
+        
         
       </section>
       <div className='w-44 h-[1px] bg-neutras-disable mx-auto my-5' />
-        <nav className='flex  flex-col px-14 gap-8 text-xl'>
-          <Link href='/dashboard' className={styleLink}>
+        <nav className='flex gap-8 flex-col text-xl'>
+          <Link  href='/dashboard' className='flex items-center py-5 px-8 w-full gap-4 hover:bg-secondary-orange100/60'>
             <HomeSvg/>
             Home
           </Link>
           <Link href='/dashboard' className={styleLink}>
-            <HomeSvg/>
-            Home
+            <Nota/>
+            Anotações
+          </Link>
+          <Link href='/dashboard' className={styleLink}>
+            <Alarme/>
+            Pomodoro
+          </Link>
+          <Link href='/profile' className={styleLink}>
+            <Usuario/>
+            Perfil
           </Link>
         </nav>
       </div>

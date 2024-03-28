@@ -1,12 +1,13 @@
 "use client";
 import CreatToDo from "@/components/form/task/create";
 import EditTask from "@/components/form/task/edit";
+import { Header } from "./component/header";
 
 import { getUser } from "@/services/user";
 
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { Header } from "./component/header";
+
 
 export type UserProps = {
   user_id: string;
@@ -48,14 +49,15 @@ export default function Dashboard() {
 
   return (
     <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row">
-      {userData ? ( 
+      <Header/>
+      {/* {userData ? ( 
         <div>
           <Header userData={userData}/>
     
         </div>
       ) : (
         <div>Carregando...</div>
-      )}
+      )} */}
 {/*   {showEditTasks && <EditTask  setShowEditTasks={setShowEditTasks}/>}
       {showAddTasks && <CreatToDo setShowAddTasks={setShowAddTasks}/> } */}   
     </main>
