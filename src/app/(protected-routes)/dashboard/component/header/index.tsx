@@ -9,10 +9,10 @@ import { NavMenu } from '../navMenu';
 
 
 
-export function Header(/* {userData}: {userData: UserDataProps} */) {
+export function Header({userData}: {userData: UserDataProps} ) {
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const textStyle = `${manrope.className} font-bold text-right`;
-  /* const initials = userData.username.slice(0,4) */
+  const initials = userData.username.slice(0,4) 
   return (
   <header className='flex w-auto mt-4 items-center justify-center'>
     <div className='mr-20'>
@@ -22,12 +22,12 @@ export function Header(/* {userData}: {userData: UserDataProps} */) {
     </button>
     </div>
     <section className='ml-auto mr-2'>
-      <h1 className={`${textStyle} `}>Olá Tayanna</h1>
+      <h1 className={`${textStyle} `}>Olá {userData.username}</h1>
       <p className='text-sm'>Aqui estão suas tarefas</p>
     </section>
     <Avatar className='bg-neutras-disable'>
-      {/* <AvatarImage src={userData.avatar} /> */}
-      <AvatarFallback>{/* {initials} */} Ty</AvatarFallback>
+       <AvatarImage src={userData.avatar} /> 
+      <AvatarFallback>{initials}</AvatarFallback>
     </Avatar>
     {showMenu && <NavMenu setShowMenu={setShowMenu}/>}
     

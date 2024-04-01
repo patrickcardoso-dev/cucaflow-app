@@ -49,17 +49,17 @@ export default function Dashboard() {
 
   return (
     <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row">
-      <Header/>
-      {/* {userData ? ( 
+     
+      {userData ? ( 
         <div>
           <Header userData={userData}/>
     
         </div>
       ) : (
         <div>Carregando...</div>
-      )} */}
-{/*   {showEditTasks && <EditTask  setShowEditTasks={setShowEditTasks}/>}
-      {showAddTasks && <CreatToDo setShowAddTasks={setShowAddTasks}/> } */}   
+      )} 
+      {showEditTasks && <EditTask  setShowEditTasks={setShowEditTasks}/>}
+      {showAddTasks && <CreatToDo setShowAddTasks={setShowAddTasks}/> }  
     </main>
   );
 }
