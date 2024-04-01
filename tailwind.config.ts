@@ -69,6 +69,10 @@ const config = {
     boxShadow: {
       shadowButton:
         "0px 6px 13px 0px rgba(255, 108, 55, 0.05), 0px 24px 24px 0px rgba(255, 108, 55, 0.04), 0px 55px 33px 0px rgba(255, 108, 55, 0.03), 0px 98px 39px 0px rgba(255, 108, 55, 0.01), 0px 153px 43px 0px rgba(255, 108, 55, 0.00)",
+      shadowMenu: " 0px 0px 2px 0px rgba(255, 255, 255, 0.25) inset",
+    },
+    dropShadow: {
+      dropMenu: "2px 4px 4px rgba(0, 0, 0, 0.25)",
     },
   },
   plugins: [require("tailwindcss-animate")],

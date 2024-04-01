@@ -10,6 +10,7 @@ import LoginForm from "@/components/form/login/login";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 import { toastify } from "@/lib/Toast";
+import { Input } from "@/components/ui/input";
 
   export  default  function Home() {
   const textStyle = `${manrope.className} font-normal text-center`;
