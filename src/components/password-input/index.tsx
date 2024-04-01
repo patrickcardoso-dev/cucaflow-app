@@ -5,7 +5,6 @@ import { EyeIcon, EyeOffIcon, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input, InputProps } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import EyeOpen from "../icon/eyeOpen";
 import { useFormField } from "../ui/form";
 
 const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
@@ -32,9 +31,9 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
             onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? (
-              <EyeOpen aria-hidden="true" />
+              <EyeOffIcon aria-hidden="true" className="text-neutras-gray300"/>
             ) : (
-              <EyeOffIcon aria-hidden="true" />
+              <EyeIcon aria-hidden="true" className="text-neutras-gray300"/>
             )}
 
             {error && (

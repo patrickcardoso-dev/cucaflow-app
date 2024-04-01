@@ -9,6 +9,12 @@ import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 
+import { ProfileForm } from "@/components/form/editUser";
+import OptionProfile from "@/components/modal/optionProfile";
+import DeleteAccount from "@/components/modal/deleteAccount";
+import { Task } from "@/components/task";
+
+
 export type UserProps = {
   user_id: string;
   token: string;
@@ -49,7 +55,12 @@ export default function Dashboard() {
 
   return (
     <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row">
-     
+
+      {/* <OptionProfile open={true} /> */}
+      {/* <ProfileForm/> */}
+      <DeleteAccount open={false} />
+      
+
       {userData ? ( 
         <div>
           <Header userData={userData}/>

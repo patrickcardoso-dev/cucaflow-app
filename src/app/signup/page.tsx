@@ -7,15 +7,12 @@ import ellipseBottomDesktop from "../../assets/shape/desktop/ellipse-bottom-desk
 import desktopLogo from "../../assets/logo/logo-cucaflow-desktop.png";
 import Link from "next/link";
 import { SignUpForm } from "@/components/form/signUp/signup";
-import DeleteAccount from "@/components/modal/deleteAccount";
-import { Task } from "@/components/task";
 
 export default function SignUp() {
   return (
     <main
-      className={`tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen p-8`}
+      className={`w-screen h-screen p-8 tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite`}
     >
-      <DeleteAccount open={false} />
       <div>
         <Image
           src={ellipseTop}
@@ -40,28 +37,28 @@ export default function SignUp() {
               src={desktopLogo}
               alt="Logo Cucaflow"
               width={400}
-              className="hidden laptop:block laptop:mt-12"
+              className="hidden laptop:block laptop:mt-32"
             />
             <h1 className="font-extrabold text-3xl text-primary-purple100 mt-4">
               Bem-vindo(a)
             </h1>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <p className="text-center text-sm laptop:text-xl laptop:text-primary-purple100 text-neutras-bgBlack font-normal opacity-70 m-2 leading-5 w-64 laptop:w-80">
+            <p className="text-center text-sm laptop:text-xl laptop:text-primary-purple100 text-neutras-bgBlack font-semibold opacity-70 my-4 leading-5 w-64 laptop:w-80">
               Insira suas informações abaixo para efetuar o cadastro
             </p>
 
             <SignUpForm />
-            <hr className="text-secondary-orange300 w-56 m-auto mt-6 mb-4" />
+            <hr className="text-neutras-disable w-[180px] my-6 mx-auto" />
 
             <div className="flex justify-center items-center mb-10">
-              <p className="text-neutras-gray300 font-bold text-center text-sm">
+              <p className="text-center font-bold mt-1 text-sm text-neutras-gray300">
                 Já possui conta?
               </p>
               <strong>
                 <Link
                   href="/"
-                  className="text-secondary-orange400 text-bold text-center text-sm underline ml-1"
+                  className="text-secondary-orange400 text-bold text-sm ml-1"
                 >
                   Faça o Login
                 </Link>
@@ -69,7 +66,7 @@ export default function SignUp() {
               <Image
                 src={ellipseBottom}
                 alt="Elipse laranja"
-                className="block laptop:hidden absolute bottom-screen tablet:bottom-0 right-0"
+                className="block laptop:hidden absolute bottom-0 tablet:bottom-0 right-0"
               />
               <Image
                 src={ellipseBottomDesktop}

@@ -26,7 +26,10 @@ type formSchemaLoginData = z.infer<typeof formSchemaLogin>;
 function LoginForm() {
   const router = useRouter()
   const [isFieldEdited, setIsFieldEdited] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<formSchemaLoginData>({
+    mode: "onBlur",
     resolver: zodResolver(formSchemaLogin),
     defaultValues: {
       email: "",
@@ -34,33 +37,34 @@ function LoginForm() {
     },
   });
 
-
   useEffect(() => {
     setIsFieldEdited(form.formState.isValid);
   }, [form.formState.isValid]);
 
-  
-
 
  async function onSubmit(values: formSchemaLoginData) {
-  
+  if (isLoading) return;
+
+  setIsLoading(true);
+
   const user = await signIn('credentials', {
       ...values,
       redirect: false,
     });
   if (user?.error) {
-   toastify.error("Usuário não encontrado")
+   toastify.error("E-mail ou senha incorretos")
+   setIsLoading(false);
    return
   } 
-  router.push('/dashboard')
-  
+  setIsLoading(false);
+  router.push('/dashboard');
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col h-full gap-3 "
+        className="flex flex-col h-full gap-3"
       >
         <FormField
           control={form.control}
@@ -73,7 +77,10 @@ function LoginForm() {
                 E-mail
               </FormLabel>
               <FormControl>
-                <Input placeholder="" {...field} />
+                <Input 
+                  placeholder="Insira seu e-mail" 
+                  {...field}
+                 />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -90,7 +97,7 @@ function LoginForm() {
               </FormLabel>
               <FormControl>
                 <PasswordInput
-                  placeholder=""
+                  placeholder="Insira sua senha"
                   {...field}
                   className="bg-neutras-neutra"
                 />
@@ -106,7 +113,7 @@ function LoginForm() {
 
         <Button
           type="submit"
-          variant="purple"
+          variant="orange"
           className={`mt-6 ${
             isFieldEdited
               ? "bg-secondary-orange100"

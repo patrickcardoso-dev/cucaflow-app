@@ -5,7 +5,8 @@ const schemaLogin = z.object({
     .string({
       required_error: "Senha é requerido",
     })
-    .min(4, { message: "Sua senha precisa ter mais de 4 caracteres" }),
+    .min(6, { message: "Sua senha precisa ter mais de 6 caracteres" })
+    .max(12, { message: "Sua senha não pode ter mais de 12 caracteres" })
 });
 
 export default schemaLogin;

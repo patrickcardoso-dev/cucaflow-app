@@ -26,28 +26,9 @@ export type DeafaultBAckError = {
   message: string
 }
 
-async function onSubmit(values: z.infer<typeof formSchema>) {
-  const { confirmPassword, ...data } = values;
-
-  try {
-    await createUser('user', data)
-    redirect('/')
-  } catch (error) {
-    if ((error as AxiosError).response) {
-      const errorMessage = (error as AxiosError).response
-      const errorBack = errorMessage?.data as DeafaultBAckError
-      if (errorBack) {
-        toastify.error(errorBack.message);
-      } else {
-        console.log(errorMessage?.data);
-        
-      }
-    }
-  }
-}
-
 export function SignUpForm() {
   const [isFieldEdited, setIsFieldEdited] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -59,6 +40,30 @@ export function SignUpForm() {
     },
   });
 
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (isLoading) return;
+    const { confirmPassword, ...data } = values;
+  
+    setIsLoading(true);
+  
+    try {
+      await createUser('user', data);
+      redirect('/')
+    } catch (error) {
+      if ((error as AxiosError).response) {
+        const errorMessage = (error as AxiosError).response
+        const errorBack = errorMessage?.data as DeafaultBAckError
+        if (errorBack) {
+          toastify.error(errorBack.message);
+        } else {
+          console.log(errorMessage?.data);
+        }
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  
   useEffect(() => {
     setIsFieldEdited(form.formState.isValid);
   }, [form.formState.isValid]);
