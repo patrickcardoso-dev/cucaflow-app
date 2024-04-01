@@ -18,7 +18,7 @@ import { toastify } from "@/lib/Toast";
   const result =  await signIn('google', {callbackUrl: "/dashboard"});
     if (result?.error) {
       toastify.error(result.error);
-      return
+      return;
     }
   }
 
@@ -34,6 +34,9 @@ import { toastify } from "@/lib/Toast";
         desktop:translate-x-36 
         "
       />
+
+      {/* <CalendarMonthWeekly /> */}
+
       <div className="flex flex-col items-center justify-center laptop:mr-40 ">
         <Image
           src={logoDesktop}
@@ -61,9 +64,19 @@ import { toastify } from "@/lib/Toast";
           Entre e comece a <b>transformar</b> suas <b>metas</b> em{" "}
           <b>realidade</b>.
         </p>
-        <Button variant='orange' className="mt-2 w-full hover:bg-secondary-orange400" onClick={handleLoginGoogle}>Entrar com Google</Button>
+
+        <Button 
+          variant='orange' 
+          className="mt-2 w-full hover:bg-secondary-orange400" 
+          onClick={handleLoginGoogle}
+         >
+          Entrar com Google
+        </Button>
+        
         <hr className="text-neutras-disable w-[180px] my-6 mx-auto" />
+        
         <LoginForm />
+        
         <hr className="text-neutras-disable w-[180px] my-6 mx-auto" />
         <p
           className={`text-center font-bold mt-1 text-sm text-neutras-gray300 ${manrope.className}`}
