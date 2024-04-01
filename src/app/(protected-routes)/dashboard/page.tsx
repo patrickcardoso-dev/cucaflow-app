@@ -8,6 +8,11 @@ import { deleteCookies } from "@/util/coockies";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
+import { ProfileForm } from "@/components/form/editUser";
+import OptionProfile from "@/components/modal/optionProfile";
+import DeleteAccount from "@/components/modal/deleteAccount";
+import { Task } from "@/components/task";
+
 export type UserProps = {
   user_id: string;
   token: string;
@@ -55,6 +60,10 @@ export default function Dashboard() {
         <CalendarMonthWeekly />
       </section>
       <section>
+        {/* <OptionProfile open={true} /> */}
+        {/* <ProfileForm/> */}
+        <DeleteAccount open={false} />
+
         {userData ? (
           <div className="flex flex-col justify-center items-center gap-4">
             <h1>Username: {userData.username}</h1>
