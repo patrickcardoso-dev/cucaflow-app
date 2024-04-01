@@ -13,7 +13,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const { error } = useFormField();
     // console.log("input:", error);
     const borderInput =
-      "flex h-10 w-80 lg:w-96 rounded-lg border bg-neutras-neutra pl-2 text-sm";
+      "flex h-10 w-80 lg:w-96 rounded-xl border bg-neutras-neutra pl-2 text-sm";
     return (
       <div className="relative">
         <input

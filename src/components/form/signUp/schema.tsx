@@ -14,7 +14,7 @@ const formSchema = z.object({
     required_error: 'Senha é obrigatória'
         })
         .min(6, { message: 'A senha precisa ter pelo menos 6 caracteres' })
-        .max(10, { message: 'A senha não pode ultrapassar 10 caracteres' })
+        .max(12, { message: 'A senha não pode ultrapassar 12 caracteres' })
     ,
     confirmPassword: z
         .string({
