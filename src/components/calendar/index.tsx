@@ -24,7 +24,7 @@ export default function CalendarMonthWeekly() {
   };
 
   return (
-    <div>
+    <div className="bg-neutras-bgWhite w-full">
       <div className=" w-[312px] px-1 flex flex-col items-center justify-center">
         {renderCalendar()}
         <button onClick={handleToggleCalendar}>
