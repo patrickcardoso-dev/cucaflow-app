@@ -66,7 +66,15 @@ export function WeeklyCalendar() {
       daysOfWeekFormat.slice(1).toLowerCase();
 
     return (
-      <time dateTime={format(days, "E..EEE")} key={id}>
+      <time
+        dateTime={format(days, "E..EEE")}
+        className={
+          getDay(days) === 0 || getDay(days) === 6
+            ? "text-primary-purple300"
+            : ""
+        }
+        key={id}
+      >
         {daysOfWeekFirstLetterUpper}
       </time>
     );
@@ -83,25 +91,27 @@ export function WeeklyCalendar() {
   return (
     <div>
       <div className="flex items-center px-1">
-        <h2 className="flex-auto font-semibold text-gray-900">
+        <h2 className="flex-auto text-gray-900 text-2xl font-medium text-secondary-orange100">
           {monthDisplay}
         </h2>
-        <button
-          type="button"
-          onClick={previousWeek}
-          className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500 cursor-pointer"
-        >
-          <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
-          <span>Anter.</span>
-        </button>
-        <button
-          onClick={nextWeek}
-          type="button"
-          className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500 cursor-pointer"
-        >
-          <span>Próx.</span>
-          <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />
-        </button>
+        <div className="flex items-center justify-between w-36 ">
+          <button
+            type="button"
+            onClick={previousWeek}
+            className=" flex items-center text-gray-400 hover:text-gray-500 cursor-pointer"
+          >
+            <ChevronLeftIcon className="w-6 h-6" aria-hidden="true" />
+            <span className="mb-[2px]">anter.</span>
+          </button>
+          <button
+            onClick={nextWeek}
+            type="button"
+            className=" -mr-1.5 flex  items-center justify-center  text-gray-400 hover:text-gray-500 cursor-pointer"
+          >
+            <span className="mb-[2px]">próx.</span>
+            <ChevronRightIcon className="w-6 h-6" aria-hidden="true" />
+          </button>
+        </div>
       </div>
       <div className="grid grid-cols-7 text-xs leading-4 py-1 text-gray-500  gap-2 text-center">
         {daysOfWeekDisplay}
@@ -116,20 +126,29 @@ export function WeeklyCalendar() {
               type="button"
               onClick={() => setSelectDay(day)}
               className={classNames(
-                isEqual(day, selectDay) && "text-white",
-                !isEqual(day, selectDay) && isToday(day) && "text-red-500",
+                isEqual(day, selectDay) && "text-neutras-neutra",
+                !isEqual(day, selectDay) &&
+                  isToday(day) &&
+                  "text-secondary-orange100",
                 !isEqual(day, selectDay) &&
                   !isToday(day) &&
                   isSameMonth(day, firstDayCurrentMonth) &&
-                  "text-gray-900",
+                  "text-neutras-bgBlack",
                 !isEqual(day, selectDay) &&
                   !isToday(day) &&
                   !isSameMonth(day, firstDayCurrentMonth) &&
-                  "text-gray-400",
-                isEqual(day, selectDay) && isToday(day) && "bg-red-500",
-                isEqual(day, selectDay) && !isToday(day) && "bg-gray-900",
-                !isEqual(day, selectDay) && "hover:bg-gray-200",
+                  "text-neutras-disable",
+                isEqual(day, selectDay) &&
+                  isToday(day) &&
+                  "bg-secondary-orange100",
+                isEqual(day, selectDay) &&
+                  !isToday(day) &&
+                  "bg-secondary-orange400",
+                !isEqual(day, selectDay) && "hover:bg-neutras-disable",
                 (isEqual(day, selectDay) || isToday(day)) && "font-semibold",
+                getDay(day) === 0 || getDay(day) === 6
+                  ? "text-primary-purple100"
+                  : "",
                 "mx-auto flex h-6 w-6 items-center justify-center rounded-md"
               )}
             >
