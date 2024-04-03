@@ -1,4 +1,5 @@
 "use client";
+// import { useSearchParams } from 'next/navigation';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { manrope } from "../../../app/fonts";
@@ -17,6 +18,7 @@ import { useState, useEffect } from "react";
 import formSchema from "./schema";
 import { PasswordInput } from "@/components/password-input";
 import { Label } from "@radix-ui/react-label";
+import { newPassword } from "@/services/user";
 
 function NewPasswordForm() {
 
@@ -36,8 +38,21 @@ function NewPasswordForm() {
     setIsFieldEdited(form.formState.isValid);
     }, [form.formState.isValid]);
 
-    function onSubmit(values: formSchemaRecovery) {
-    console.log("newPassword: ", values.newPassword);
+    async function onSubmit(values: formSchemaRecovery) {
+        try {
+            // const searchParams = useSearchParams()
+            // const token = searchParams.get('token')
+            // console.log(token)
+            console.log("oiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+            const qualquerUma = new URLSearchParams(window.location.search);
+            const token = qualquerUma.get('token');
+            const password = {password: values.newPassword}
+            await newPassword(`recover-password?token=${token}`, password)
+            console.log('funcionou')
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (

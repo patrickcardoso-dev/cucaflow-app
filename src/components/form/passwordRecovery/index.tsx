@@ -1,6 +1,4 @@
 "use client";
-"use server";
-import { api } from "@/lib/axios/config";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { manrope } from "../../../app/fonts";
@@ -13,27 +11,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { object, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useEffect } from "react";
 import formSchema from "./schema";
 import Link from "next/link";
-
-type props = {
-    emailSent: string
-}
+import { sendEmail } from "@/services/user";
 
 function RecoveryForm() {
     const [email, setEmail] = useState("")
-    const [isLoading, setIsLoading] = useState(false)
-
-    async function sendEmail(path: string, email : props) {
-        const response = await api.post(path, "recover-password");
-        return;
-    }
+    // const [isLoading, setIsLoading] = useState(false)
 
     function handleResendEmail() {
-        console.log("email: ",email)
+        console.log("email: ", email)
     }
 
     function handleBackToEmail() {
@@ -54,18 +44,17 @@ function RecoveryForm() {
     }, [form.formState.isValid]);
 
     async function onSubmit(values: formSchemaRecovery) {
-        const emailSent = values.email
-        setEmail(emailSent)
-        console.log("email: ", values.email);
-
+ 
+        setEmail(values.email)
+        console.log(values)
         try {
-            await sendEmail('recover-password', emailSent)
+
+            await sendEmail("recover-password", values);
+            // console.log('funcionou')
         } catch (error) {
-            
+            // console.log(error)
         }
     }
-
-
 
     return (
         <>

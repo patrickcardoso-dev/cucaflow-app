@@ -27,3 +27,24 @@ export async function getUser(path: string) {
     return error;
   }
 }
+
+export async function sendEmail(path: string, email : object) {
+  try {
+    const response = await api.post(path, email);
+    console.log(email)
+  return response;
+  } catch (error) {
+      console.log(error)
+  }
+}
+
+export async function newPassword(path: string, password : object) {
+  try {
+    const response = await api.patch(path, password);
+    console.log(response)
+    return response;
+    
+  } catch (error) {
+      console.log(error)
+  }
+}
