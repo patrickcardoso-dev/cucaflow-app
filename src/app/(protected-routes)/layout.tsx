@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { redirect } from 'next/navigation'
 import { ReactNode } from "react";
 
+
 interface PrivateLayoutProps {
   children: ReactNode
 }

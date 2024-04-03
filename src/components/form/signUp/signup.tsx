@@ -17,18 +17,19 @@ import formSchema from "./schema";
 import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { toastify } from "@/lib/Toast";
-import { redirect } from "next/navigation";
-import { createUser } from "@/services/user"; 
+import { redirect, useRouter } from "next/navigation";
+import { createUser } from "@/services/user";
 import { AxiosError } from "axios";
 
 export type DeafaultBAckError = {
-  statusCode: number,
-  message: string
-}
+  statusCode: number;
+  message: string;
+};
 
 export function SignUpForm() {
   const [isFieldEdited, setIsFieldEdited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     mode: "onBlur",
@@ -44,16 +45,17 @@ export function SignUpForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     if (isLoading) return;
     const { confirmPassword, ...data } = values;
-  
+
     setIsLoading(true);
-  
+
     try {
-      await createUser('user', data);
-      redirect('/')
+      await createUser("user", data);
+      router.push("/");
+      // redirect("/");
     } catch (error) {
       if ((error as AxiosError).response) {
-        const errorMessage = (error as AxiosError).response
-        const errorBack = errorMessage?.data as DeafaultBAckError
+        const errorMessage = (error as AxiosError).response;
+        const errorBack = errorMessage?.data as DeafaultBAckError;
         if (errorBack) {
           toastify.error(errorBack.message);
         } else {
@@ -64,7 +66,7 @@ export function SignUpForm() {
       setIsLoading(false);
     }
   }
-  
+
   useEffect(() => {
     setIsFieldEdited(form.formState.isValid);
   }, [form.formState.isValid]);

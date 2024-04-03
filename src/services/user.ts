@@ -9,9 +9,13 @@ type CreateUserProps = {
 };
 
 export async function createUser(path: string, user: CreateUserProps) {
-  const response = await api.post(path, user);
-  const userData = response.data;
-  return userData;
+  try {
+    const response = await api.post(path, user);
+    const userData = response.data;
+    return userData;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getUser(path: string) {
@@ -20,6 +24,6 @@ export async function getUser(path: string) {
     const userData = response.data;
     return userData;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 }
