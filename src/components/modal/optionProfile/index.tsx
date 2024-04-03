@@ -46,7 +46,7 @@ function OptionProfile({ open, ...rest }: DialogProps) {
         </div>
 
         <div className="flex flex-col items-center justify-start">
-          <hr className="w-[180px] my-6 mx-auto" />
+        <hr className="text-neutras-disable w-[180px] my-6 mx-auto" />
           <p className="font-bold text-neutras-gray300">
             Deseja excluir conta?{" "}
             <span className="cursor-pointer text-primary-purple100">

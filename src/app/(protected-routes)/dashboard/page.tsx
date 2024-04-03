@@ -56,7 +56,7 @@ export default function Dashboard() {
 
   return (
     <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row">
-      {/* <OptionProfile open={true} /> */}
+      <OptionProfile open={true} />
       {/* <ProfileForm/> */}
       <DeleteAccount open={false} />
       
