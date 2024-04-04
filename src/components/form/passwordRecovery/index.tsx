@@ -17,13 +17,19 @@ import { useState, useEffect } from "react";
 import formSchema from "./schema";
 import Link from "next/link";
 import { sendEmail } from "@/services/user";
+import { toastify } from "@/lib/Toast";
 
 function RecoveryForm() {
     const [email, setEmail] = useState("")
-    // const [isLoading, setIsLoading] = useState(false)
 
-    function handleResendEmail() {
-        console.log("email: ", email)
+    async function handleResendEmail() {
+        try {
+            const prevEmail = {email}
+            await sendEmail("recover-password", prevEmail);
+            toastify.success("email enviado!")
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     function handleBackToEmail() {
@@ -44,15 +50,12 @@ function RecoveryForm() {
     }, [form.formState.isValid]);
 
     async function onSubmit(values: formSchemaRecovery) {
- 
         setEmail(values.email)
-        console.log(values)
         try {
-
             await sendEmail("recover-password", values);
-            // console.log('funcionou')
+            toastify.success("email enviado!")
         } catch (error) {
-            // console.log(error)
+            console.log(error)
         }
     }
 
@@ -98,7 +101,7 @@ function RecoveryForm() {
                             Enviar
                         </Button>
 
-                        <hr className="text-primary-purple100 w-56 m-auto mt-10 mb-4" />
+                        <hr className="text-primary-purple100 opacity-20 w-56 m-auto mt-10 mb-4" />
 
                         <Link href="/">
                                 <Button
@@ -126,7 +129,7 @@ function RecoveryForm() {
                             Enviar novamente
                         </Button>
 
-                        <hr className="text-primary-purple100 w-56 m-auto mt-10 mb-4" />
+                        <hr className="text-primary-purple100 opacity-20 w-56 m-auto mt-10 mb-4" />
 
                         <Button
                             className="mt-8 w-80 lg:w-96"

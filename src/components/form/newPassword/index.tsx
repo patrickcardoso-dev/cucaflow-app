@@ -1,6 +1,4 @@
 "use client";
-// import { useSearchParams } from 'next/navigation';
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { manrope } from "../../../app/fonts";
 import {
@@ -40,15 +38,10 @@ function NewPasswordForm() {
 
     async function onSubmit(values: formSchemaRecovery) {
         try {
-            // const searchParams = useSearchParams()
-            // const token = searchParams.get('token')
-            // console.log(token)
-            console.log("oiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
-            const qualquerUma = new URLSearchParams(window.location.search);
-            const token = qualquerUma.get('token');
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
             const password = {password: values.newPassword}
             await newPassword(`recover-password?token=${token}`, password)
-            console.log('funcionou')
 
         } catch (error) {
             console.log(error)
@@ -76,7 +69,11 @@ function NewPasswordForm() {
                         Nova Senha
                         </FormLabel>
                         <FormControl>
-                        <PasswordInput {...field} />
+                                <PasswordInput
+                                    id="newPassword"
+                                    placeholder="Insira sua senha"
+                                    className="bg-neutra-bgWhite"
+                                    {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -103,7 +100,7 @@ function NewPasswordForm() {
           )}
                     />
 
-                    <hr className="text-primary-purple100 w-56 m-auto mt-8 mb-4" />
+                    <hr className="text-primary-purple100 opacity-20 w-56 m-auto mt-8 mb-4" />
                     
                 <Button
                     type="submit"
