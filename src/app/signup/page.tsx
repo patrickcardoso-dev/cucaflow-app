@@ -6,6 +6,7 @@ import ellipseTopDesktop from "../../assets/shape/desktop/ellipse-top-desktop.pn
 import ellipseBottomDesktop from "../../assets/shape/desktop/ellipse-bottom-desktop.png";
 import desktopLogo from "../../assets/logo/logo-cucaflow-desktop.png";
 import Link from "next/link";
+
 import { SignUpForm } from "@/components/form/signup";
 import SuccessMessage from "@/components/modal/successMessage";
 import DeleteAccount from "@/components/modal/deleteAccount";
@@ -68,7 +69,11 @@ export default function SignUp() {
                         </div>
                     </div>
                 </div>
+
             </div>
-       </main>
-    )
+          </div>
+        </div>
+      </div>
+    </main>
+  );
 }
