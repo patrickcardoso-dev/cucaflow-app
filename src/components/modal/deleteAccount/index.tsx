@@ -7,7 +7,7 @@ import Image from "next/image";
 import ellipsePurple from "../../../assets/shape/ellipse-purple.png"
 import { Button } from "@/components/ui/button";
 
-interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
+interface DialogProps {
     open?: boolean;
 }
 
