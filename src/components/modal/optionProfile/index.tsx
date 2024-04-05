@@ -6,16 +6,11 @@ import PhotoUser from "@/../public/photo-user.png";
 import purpleDesktop from "@/assets/shape/elipse-purple-full.png";
 import { Button } from "@/components/ui/button";
 
-interface DialogProps {
-  open?: boolean;
-}
-
-function OptionProfile({ open, ...rest }: DialogProps) {
+function OptionProfile() {
   return (
     <dialog
-      open={open}
+      open
       className="fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
-      {...rest}
     >
       <div
         className="

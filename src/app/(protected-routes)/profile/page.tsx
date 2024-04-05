@@ -23,11 +23,7 @@ export type UserDataProps = {
   isSocialLogin: boolean;
 };
 
-interface DialogProps {
-  open?: boolean;
-}
-
-export default function OptionProfile({ open, ...rest }: DialogProps) {
+export default function OptionProfile() {
   const [openEdit, setOpenEdit] = useState<boolean>(true);
   const [openProfileEditing, setProfileEditing] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserDataProps>();
@@ -60,9 +56,8 @@ export default function OptionProfile({ open, ...rest }: DialogProps) {
 
   return (
     <dialog
-      open={openEdit && true}
+      open
       className="fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
-      {...rest}
     >
         {openProfileEditing && <ProfileForm handleRedirect={handleRedirect}/>}
         {!openProfileEditing && userData && (
