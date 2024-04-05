@@ -18,22 +18,23 @@ import { PasswordInput } from "@/components/password-input";
 
 import Image from "next/image";
 
+import orangeDesktop from "../../../assets/shape/ellipse-orange-full.png";
 import PhotoUser from "@/../public/photo-user.png";
 import CameraIcone from "@/../public/camera.png";
 import { ChangeEvent, useState } from "react";
 
 const formSchema = z
   .object({
-    nomeUsuario: z.string().min(3, {
+    username: z.string().min(3, {
       message: "Nome de usuário precisa ter mais de 3 caracteres",
     }),
     image: z.any().optional(),
-    email: z.string().email({ message: "E-mail invalido" }),
+    email: z.string().email({ message: "E-mail invalido" }).optional(),
     password: z.string().min(6, {
-      message: "senha precisa ter mais de 6 caracteres",
+      message: "A senha precisa ter mais de 6 caracteres",
     }),
     confirmPassword: z.string().min(6, {
-      message: "senha precisa ter mais de 6 caracteres",
+      message: "A senha precisa ter mais de 6 caracteres",
     }),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -41,13 +42,17 @@ const formSchema = z
     path: ["confirmPassword"],
   });
 
-export function ProfileForm() {
+export function ProfileForm( {handleRedirect}: any ) {
   const [selectedFile, setSelectedFile] = useState("");
 
   const form = useForm<z.infer<typeof formSchema>>({
+    mode: "onBlur",
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nomeUsuario: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
   });
 
@@ -65,19 +70,29 @@ export function ProfileForm() {
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+
     console.log(values);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col ">
+      <Image
+        src={orangeDesktop}
+        alt="elípse laranja"
+        className="absolute -top-28 right-0 translate-x-64 rotate-6 -translate-y-24 -z-10 max-w-md 
+        laptop:translate-x-44 
+        laptop:rotate-2 laptop:-translate-y-32
+        desktop:translate-x-36 
+        "
+      />
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col">
         <div className="ml-auto mr-auto relative w-32">
           <Image
             width={120}
             height={120}
-            className="rounded-full w-[120px] h-[120px]"
+            className="rounded-full w-[120px] h-[120px] object-cover"
             src={selectedFile ? selectedFile : PhotoUser}
-            alt="teste"
+            alt="Foto do perfil do usuário"
           />
           <FormField
             control={form.control}
@@ -90,7 +105,7 @@ export function ProfileForm() {
                     width={42}
                     height={42}
                     src={CameraIcone}
-                    alt="ìcone camera"
+                    alt="Ícone camera"
                   />
                 </FormLabel>
                 <FormControl>
@@ -106,16 +121,16 @@ export function ProfileForm() {
             )}
           ></FormField>
         </div>
-        <h1 className="text-center my-2">Edite seu cadastro</h1>
-        <div className="mb-4">
+        <h1 className="text-center my-4">Edite seu cadastro</h1>
+        <div className="flex flex-col gap-4 mb-8">
           <FormField
             control={form.control}
-            name="nomeUsuario"
+            name="username"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Nome de Usuário</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input placeholder="Insira seu novo nome de usuário" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -128,7 +143,7 @@ export function ProfileForm() {
               <FormItem>
                 <FormLabel>E-mail</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input placeholder="Insira seu novo e-mail" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -141,7 +156,7 @@ export function ProfileForm() {
               <FormItem>
                 <FormLabel>Nova Senha</FormLabel>
                 <FormControl>
-                  <PasswordInput placeholder="" {...field} />
+                  <PasswordInput placeholder="insira sua nova senha" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -152,9 +167,9 @@ export function ProfileForm() {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Comfirmar nova senha</FormLabel>
+                <FormLabel>Confirmar nova senha</FormLabel>
                 <FormControl>
-                  <PasswordInput placeholder="" {...field} />
+                  <PasswordInput placeholder="Insira sua nova senha" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -162,9 +177,10 @@ export function ProfileForm() {
           />
         </div>
         <Button type="submit" variant="purple">
-          Comfirmar
+          Confirmar
         </Button>
-        <Button className="mt-3" type="reset" variant="orangeSecond">
+        <hr className="w-[180px] my-6 mx-auto" />
+        <Button type="reset" variant="orangeSecond" onClick={handleRedirect}>
           Cancelar
         </Button>
       </form>
