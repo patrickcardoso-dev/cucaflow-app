@@ -7,15 +7,12 @@ import Image from "next/image";
 import ellipsePurple from "../../../assets/shape/ellipse-purple.png"
 import { Button } from "@/components/ui/button";
 
-interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
-    open?: boolean;
-}
-
-export default function DeleteAccount({ open, ...rest }: DialogProps) {
+export default function DeleteAccount() {
     return (
-        <dialog open={open}
+        <dialog
+        open
         className="fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
-            {...rest}>
+        >
             
             <main className="flex flex-col items-center h-screen w-screen gap-3 mt-16 bg-neutras-bgWhite">
                 <div className="flex flex-col items-center justify-center gap-3 mb-5 w-72">
