@@ -23,7 +23,7 @@ export type UserDataProps = {
   isSocialLogin: boolean;
 };
 
-interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
+interface DialogProps {
   open?: boolean;
 }
 
