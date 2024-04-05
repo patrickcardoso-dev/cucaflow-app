@@ -6,7 +6,7 @@ import PhotoUser from "@/../public/photo-user.png";
 import purpleDesktop from "@/assets/shape/elipse-purple-full.png";
 import { Button } from "@/components/ui/button";
 
-interface DialogProps {
+interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   open?: boolean;
 }
 
