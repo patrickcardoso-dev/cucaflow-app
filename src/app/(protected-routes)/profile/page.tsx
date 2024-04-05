@@ -27,7 +27,7 @@ interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
   open?: boolean;
 }
 
-function OptionProfile({ open, ...rest }: DialogProps) {
+export default function OptionProfile({ open, ...rest }: DialogProps) {
   const [openEdit, setOpenEdit] = useState<boolean>(true);
   const [openProfileEditing, setProfileEditing] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserDataProps>();
@@ -114,6 +114,4 @@ function OptionProfile({ open, ...rest }: DialogProps) {
       {!openProfileEditing && !userData && <div>Carregando...</div>}
     </dialog>
   );
-}
-
-export default OptionProfile;
+};
