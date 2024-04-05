@@ -72,7 +72,7 @@ function RecoveryForm() {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <p className="w-72 text-center">
+                                    <p className="w-72 p-4 lg:w-96 laptop:text-xl text-center">
                                         Digite o e-mail cadastrado para redefinição de senha.
                                     </p>
                                     <FormLabel
@@ -91,7 +91,7 @@ function RecoveryForm() {
                         <Button
                             type="submit"
                             variant="purple"
-                            className={`mt-6 ${
+                            className={`mt-6 w-80 lg:w-96 ${
                             isFieldEdited
                                 ? "bg-primary-purple100"
                                 : "bg-neutras-disable cursor-not-allowed"
@@ -116,7 +116,7 @@ function RecoveryForm() {
                 </Form>
             ) : (
                     <div>
-                        <p className="w-80 text-center mt-4 mb-12">
+                        <p className="w-80 lg:w-96 lg:text-xl text-center mt-4 mb-12">
                             Um link para redefinição de senha foi enviado para o seu email.
                         </p>
                         <p className="text-center">Não recebeu o email?</p>

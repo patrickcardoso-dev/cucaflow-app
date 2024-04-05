@@ -60,11 +60,11 @@ function NewPasswordForm() {
                     name="newPassword"
                     render={({ field }) => (
                         <FormItem>
-                        <p className="w-72 m-4 text-center">
+                        <p className="w-72 p-4 text-center laptop:text-xl laptop:w-96">
                             Digite sua nova senha de acesso.
                         </p>
                         <FormLabel
-                        className={`text-sm ${manrope.className} desktop:text-base`}
+                        className={`text-base ${manrope.className} desktop:text-base`}
                         >
                         Nova Senha
                         </FormLabel>
