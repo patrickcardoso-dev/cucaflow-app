@@ -77,19 +77,7 @@ const formSchema = z
   });
 
 export function ProfileForm( {handleRedirect}: any ) {
-  type FormDataState = {
-    username: string;
-    email: string;
-    image: File | null;
-};
   const [selectedFile, setSelectedFile] = useState("");
-  const initialFormData: FormDataState = {
-    username: '',
-    email: '',
-    image: null
-};
-const [formData, setFormData] = useState<FormDataState>(initialFormData);
-  const [imageMul, setImageMul] = useState<File | null>(null);
   const session = useSession();
   const userSession = session.data?.user as UserProps;
   const router = useRouter();
@@ -102,7 +90,7 @@ const [formData, setFormData] = useState<FormDataState>(initialFormData);
       email: "",
       password: "",
       confirmPassword: "",
-      image: null,
+      image: "",
     },
   });
 
@@ -112,16 +100,11 @@ const [formData, setFormData] = useState<FormDataState>(initialFormData);
       dataTransfer.items.add(image)
     );
 
-    const file = dataTransfer.files[0];
-    const newFormData = new FormData();
-    newFormData.append('imagem', file);
-    const displayUrl = URL.createObjectURL(file);
-    setSelectedFile(displayUrl)
-    const imagem = newFormData.get('imagem');
-if (imagem !== null && imagem instanceof File) {
-  setFormData({ ...formData, image: imagem });
-}
-    return { formData, displayUrl };
+    const files = dataTransfer.files;
+    const displayUrl = URL.createObjectURL(event.target.files![0]);
+    setSelectedFile(displayUrl);
+
+    return { files, displayUrl };
   }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -133,14 +116,8 @@ if (imagem !== null && imagem instanceof File) {
       !values.image) {
         return
     };
-    
-    const { confirmPassword, ...data }: FormDataState  = values;
-    data.image = imageMul
-    setFormData(data)
-    console.log(formData);
-    
-    
-    return
+
+    const { confirmPassword, ...data } = values;
 
     try {
       const editedUser = await editUser(`user/${userSession?.user_id}`, data);
