@@ -32,6 +32,7 @@ export function SignUpForm() {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
+    mode: "onBlur",
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",

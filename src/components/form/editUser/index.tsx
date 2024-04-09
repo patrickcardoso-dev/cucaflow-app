@@ -15,39 +15,82 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PasswordInput } from "@/components/password-input";
+import { editUser } from "@/services/user";
+import { toastify } from "@/lib/Toast";
+import { redirect, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { AxiosError } from "axios";
 
 import Image from "next/image";
 
+import orangeDesktop from "../../../assets/shape/ellipse-orange-full.png";
 import PhotoUser from "@/../public/photo-user.png";
 import CameraIcone from "@/../public/camera.png";
 import { ChangeEvent, useState } from "react";
 
+export type DeafaultBackError = {
+  statusCode: number;
+  message: string;
+};
+
+export type UserProps = {
+  user_id: string;
+  token: string;
+  id: string;
+};
+
 const formSchema = z
   .object({
-    nomeUsuario: z.string().min(3, {
-      message: "Nome de usuário precisa ter mais de 3 caracteres",
-    }),
-    image: z.any().optional(),
-    email: z.string().email({ message: "E-mail invalido" }),
-    password: z.string().min(6, {
-      message: "senha precisa ter mais de 6 caracteres",
-    }),
-    confirmPassword: z.string().min(6, {
-      message: "senha precisa ter mais de 6 caracteres",
-    }),
+    username: z
+      .optional(z.literal(''))
+      .or(z
+        .string()
+        .min(3, { message: "Nome de usuário precisa ter mais de 3 caracteres" })
+      ),
+    image: z
+      .optional(z.literal(''))
+      .or(z
+        .any()
+      ),
+    email: z
+      .optional(z.literal(''))
+      .or(z
+          .string()
+          .email({ message: "Formato de e-mail inválido" })
+      ),
+    password: z
+      .optional(z.literal(''))
+      .or(z
+        .string()
+        .min(6, { message: "A senha precisa ter mais de 6 caracteres" })
+        .max(12, { message: 'A senha não pode ultrapassar 12 caracteres' })
+      ),
+    confirmPassword: z
+      .optional(z.literal(''))
+      .or(z
+        .string()
+      ),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "As senhas precisam combinar",
     path: ["confirmPassword"],
   });
 
-export function ProfileForm() {
+export function ProfileForm( {handleRedirect}: any ) {
   const [selectedFile, setSelectedFile] = useState("");
+  const session = useSession();
+  const userSession = session.data?.user as UserProps;
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
+    mode: "onBlur",
     resolver: zodResolver(formSchema),
     defaultValues: {
-      nomeUsuario: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      image: "",
     },
   });
 
@@ -64,20 +107,56 @@ export function ProfileForm() {
     return { files, displayUrl };
   }
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (
+      !values.username && 
+      !values.email && 
+      !values.password && 
+      !values.confirmPassword && 
+      !values.image) {
+        return
+    };
+
+    const { confirmPassword, ...data } = values;
+
+    try {
+      const editedUser = await editUser(`user/${userSession?.user_id}`, data);
+
+      if (editedUser) {
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      if ((error as AxiosError).response) {
+        const errorMessage = (error as AxiosError).response;
+        const errorBack = errorMessage?.data as DeafaultBackError;
+        if (errorBack) {
+          toastify.error(errorBack.message);
+        } else {
+          console.log(errorMessage?.data);
+        }
+      }
+    } 
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col ">
+      <Image
+        src={orangeDesktop}
+        alt="elípse laranja"
+        className="absolute -top-28 right-0 translate-x-64 rotate-6 -translate-y-24 -z-10 max-w-md 
+        laptop:translate-x-44 
+        laptop:rotate-2 laptop:-translate-y-32
+        desktop:translate-x-36 
+        "
+      />
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col">
         <div className="ml-auto mr-auto relative w-32">
           <Image
             width={120}
             height={120}
-            className="rounded-full w-[120px] h-[120px]"
+            className="rounded-full w-[120px] h-[120px] object-cover"
             src={selectedFile ? selectedFile : PhotoUser}
-            alt="teste"
+            alt="Foto do perfil do usuário"
           />
           <FormField
             control={form.control}
@@ -90,7 +169,7 @@ export function ProfileForm() {
                     width={42}
                     height={42}
                     src={CameraIcone}
-                    alt="ìcone camera"
+                    alt="Ícone camera"
                   />
                 </FormLabel>
                 <FormControl>
@@ -106,16 +185,16 @@ export function ProfileForm() {
             )}
           ></FormField>
         </div>
-        <h1 className="text-center my-2">Edite seu cadastro</h1>
-        <div className="mb-4">
+        <h1 className="text-center my-4">Edite seu cadastro</h1>
+        <div className="flex flex-col gap-4 mb-8">
           <FormField
             control={form.control}
-            name="nomeUsuario"
+            name="username"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Nome de Usuário</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input placeholder="Insira seu novo nome de usuário" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -128,7 +207,7 @@ export function ProfileForm() {
               <FormItem>
                 <FormLabel>E-mail</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input placeholder="Insira seu novo e-mail" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -141,7 +220,7 @@ export function ProfileForm() {
               <FormItem>
                 <FormLabel>Nova Senha</FormLabel>
                 <FormControl>
-                  <PasswordInput placeholder="" {...field} />
+                  <PasswordInput placeholder="insira sua nova senha" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -152,9 +231,9 @@ export function ProfileForm() {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Comfirmar nova senha</FormLabel>
+                <FormLabel>Confirmar nova senha</FormLabel>
                 <FormControl>
-                  <PasswordInput placeholder="" {...field} />
+                  <PasswordInput placeholder="Insira sua nova senha" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -162,9 +241,10 @@ export function ProfileForm() {
           />
         </div>
         <Button type="submit" variant="purple">
-          Comfirmar
+          Confirmar
         </Button>
-        <Button className="mt-3" type="reset" variant="orangeSecond">
+        <hr className="w-[180px] my-6 mx-auto" />
+        <Button type="reset" variant="orangeSecond" onClick={handleRedirect}>
           Cancelar
         </Button>
       </form>

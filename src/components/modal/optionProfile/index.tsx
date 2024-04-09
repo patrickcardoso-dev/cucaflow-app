@@ -6,16 +6,11 @@ import PhotoUser from "@/../public/photo-user.png";
 import purpleDesktop from "@/assets/shape/elipse-purple-full.png";
 import { Button } from "@/components/ui/button";
 
-interface DialogProps extends React.DialogHTMLAttributes<HTMLDialogElement> {
-  open?: boolean;
-}
-
-function OptionProfile({ open, ...rest }: DialogProps) {
+function OptionProfile() {
   return (
     <dialog
-      open={open}
+      open
       className="fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
-      {...rest}
     >
       <div
         className="
@@ -46,7 +41,7 @@ function OptionProfile({ open, ...rest }: DialogProps) {
         </div>
 
         <div className="flex flex-col items-center justify-start">
-          <hr className="w-[180px] my-6 mx-auto" />
+        <hr className="text-neutras-disable w-[180px] my-6 mx-auto" />
           <p className="font-bold text-neutras-gray300">
             Deseja excluir conta?{" "}
             <span className="cursor-pointer text-primary-purple100">

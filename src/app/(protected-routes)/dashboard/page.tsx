@@ -9,9 +9,7 @@ import { deleteCookies } from "@/util/coockies";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
-import { ProfileForm } from "@/components/form/editUser";
 import OptionProfile from "@/components/modal/optionProfile";
-import DeleteAccount from "@/components/modal/deleteAccount";
 import { Task } from "@/components/task";
 
 export type UserProps = {
@@ -54,10 +52,7 @@ export default function Dashboard() {
 
   return (
     <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row bg-neutras-disable ">
-      {/* <OptionProfile open={true} /> */}
-      {/* <ProfileForm/> */}
-      <DeleteAccount open={false} />
-
+      
       {userData ? (
         <div className=" w-full flex flex-col justify-center items-center gap-4  ">
           <div className="w-full bg-neutras-bgWhite flex flex-col items-center drop-shadow-dropMenu rounded-b-[24px]">
