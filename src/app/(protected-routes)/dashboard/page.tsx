@@ -10,7 +10,6 @@ import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import OptionProfile from "@/components/modal/optionProfile";
-import DeleteAccount from "@/components/modal/deleteAccount";
 import { Task } from "@/components/task";
 
 export type UserProps = {

@@ -15,6 +15,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PasswordInput } from "@/components/password-input";
+import { editUser } from "@/services/user";
+import { toastify } from "@/lib/Toast";
+import { redirect, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { AxiosError } from "axios";
 
 import Image from "next/image";
 
@@ -23,19 +28,48 @@ import PhotoUser from "@/../public/photo-user.png";
 import CameraIcone from "@/../public/camera.png";
 import { ChangeEvent, useState } from "react";
 
+export type DeafaultBackError = {
+  statusCode: number;
+  message: string;
+};
+
+export type UserProps = {
+  user_id: string;
+  token: string;
+  id: string;
+};
+
 const formSchema = z
   .object({
-    username: z.string().min(3, {
-      message: "Nome de usuário precisa ter mais de 3 caracteres",
-    }),
-    image: z.any().optional(),
-    email: z.string().email({ message: "E-mail invalido" }).optional(),
-    password: z.string().min(6, {
-      message: "A senha precisa ter mais de 6 caracteres",
-    }),
-    confirmPassword: z.string().min(6, {
-      message: "A senha precisa ter mais de 6 caracteres",
-    }),
+    username: z
+      .optional(z.literal(''))
+      .or(z
+        .string()
+        .min(3, { message: "Nome de usuário precisa ter mais de 3 caracteres" })
+      ),
+    image: z
+      .optional(z.literal(''))
+      .or(z
+        .any()
+      ),
+    email: z
+      .optional(z.literal(''))
+      .or(z
+          .string()
+          .email({ message: "Formato de e-mail inválido" })
+      ),
+    password: z
+      .optional(z.literal(''))
+      .or(z
+        .string()
+        .min(6, { message: "A senha precisa ter mais de 6 caracteres" })
+        .max(12, { message: 'A senha não pode ultrapassar 12 caracteres' })
+      ),
+    confirmPassword: z
+      .optional(z.literal(''))
+      .or(z
+        .string()
+      ),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "As senhas precisam combinar",
@@ -44,6 +78,9 @@ const formSchema = z
 
 export function ProfileForm( {handleRedirect}: any ) {
   const [selectedFile, setSelectedFile] = useState("");
+  const session = useSession();
+  const userSession = session.data?.user as UserProps;
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     mode: "onBlur",
@@ -53,6 +90,7 @@ export function ProfileForm( {handleRedirect}: any ) {
       email: "",
       password: "",
       confirmPassword: "",
+      image: "",
     },
   });
 
@@ -69,9 +107,35 @@ export function ProfileForm( {handleRedirect}: any ) {
     return { files, displayUrl };
   }
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (
+      !values.username && 
+      !values.email && 
+      !values.password && 
+      !values.confirmPassword && 
+      !values.image) {
+        return
+    };
 
-    console.log(values);
+    const { confirmPassword, ...data } = values;
+
+    try {
+      const editedUser = await editUser(`user/${userSession?.user_id}`, data);
+
+      if (editedUser) {
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      if ((error as AxiosError).response) {
+        const errorMessage = (error as AxiosError).response;
+        const errorBack = errorMessage?.data as DeafaultBackError;
+        if (errorBack) {
+          toastify.error(errorBack.message);
+        } else {
+          console.log(errorMessage?.data);
+        }
+      }
+    } 
   }
 
   return (

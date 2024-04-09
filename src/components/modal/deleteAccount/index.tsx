@@ -3,11 +3,18 @@
 import DeleteForm from "@/components/form/deleteAccount";
 import logoCucaflow from "../../../assets/logo/logo_cucaflow.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import ellipsePurple from "../../../assets/shape/ellipse-purple.png"
 import { Button } from "@/components/ui/button";
 
 export default function DeleteAccount() {
+    const router = useRouter();
+
+    function handleRedirect() {
+        router.push('/dashboard');
+    }
+
     return (
         <dialog
         open
@@ -26,14 +33,15 @@ export default function DeleteAccount() {
                 </div>
                 <DeleteForm />
 
-                    <hr className="text-secondary-orange300 w-56 m-auto mt-6 mb-4"/>
+                <hr className="w-[180px] my-6 mx-auto" />
               
                 <Button
                     type="submit"
                     variant="orangeSecond"
                     size="default"
-                    className="rounded-lg mt-4 w-80 lg:w-96">
-                    
+                    className="rounded-lg w-80 lg:w-96"
+                    onClick={handleRedirect}    
+                >
                     <p className="text-bold text-sm">Cancelar</p>
                 </Button>
                 <Image
