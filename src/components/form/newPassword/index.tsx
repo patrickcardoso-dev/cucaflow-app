@@ -1,5 +1,4 @@
 "use client";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { manrope } from "../../../app/fonts";
 import {
@@ -17,6 +16,7 @@ import { useState, useEffect } from "react";
 import formSchema from "./schema";
 import { PasswordInput } from "@/components/password-input";
 import { Label } from "@radix-ui/react-label";
+import { newPassword } from "@/services/user";
 
 function NewPasswordForm() {
 
@@ -36,8 +36,16 @@ function NewPasswordForm() {
     setIsFieldEdited(form.formState.isValid);
     }, [form.formState.isValid]);
 
-    function onSubmit(values: formSchemaRecovery) {
-    console.log("newPassword: ", values.newPassword);
+    async function onSubmit(values: formSchemaRecovery) {
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const password = {password: values.newPassword}
+            await newPassword(`recover-password?token=${token}`, password)
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -52,16 +60,20 @@ function NewPasswordForm() {
                     name="newPassword"
                     render={({ field }) => (
                         <FormItem>
-                        <p className="w-72 m-4 text-center">
+                        <p className="w-72 p-4 text-center laptop:text-xl laptop:w-96">
                             Digite sua nova senha de acesso.
                         </p>
                         <FormLabel
-                        className={`text-sm ${manrope.className} desktop:text-base`}
+                        className={`text-base ${manrope.className} desktop:text-base`}
                         >
                         Nova Senha
                         </FormLabel>
                         <FormControl>
-                        <PasswordInput {...field} />
+                                <PasswordInput
+                                    id="newPassword"
+                                    placeholder="Insira sua senha"
+                                    className="bg-neutra-bgWhite"
+                                    {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -88,7 +100,7 @@ function NewPasswordForm() {
           )}
                     />
 
-                    <hr className="text-primary-purple100 w-56 m-auto mt-8 mb-4" />
+                    <hr className="text-primary-purple100 opacity-20 w-56 m-auto mt-8 mb-4" />
                     
                 <Button
                     type="submit"

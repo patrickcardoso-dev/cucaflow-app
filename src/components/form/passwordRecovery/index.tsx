@@ -11,17 +11,25 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { object, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useEffect } from "react";
 import formSchema from "./schema";
 import Link from "next/link";
+import { sendEmail } from "@/services/user";
+import { toastify } from "@/lib/Toast";
 
 function RecoveryForm() {
     const [email, setEmail] = useState("")
 
-    function handleResendEmail() {
-        console.log("email: ",email)
+    async function handleResendEmail() {
+        try {
+            const prevEmail = {email}
+            await sendEmail("recover-password", prevEmail);
+            toastify.success("email enviado!")
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     function handleBackToEmail() {
@@ -41,9 +49,14 @@ function RecoveryForm() {
     setIsFieldEdited(form.formState.isValid);
     }, [form.formState.isValid]);
 
-    function onSubmit(values: formSchemaRecovery) {
-    setEmail(values.email)
-    console.log("email: ", values.email);
+    async function onSubmit(values: formSchemaRecovery) {
+        setEmail(values.email)
+        try {
+            await sendEmail("recover-password", values);
+            toastify.success("email enviado!")
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -59,7 +72,7 @@ function RecoveryForm() {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <p className="w-72 text-center">
+                                    <p className="w-72 p-4 lg:w-96 laptop:text-xl text-center">
                                         Digite o e-mail cadastrado para redefinição de senha.
                                     </p>
                                     <FormLabel
@@ -78,7 +91,7 @@ function RecoveryForm() {
                         <Button
                             type="submit"
                             variant="purple"
-                            className={`mt-6 ${
+                            className={`mt-6 w-80 lg:w-96 ${
                             isFieldEdited
                                 ? "bg-primary-purple100"
                                 : "bg-neutras-disable cursor-not-allowed"
@@ -88,7 +101,7 @@ function RecoveryForm() {
                             Enviar
                         </Button>
 
-                        <hr className="text-primary-purple100 w-56 m-auto mt-10 mb-4" />
+                        <hr className="text-primary-purple100 opacity-20 w-56 m-auto mt-10 mb-4" />
 
                         <Link href="/">
                                 <Button
@@ -103,7 +116,7 @@ function RecoveryForm() {
                 </Form>
             ) : (
                     <div>
-                        <p className="w-80 text-center mt-4 mb-12">
+                        <p className="w-80 lg:w-96 lg:text-xl text-center mt-4 mb-12">
                             Um link para redefinição de senha foi enviado para o seu email.
                         </p>
                         <p className="text-center">Não recebeu o email?</p>
@@ -116,7 +129,7 @@ function RecoveryForm() {
                             Enviar novamente
                         </Button>
 
-                        <hr className="text-primary-purple100 w-56 m-auto mt-10 mb-4" />
+                        <hr className="text-primary-purple100 opacity-20 w-56 m-auto mt-10 mb-4" />
 
                         <Button
                             className="mt-8 w-80 lg:w-96"
