@@ -47,7 +47,7 @@ export const nextAuthOptions: NextAuthConfig = {
       },
     }),
   ],
-
+  trustHost: true,
   callbacks: {
     async session({ session, token }) {
       session.user = token.user as AdapterUser;
