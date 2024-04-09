@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ProfileForm } from "@/components/form/editUser";
+import DeleteAccount from "@/components/modal/deleteAccount";
 
 export type UserProps = {
   user_id: string;
@@ -26,6 +27,7 @@ export type UserDataProps = {
 export default function OptionProfile() {
   const [openEdit, setOpenEdit] = useState<boolean>(true);
   const [openProfileEditing, setProfileEditing] = useState<boolean>(false);
+  const [openDeleteAccount, setOpenDeleteAccount] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserDataProps>();
   const session = useSession();
   const userSession = session.data?.user as UserProps;
@@ -35,9 +37,14 @@ export default function OptionProfile() {
     setProfileEditing(true);
   }
 
+  function handleDeleteAccount() {
+    setOpenDeleteAccount(true);
+  }
+
   function handleRedirect() {
     setOpenEdit(false);
     setProfileEditing(false);
+    setOpenDeleteAccount(false);
     router.push('/dashboard');
   }
 
@@ -60,7 +67,8 @@ export default function OptionProfile() {
       className="fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
     >
         {openProfileEditing && <ProfileForm handleRedirect={handleRedirect}/>}
-        {!openProfileEditing && userData && (
+        {openDeleteAccount && <DeleteAccount />}
+        {!openProfileEditing && !openDeleteAccount && userData && (
           <div
             className="
             border-none bg-neutras-neutra h-full top-[50%] fixed left-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg dark:border-neutral-800 dark:bg-neutral-950"
@@ -94,7 +102,7 @@ export default function OptionProfile() {
               <hr className="w-[180px] my-6 mx-auto" />
               <p className="font-bold text-neutras-gray300">
                 Deseja excluir conta?{" "}
-                <span className="cursor-pointer text-primary-purple100">
+                <span className="cursor-pointer text-primary-purple100" onClick={handleDeleteAccount}>
                   Excluir
                 </span>
               </p>
