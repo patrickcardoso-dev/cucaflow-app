@@ -16,7 +16,7 @@ import Usuario from '@/assets/icon/usuario';
 
 export function NavMenu( {setShowMenu}: {setShowMenu: React.Dispatch<React.SetStateAction<boolean>>}) {
  
-  const styleLink = 'flex items-center py-5 px-8 w-full gap-4 hover:bg-secondary-orange100/60'
+  const styleLink = 'flex items-center py-5 px-8 w-full  gap-4 hover:bg-secondary-orange100/60'
   async function getOut() {
     await signOut();
     deleteCookies()

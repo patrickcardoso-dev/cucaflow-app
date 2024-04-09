@@ -134,7 +134,7 @@ if (imagem !== null && imagem instanceof File) {
         return
     };
     
-    const { confirmPassword, ...data }: FormDataState  = values;
+    const { confirmPassword, ...data }  = values;
     data.image = imageMul
     setFormData(data)
     console.log(formData);

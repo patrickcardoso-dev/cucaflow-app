@@ -55,7 +55,7 @@ export default function Dashboard() {
       
       {userData ? (
         <div className=" w-full flex flex-col justify-center items-center gap-4  ">
-          <div className="w-full bg-neutras-bgWhite flex flex-col items-center drop-shadow-dropMenu rounded-b-[24px]">
+          <div>
             <Header userData={userData} />
             <section>
               <CalendarMonthWeekly />
