@@ -13,6 +13,7 @@ import HomeSvg from '@/assets/icon/home';
 import Nota from '@/assets/icon/nota';
 import Alarme from '@/assets/icon/alarme';
 import Usuario from '@/assets/icon/usuario';
+import LogoutIcon from '@/assets/icon/logout'
 
 export function NavMenu( {setShowMenu}: {setShowMenu: React.Dispatch<React.SetStateAction<boolean>>}) {
  
@@ -55,6 +56,10 @@ export function NavMenu( {setShowMenu}: {setShowMenu: React.Dispatch<React.SetSt
             <Usuario/>
             Perfil
           </Link>
+          <button onClick={getOut} className={styleLink}>
+            <LogoutIcon/>
+              Sair
+          </button>
         </nav>
       </div>
     </div>

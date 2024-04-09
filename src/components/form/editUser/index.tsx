@@ -114,14 +114,14 @@ const [formData, setFormData] = useState<FormDataState>(initialFormData);
 
     const file = dataTransfer.files[0];
     const newFormData = new FormData();
-    newFormData.append('imagem', file);
+    newFormData.append('image', file);
     const displayUrl = URL.createObjectURL(file);
     setSelectedFile(displayUrl)
-    const imagem = newFormData.get('imagem');
-if (imagem !== null && imagem instanceof File) {
-  setFormData({ ...formData, image: imagem });
-}
-    return { formData, displayUrl };
+    const imagem = newFormData.get('image');
+    if (imagem !== null && imagem instanceof File) {
+      setFormData({ ...formData, image: imagem });
+    }
+    return  formData;
   }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -135,12 +135,10 @@ if (imagem !== null && imagem instanceof File) {
     };
     
     const { confirmPassword, ...data }  = values;
-    data.image = imageMul
-    setFormData(data)
-    console.log(formData);
+
+    data.image = formData.image
     
-    
-    return
+  
 
     try {
       const editedUser = await editUser(`user/${userSession?.user_id}`, data);
