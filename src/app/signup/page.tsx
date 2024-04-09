@@ -14,6 +14,7 @@ export default function SignUp() {
     
     return (
         <main className={`tablet:flex tablet:items-center tablet:justify-center bg-neutra-bgWhite h-screen p-8`}>
+          {}
             <div>
                 <Image
                         src={ellipseTop}
@@ -63,7 +64,7 @@ export default function SignUp() {
                                 alt="Elipse laranja"
                                 className="hidden laptop:block absolute laptop:w-72 laptop:bottom-0 laptop:right-0"
                             />
-                            <SuccessMessage open={true} txtButton="Fazer login" txtMessage="Cadastro realizado com Sucesso!" btnPath="/"/>
+                            
                         </div>
                     </div>
                 </div>
