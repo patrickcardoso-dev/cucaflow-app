@@ -51,16 +51,16 @@ export default function Dashboard() {
   }
 
   return (
-    <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row bg-neutras-disable ">
-      
+    <main className="flex flex-col min-h-screen items-center gap-6  relative overflow-hidden laptop:flex-row">
       {userData ? (
         <div className=" w-full flex flex-col justify-center items-center gap-4  ">
-          <div className="w-full bg-neutras-bgWhite flex flex-col items-center drop-shadow-dropMenu rounded-b-[24px]">
+          <div className="">
             <Header userData={userData} />
-            <section>
+            
+          </div>
+          <section>
               <CalendarMonthWeekly />
             </section>
-          </div>
           <Button onClick={getOut}>Sair</Button>
           <div className="flex gap-2">
             <Button
